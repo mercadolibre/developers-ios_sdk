@@ -91,7 +91,7 @@ MeliDevASyncHttpOperation *httpClient = [[MeliDevASyncHttpOperation alloc] initW
 ### Anonymous
 
 ```objective-c
-NSString * result =[httpClient get:path error:&error];
+NSString * result = [httpClient get:path error:&error];
 ```
   or
 
@@ -112,7 +112,7 @@ FailureHandler failureHandler = ^(NSURLSessionTask *operation, NSError *error) {
 ### Authenticated
 
 ```objective-c
-NSString * result =[httpClient getWithAuth:path error:&error];
+NSString * result = [httpClient getWithAuth:path error:&error];
 ```
   or
 
@@ -133,7 +133,7 @@ FailureHandler failureHandler = ^(NSURLSessionTask *operation, NSError *error) {
 ## Making POST calls
 
 ```objective-c
-NSString * result =[httpClient post:path withBody:[self createJsonDataForPost] error:&error];
+NSString * result =[ httpClient post:path withBody:[self createJsonDataForPost] error:&error];
 ```
     or
 
@@ -156,7 +156,7 @@ FailureHandler failureHandler = ^(NSURLSessionTask *operation, NSError *error) {
 ## Making PUT calls
 
 ```objective-c
-NSString * result =[httpClient put:path withBody:[self createJsonDataForPut] error:&error];
+NSString * result = [httpClient put:path withBody:[self createJsonDataForPut] error:&error];
 ```
     or
 
@@ -179,7 +179,7 @@ FailureHandler failureHandler = ^(NSURLSessionTask *operation, NSError *error) {
 ## Making DELETE calls
 
 ```objective-c
-NSString * result =[httpClient delete:path error:&error];
+NSString * result = [httpClient delete:path error:&error];
 ```
 
     or
