@@ -15,7 +15,7 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - MBProgressHUD (1.0.0)
-  - MeliDevSDK (0.0.1)
+  - MeliDevSDK (0.1.0)
   - OCMock (3.3.1)
 
 DEPENDENCIES:
@@ -31,7 +31,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
-  MeliDevSDK: a0759999e0b75dc3ccd0bd582f69b35a75424ce9
+  MeliDevSDK: 5a2f765f3b50238e9396be4806386b63c6c8f275
   OCMock: f3f61e6eaa16038c30caa5798c5e49d3307b6f22
 
 PODFILE CHECKSUM: f7271e4cfb4891279aba45078cfe6bbe10dfbbc3

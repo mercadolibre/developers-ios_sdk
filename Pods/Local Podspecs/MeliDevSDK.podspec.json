@@ -1,22 +1,21 @@
 {
   "name": "MeliDevSDK",
-  "version": "0.0.1",
-  "summary": "A short description of MeliDevSDK.",
-  "homepage": "https://github.com/tonymillion/Reachability",
-  "license": "None",
+  "version": "0.1.0",
+  "summary": "The official iOS SDK for MercadoLibre's Platform.",
+  "homepage": "http://developers.mercadolibre.com/",
+  "license": "MIT",
   "authors": {
-    "Ignacio": "igiagante@gmail.com"
+    "Ignacio Giagante": "igiagante@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/mercadolibre/developers-ios_sdk",
+    "tag": "0.1.0"
   },
   "platforms": {
     "ios": "8.0"
   },
   "requires_arc": true,
-  "source": {
-    "git": "https://github.com/tonymillion/Reachability.git",
-    "tag": "v3.1.0"
-  },
   "source_files": "LibraryComponents/Classes/**/*.{h,m}",
-  "exclude_files": "Classes/Exclude",
   "resources": [
     "LibraryComponents/**/*.xib",
     "LibraryComponents/Assets/**/*.xcassets",
