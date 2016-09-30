@@ -72,7 +72,7 @@ NSString * const CALLBACK_MESSAGE_DISPATCH = @"background_message_dispatch";
     return YES;
 }
 
-- (void *) getIdentityData: (NSString *) urlParams {
+- (void) getIdentityData: (NSString *) urlParams {
     
     NSMutableDictionary *queryStringDictionary = [[NSMutableDictionary alloc] init];
     NSArray *urlComponents = [urlParams componentsSeparatedByString:@"&"];

@@ -22,7 +22,7 @@ typedef void (^OnLoginCompleted)(NSDictionary *);
  */
 typedef void (^OnLoginErrorDetected)(NSString *);
 
-@interface MeliDevLoginViewController : UIViewController
+@interface MeliDevLoginViewController : UIViewController <UIWebViewDelegate>
 
 /**
  *  Represent the application identifier provided by the client application.
@@ -44,7 +44,7 @@ typedef void (^OnLoginErrorDetected)(NSString *);
  *
  *  @param urlParams                    represents all the params information needed to create the identity.
  */
-- (void *) getIdentityData: (NSString *) urlParams;
+- (void) getIdentityData: (NSString *) urlParams;
 
 /**
  *  Check if all properties related to the identity are provided properly.

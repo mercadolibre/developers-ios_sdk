@@ -30,7 +30,7 @@ static NSString * const MELI_IDENTITY_NIL_MESSAGE = @"Meli Identity is nil";
     
     if([responseCode statusCode] == 401){
         
-        NSString * requestError = [NSString stringWithFormat:HTTP_REQUEST_ERROR_MESSAGE, [request URL], [responseCode statusCode]];
+        NSString * requestError = [NSString stringWithFormat:HTTP_REQUEST_ERROR_MESSAGE, [request URL], (long)[responseCode statusCode]];
         
         NSLog(HTTP_REQUEST_ERROR_MESSAGE, [request URL], (long)[responseCode statusCode]);
         
@@ -136,7 +136,7 @@ static NSString * const MELI_IDENTITY_NIL_MESSAGE = @"Meli Identity is nil";
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
         [request setHTTPMethod:@"POST"];
         [request setHTTPBody:body];
-        [request setValue:[NSString stringWithFormat:@"%d", [body length]] forHTTPHeaderField:@"Content-Length"];
+        [request setValue:[NSString stringWithFormat:@"%d", (int)[body length]] forHTTPHeaderField:@"Content-Length"];
         [request setURL:[NSURL URLWithString:url]];
     
         return [self execute:request error: error];
@@ -157,7 +157,7 @@ static NSString * const MELI_IDENTITY_NIL_MESSAGE = @"Meli Identity is nil";
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
         [request setHTTPMethod:@"PUT"];
         [request setHTTPBody:body];
-        [request setValue:[NSString stringWithFormat:@"%d", [body length]] forHTTPHeaderField:@"Content-Length"];
+        [request setValue:[NSString stringWithFormat:@"%d", (int)[body length]] forHTTPHeaderField:@"Content-Length"];
         [request setURL:[NSURL URLWithString:url]];
     
         return [self execute:request error: error];

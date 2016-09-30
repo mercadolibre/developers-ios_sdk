@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.version      = "0.1.0"
   s.summary      = "The official iOS SDK for MercadoLibre's Platform."
   s.homepage     = "http://developers.mercadolibre.com/"
-  s.license      = "MIT"
+  s.license   = { :type => 'MIT', :file => 'LICENSE.txt' }
   s.author       = { "Ignacio Giagante" => "igiagante@gmail.com" }
   s.source       = { :git => 'https://github.com/mercadolibre/developers-ios_sdk.git', :tag => s.version.to_s }
 
