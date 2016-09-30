@@ -7,19 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		019F984B31ABE62ED51AD822FCDAE7BE /* MeliDevAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = EBC723629A1028B1AA2E7038FF6F9ECB /* MeliDevAccessToken.m */; };
 		0358B918CA8C9D3C214FD4D41CD69A90 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E199182920304960106E15DF51DD632 /* Security.framework */; };
 		03EF931564978791D4ABC400F3FDDBED /* OCMVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A040FB18D789B99F1960019AE49A4D /* OCMVerifier.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		04565F3CD07BAD54581088842A8C04D5 /* MeliDevSyncHttpOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3E533A8D243EF61873C506841F97C4 /* MeliDevSyncHttpOperation.m */; };
 		045FFEDD819A734271DD5DE53C877884 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A6D4F2C34F4073C9E145BDAD11F32B1 /* CoreGraphics.framework */; };
 		046937EA1C4859D4D96EFA7B7687E441 /* OCMBlockCaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE866D7E36DEB4FA6DECEB825A13C9B /* OCMBlockCaller.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		050642DCB3B004DB0EA1D7F1B7DFD2D5 /* MeliDevSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F30FC2A6F741E452DD8B09B391FDD7D /* MeliDevSDK-dummy.m */; };
 		075E2951CDFD13879C19F2C1B4A7328A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78116A4A5B2F29FA5A88E51AC0744F6E /* Foundation.framework */; };
 		0934D3DAC27331C1569A357A677B2206 /* NSMethodSignature+OCMAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 97C58DE5D025AADCAF9AEA54446DB5A8 /* NSMethodSignature+OCMAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		0951ECB79A8DDBA8DC3077FA1CC84E6B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A6D4F2C34F4073C9E145BDAD11F32B1 /* CoreGraphics.framework */; };
 		0A08FC71C4E3B8E0F8734BCDA7CCA7CB /* AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 05A393E5CA09FE65F0F05106D4DD1F7D /* AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0A7C4089DBD8BD40374AFA8EEAB7CA3C /* OCMPassByRefSetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DB65D970403CE0171788E8A6BFA8A1 /* OCMPassByRefSetter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0E62438D8BED3D705D282C19F699E994 /* MeliDevIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C8D1134F215AD6C4992F3A665D3907 /* MeliDevIdentity.m */; };
 		0EE98780873CB1A29EE8B4A36BA7E14A /* OCMFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E25DBDEA52E3176D858F5389588A58C /* OCMFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		102E779D190129889A9AF5CC8A37A853 /* MeliDevLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D5EE8D694422DEBF77DC2AB7A7091F /* MeliDevLoginViewController.m */; };
 		10AEAD2136880EEE7E771F533331F250 /* OCMock.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DABB0E100A4ED6EEDA07909E19C3859 /* OCMock.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		149DE9C6DB74B12EFF07D185484D946F /* NSInvocation+OCMAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A5E745EE0FC6FC58AF5BF9B60B73920 /* NSInvocation+OCMAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		14CD3DFB4A25BAEFB205730FA6750025 /* AFAutoPurgingImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E61A96E0C23000E5C00D97A049FE83 /* AFAutoPurgingImageCache.m */; };
@@ -29,47 +28,47 @@
 		19E6319F6ECED7539AABBD9A211F7AEC /* AFAutoPurgingImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B00A1EC1D154A0A757556CA0C31D94A /* AFAutoPurgingImageCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B7E21160BEF08CC76BA8C17E94E455A /* OCMLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B20E2C3BC736BAC953E74F2670659F2 /* OCMLocation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1C289876A4849D6798FC7F154214C5F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78116A4A5B2F29FA5A88E51AC0744F6E /* Foundation.framework */; };
+		1C3E599E222A26B34F82BCBCEA178F46 /* MeliDevLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D5EE8D694422DEBF77DC2AB7A7091F /* MeliDevLoginViewController.m */; };
 		20C39DB909C33B491D60F23FA1D415C2 /* OCMRealObjectForwarder.m in Sources */ = {isa = PBXBuildFile; fileRef = E7F4090911D8478F5B03C57769BE9239 /* OCMRealObjectForwarder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		23415204AA48A02959E4E5245CF96037 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D397F0788A2CC2CC011054A9B9DD1030 /* AFHTTPSessionManager.m */; };
 		2359387620C5E815BF0594BC40311734 /* AFURLRequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = B59B5DF90EF3E7B96C19401ADC4D641B /* AFURLRequestSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2637A49895D5C15361E0E9EA9EF83A53 /* MeliDevAsyncHttpOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 382728C82F40B6F5EF9564FE4899F2BF /* MeliDevAsyncHttpOperation.m */; };
+		265EB8ADE4B17CBFB74073635EA0B21A /* MeliDevIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AE7E7DCB46B091DACED539DAF1E3DE3 /* MeliDevIdentity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2B342A1143B39C7E396A50C6540E2639 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E952E46089C71F1B18C710595AC20E84 /* QuartzCore.framework */; };
 		30DA0B928C8F28E3C3F279C3833458A0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78116A4A5B2F29FA5A88E51AC0744F6E /* Foundation.framework */; };
 		311E5200832E4AE174A193851A2C6317 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6B72B61AA73B5252E5CC6BB04FE9AB /* AFSecurityPolicy.m */; };
 		3152811CD17686AA726713BFE3612206 /* OCMConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = AA89B612AED2D1ED52FE9CB1147121F3 /* OCMConstraint.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		317245A243F929A58676C0E132B52CD2 /* Meli.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7EA91E233916BD882390A139D46E23 /* Meli.m */; };
 		326A543AD4E39A2DAECA1CD385E3AEA2 /* AFImageDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = FE82C2FF71EF2CAF8EFFA4221B86AF3B /* AFImageDownloader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		33C4E9CA4B43CD4C468B338E2ED06860 /* OCMVerifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C7708233870F4BC025D9788E98D9FDA /* OCMVerifier.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		3511AE7ADBB71D05565854F0E70B7D08 /* AFURLSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FBE97DB6076CEA3D497DCAC848799210 /* AFURLSessionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		38EEA9ED6B922946C54AD6BAC93B73AD /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 73963D24B30C43367FB642E6F0B42550 /* UIProgressView+AFNetworking.m */; };
 		3939531EB270B4145C7ADFBAB2E5695F /* AFNetworkActivityIndicatorManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E1386DADD51C203064DB9AC405317AF4 /* AFNetworkActivityIndicatorManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3A769EE15211B7EBBAF4B1C8AD542502 /* OCMFunctionsPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 208694DCFAF7DB27531B2E70D893EDE7 /* OCMFunctionsPrivate.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3D8B3F857922789F147EB456AA7F8F9E /* MeliDevErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = EAEC5284B8D3DD892DA9A03EAFA474AD /* MeliDevErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3EEE56426C5838CA2F13E8F95B594401 /* OCMRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C50A39CDE39FEA8DDE6E4429C4BCB8 /* OCMRecorder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		40B2ABF25812A14D83A05D8937FBDB7B /* OCProtocolMockObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 575A68F85A4076C55C5FF950D9A42C1E /* OCProtocolMockObject.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		43098B12DF5546CB576986E68DBCAFCA /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C49CC62DE4A0BB7F599A54314B564D4 /* AFNetworkReachabilityManager.m */; };
 		4BA19F7DD8F9FDA648137B2CE89E7588 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA31B8FDF49BA88DC1453BC11C3D0822 /* AFNetworkActivityIndicatorManager.m */; };
 		4CF0A4AD04F2F3CF7465991A5E76AD47 /* OCMStubRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E552854E586C35FD4F12C94D8BFAA0 /* OCMStubRecorder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4FC55AC4D7003961A833F1EC6E73FA07 /* MeliDevUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBA87AF70BA8C8CDE77E8AD8FBCC9D /* MeliDevUtils.m */; };
+		5462F44AE07650721B8FA4A1C5C56A8D /* MeliDevSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F30FC2A6F741E452DD8B09B391FDD7D /* MeliDevSDK-dummy.m */; };
 		55EA7FCA2F507BCC25959CE95D295A8C /* OCMConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = A55B514FA9B80475F402847D749EE6D0 /* OCMConstraint.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		55F2C7C98AB5E300663D064AAA64B80B /* OCMArgAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EE4C2F1567AD5FCD604BBB42499C58FA /* OCMArgAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		562C4A7A171B6F0000B132E22372C3DA /* OCPartialMockObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 9803550A51EC4B2B39F1FE11D349F8C8 /* OCPartialMockObject.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		59BC54DA90AD2433D20358F9853622CA /* OCMMacroState.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7D3CDE31EA1857F4E59BEA6C6F8AE0 /* OCMMacroState.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5BB246B2587EBC3E5597DBD6CD33777F /* NSMethodSignature+OCMAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0307F0AD7EFA265AE67CB25DE195A7D8 /* NSMethodSignature+OCMAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5D52DB6DF2E6C24CECB0015A9177A2E1 /* UIProgressView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = C020DCEB034A8BCCDD2074B932DA4CDA /* UIProgressView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5E5B01F8F360458388FA1A1840021BAC /* Pods-MeliDevSDKTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEA94B9F1F4F663F6C0EDBDFACE7F97 /* Pods-MeliDevSDKTests-dummy.m */; };
 		5F04262019BBB326960E643861626099 /* OCMExceptionReturnValueProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E3F5C879DE4954F092D5770F6BD7148 /* OCMExceptionReturnValueProvider.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		648E7F45D6E4DCE98EED9D4E2F003C1E /* MBProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7124EBEF2497A5DDE002A13D4E9F91 /* MBProgressHUD-dummy.m */; };
 		650FFDAF60A6C37D824BC6364B09A3E5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6A9EBDD3ED0CB153BA68224971B8CC /* SystemConfiguration.framework */; };
 		651F3096B56BFF131C5F956001D7BAAB /* OCMArg.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D1CACA9B862075FF953854CDBA6FEA /* OCMArg.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		672FE514B7C1EB583AF6CEB2538025A7 /* OCMBoxedReturnValueProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E361F38588AB188D86CB207A251F3 /* OCMBoxedReturnValueProvider.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		673ECEFFF04F0DD405D51A189ADF2A26 /* Pods-MeliDevSDKTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEA94B9F1F4F663F6C0EDBDFACE7F97 /* Pods-MeliDevSDKTests-dummy.m */; };
+		67B6980476FA6DC07606124941E2F5A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78116A4A5B2F29FA5A88E51AC0744F6E /* Foundation.framework */; };
 		695A3FA15E903AE48EB0B3BE336F2467 /* MBProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = A4F23D98193B1FCEE080C66EF46D2626 /* MBProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6D2AD1DFA8F27BA0EBB3365A5AF7AC1B /* OCMExpectationRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = A317ECC6B38CB80826339BED38811200 /* OCMExpectationRecorder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6EC97BDB3FC508526F9E388095A7DDCC /* UIImageView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 1715B600F1396535E5AF4C0313C7A674 /* UIImageView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6F107E7376309D61F13FC83B52BCC9D4 /* MeliDevAccessToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 79DFBF0710D2DABCDA798F4306544632 /* MeliDevAccessToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70AC31D0736F568C0386716176361D09 /* OCMInvocationMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 915F9A6BAE122DF27EF9C93D35800167 /* OCMInvocationMatcher.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		71899DFD8094C412FFC39669279B4533 /* OCMBlockArgCaller.h in Headers */ = {isa = PBXBuildFile; fileRef = 744F8174DFCA5619C6F1C8CEB730B039 /* OCMBlockArgCaller.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		78940A6980F359C4304C695EF6E67C5D /* UIButton+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 602DB35BDA5E18A50AB6355D4B3D44A6 /* UIButton+AFNetworking.m */; };
-		7A180BF0D438E9EF539D4DE4BBC962D1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78116A4A5B2F29FA5A88E51AC0744F6E /* Foundation.framework */; };
 		7EE0FD33AB30006545874DEF02F9243E /* OCMNotificationPoster.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B355876FD5E2459B409CDE6D0F4291A /* OCMNotificationPoster.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7F0578A0258E02384F6229C678E60D31 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = E20DC592EA35A8FA18E2BF06B53B14E0 /* UIRefreshControl+AFNetworking.m */; };
 		7FFCEEC0036EC9E7A5D3BAD719B28D4A /* NSNotificationCenter+OCMAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D75EADA1526096453DC0BCDCDAFE875 /* NSNotificationCenter+OCMAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -77,10 +76,10 @@
 		830B3A29668D59C62571A4CE4D3BAFCA /* OCMIndirectReturnValueProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B14CEAE59DD8991F7C76F7D882BEC /* OCMIndirectReturnValueProvider.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		85FAB6F1D2FE0598BF2E61D7BB084B8D /* UIKit+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C091D56524B0E38AEC228FDCF2F7B9F /* UIKit+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		87AA263FA688A8E92C2B8ADEE72C98C6 /* OCMObserverRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CC259C60B3D293F8C20122AF31985A6 /* OCMObserverRecorder.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		893E796B48463ECD3233F16376E0E1DF /* MeliDevAccessToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 79DFBF0710D2DABCDA798F4306544632 /* MeliDevAccessToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8A1370FF0DD475F945954535A988ED4B /* OCMockObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 1296194FDA22F185AE36660454821B44 /* OCMockObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8D40AF80800C0D4A691F4A0656E53D98 /* OCMRealObjectForwarder.h in Headers */ = {isa = PBXBuildFile; fileRef = F5282DD5487A852091C4A1634AE236FF /* OCMRealObjectForwarder.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8E82178CC9BD8BE3DBF2C10E33807AEB /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 13DC1114B4B4468430294BF972E6EBA0 /* AFURLRequestSerialization.m */; };
-		925256BCAD34DAC8D9F9B7F334593703 /* MeliDevAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = EBC723629A1028B1AA2E7038FF6F9ECB /* MeliDevAccessToken.m */; };
 		93AFE6783AD6DC052E2EC3B9DB57E5E4 /* Pods-MeliDevSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 19987440C94992CDE7B4FD9D6B44A746 /* Pods-MeliDevSDK-dummy.m */; };
 		94216C983E91F2BA503920465DE1972A /* OCClassMockObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 47E9385316A987CD842B15081A83CA19 /* OCClassMockObject.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		950C209E1D004EBDCD43D6C2136B5AA2 /* OCMStubRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = C29913E14151CD0710FDD2606AD97CA5 /* OCMStubRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -88,34 +87,32 @@
 		9ED6B48F0C000C83C89249483D3398A6 /* OCMFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 046FFF68F1FCAD3EEB0671711A300EA0 /* OCMFunctions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A425B4C6EAA79B2C9BB4F374180DC194 /* NSValue+OCMAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = E4958C70DE5038B10CB5402A0A2D1074 /* NSValue+OCMAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		A516CB608A827C4FEA550CB372854AF7 /* OCMReturnValueProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B19E01CA29982089C9DE6747F1D166 /* OCMReturnValueProvider.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		A8C76F0BE69D271FDC9A55E6C24B9E30 /* MeliDevIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AE7E7DCB46B091DACED539DAF1E3DE3 /* MeliDevIdentity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A8FC6A53F6C1CB4DEFD972664E1AF3B1 /* AFNetworking-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF81D8B5E0C68AC3E64C08922290D9E /* AFNetworking-dummy.m */; };
+		ABF8E9E70981000AA95940BE1766DF92 /* MeliDevAsyncHttpOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 03A8AEE7D1D87FBC26DE1E89B87AA456 /* MeliDevAsyncHttpOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ACE9C1A6E8D5121C6C5F907C7A9CFCC9 /* UIRefreshControl+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 5681B7A82FB2558FFA40F040D1E330E7 /* UIRefreshControl+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD2E5A7E4F2AEF7EB537705570F7608F /* MeliDevAsyncHttpOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 382728C82F40B6F5EF9564FE4899F2BF /* MeliDevAsyncHttpOperation.m */; };
 		AD359A96DD4AA2C962E50A5CD5524F54 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6F5560194E0F01E73CA5BB9B3F044B /* UIWebView+AFNetworking.m */; };
 		AD672A92EF1A71CB35F77D51924A63D7 /* OCMInvocationStub.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E79908FB213210A522F399EAF8CD174 /* OCMInvocationStub.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		AF5B8A1F5C2FA91B54420241B8C4953F /* MeliDevErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = EAEC5284B8D3DD892DA9A03EAFA474AD /* MeliDevErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B0BE398350F83A7B0102C3BBAFC51428 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD29B50AC9C5C508643121919C73D62 /* UIImageView+AFNetworking.m */; };
 		B1A99F49DAF9B0C1D4B9C09B77A35DEC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78116A4A5B2F29FA5A88E51AC0744F6E /* Foundation.framework */; };
 		B28B82281F2A75B1A27E9B1B289B179D /* OCClassMockObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8224FF81CD4A48B4FF0951C632739A /* OCClassMockObject.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B291EC25920DDB084205ECAE13124B69 /* MeliDevIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C8D1134F215AD6C4992F3A665D3907 /* MeliDevIdentity.m */; };
 		B36995CF7E36CC57C8C118EC5EC049A6 /* OCMock-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E9CA18A14F5DE0D8A154D75D1FCEA /* OCMock-dummy.m */; };
+		B456A588BBA9D0BEB9E50ACF4F22CD7C /* Meli.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7EA91E233916BD882390A139D46E23 /* Meli.m */; };
 		B4D6973B3F74EB04E719BFCFCBF04C0B /* OCMInvocationStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 1520836CCE245A80C6E6E94DA4F45887 /* OCMInvocationStub.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B51AA1F7701DCDBCC9B88A15320F9C2C /* AFURLResponseSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = C401E222460996362F7679AA74E558B0 /* AFURLResponseSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5CC04461C1112D4E06D4ED2DADFDB15 /* MeliDevSyncHttpOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3E533A8D243EF61873C506841F97C4 /* MeliDevSyncHttpOperation.m */; };
 		B5CF67F7870BAB70A76E57479B706B42 /* UIWebView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = E6288CEF2647D4B9739068C2B1D3B47D /* UIWebView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B8ECFB054A284291804C4F3AE8B16FC2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78116A4A5B2F29FA5A88E51AC0744F6E /* Foundation.framework */; };
 		BC7143B82E45DDE808B1D8E8F6970E41 /* OCMInvocationExpectation.h in Headers */ = {isa = PBXBuildFile; fileRef = 128E68DD61E3433AE7596FAA49C2C15F /* OCMInvocationExpectation.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		BD553964D0F15C08CCD531CCEC8C2779 /* Meli.h in Headers */ = {isa = PBXBuildFile; fileRef = D558320F9DB9FA6C2B359CBA70748754 /* Meli.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BDE2E18D871F618FE7DDCAF781B5881E /* MeliDevSyncHttpOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 71C85BC39A89DA99636BE32AEB43274A /* MeliDevSyncHttpOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C01520F21314A4A11E0BD5C9BE190A1A /* OCMExpectationRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 3987B037A8599C8A1FDAFD53233A7F6A /* OCMExpectationRecorder.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		C05F3D9B12F72CAC2D7E1E38CC33037C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78116A4A5B2F29FA5A88E51AC0744F6E /* Foundation.framework */; };
-		C0E553DC71CB1AAF790199D9D71740B4 /* MeliDevUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBA87AF70BA8C8CDE77E8AD8FBCC9D /* MeliDevUtils.m */; };
 		C1B65C3D849FEE4FB5298A8135A765DA /* UIImage+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = E2C28CFECDE9A540EA2862CD31429F28 /* UIImage+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C2201E34603B014192F0967473518496 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8F34CD58229D45D8907149E22AF924 /* AFURLResponseSerialization.m */; };
 		C4235F3704F471BAF74CB4482A99D340 /* OCMReturnValueProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = DBC38D398F8E27552E01BB34C868EAD6 /* OCMReturnValueProvider.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		C44F4AA371052A3F1317525B0AAFBEB6 /* MeliDevLoginViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DC4B29064D8D4A7BF9DBBDFF5073ECE /* MeliDevLoginViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C508640C7607A5BE183916AC4202A026 /* OCMInvocationMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F79F764EACA3A414C381756E763E61B /* OCMInvocationMatcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C55C0B0594D26DE09DEC7F161910A211 /* OCObserverMockObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 93004E92FF5D8DD210E53B45F6B44E60 /* OCObserverMockObject.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C6DEDAD5B01946A2644F428020F881B6 /* OCObserverMockObject.h in Headers */ = {isa = PBXBuildFile; fileRef = B92DE7B74C8C65C3ECB6A3388401DBB9 /* OCObserverMockObject.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C796F27878B148315E4EB60535EEA4BE /* OCMLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 6274114E67C0DA304632703D33C9D7A0 /* OCMLocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C841F9C3A7F2FAFE1069B1C690044EE5 /* MeliDevAsyncHttpOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 03A8AEE7D1D87FBC26DE1E89B87AA456 /* MeliDevAsyncHttpOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CC40C17D2E01DDDF48A7A8D50B8E92F8 /* OCMMacroState.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EC1C3301DD55EF997B0993BD089A64E /* OCMMacroState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CC4F14C27B167A64F09A356652410909 /* OCMInvocationExpectation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80876855B71E663403A311E7C0F22C /* OCMInvocationExpectation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CC5C84B30927F4CE48D7EC04BF652005 /* OCMockObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E1A952570E14D6F177E7215C217788 /* OCMockObject.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -126,21 +123,24 @@
 		D78D41AA2CEB6ED571503108CEC3DA15 /* OCMArg.h in Headers */ = {isa = PBXBuildFile; fileRef = A211E46AB8981631A99D233BB0F2C8F4 /* OCMArg.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D9EA9C8052853B8962318FFD5A5551B6 /* OCMExceptionReturnValueProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EF79C67DD73000AB779D6FD7F31A0758 /* OCMExceptionReturnValueProvider.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DADACF239B30C047FA9304E5FDDA8B2E /* NSObject+OCMAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE330EF140E5A9D028CB58BA3DF5DA5 /* NSObject+OCMAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DD1DFEF7293E1EF864FDE899594D2449 /* Meli.h in Headers */ = {isa = PBXBuildFile; fileRef = D558320F9DB9FA6C2B359CBA70748754 /* Meli.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DE57384C891A85506CB91EA186D2D2B4 /* OCMArgAction.h in Headers */ = {isa = PBXBuildFile; fileRef = EAAE1151072A68D6D40DF3D90106C53F /* OCMArgAction.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		DF0A3CB81B12C054F9C8258F680F7C9D /* OCPartialMockObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FF9A6FAD1FAEA174463FB55CA4B7AB /* OCPartialMockObject.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DFDAC8245626953C4BCE5A2DA6BE2A5B /* AFSecurityPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F70057F376303D7936862919C9DB5F5 /* AFSecurityPolicy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E00ABE7FC44CB9D1B511D96D47C16AD5 /* NSInvocation+OCMAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B1111C08496FE2AE8E132CF2C98A26A5 /* NSInvocation+OCMAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E212C2AA95E8F6EFB69A5F1455F291F8 /* UIButton+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 549FCC38494BAB92158F21D283DC4F19 /* UIButton+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E2D2C2DEBBB651077ABC3710A423594F /* NSValue+OCMAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B501DB2C01DF3F67B539946AA74E97B /* NSValue+OCMAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		E31DDA247F2C7CD3562BE8CCF13221E7 /* MeliDevUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F6B2278E7CE477EF30A8EE79AE9E7DDC /* MeliDevUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E45D617A6259C90DC54D6F22571998E8 /* OCMPassByRefSetter.h in Headers */ = {isa = PBXBuildFile; fileRef = C371E69B7850921BDFBD0A4BADC9D3BB /* OCMPassByRefSetter.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		E8CDCEDCDC0ADE51EBAFCC09F44EFF12 /* OCMBlockArgCaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E897A4C840A80839CFA2F99C08FB8D /* OCMBlockArgCaller.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA2A970253EA9B298F0BB63864AA18D1 /* OCProtocolMockObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A84180CEC9F6E51F5883190F0DF133B9 /* OCProtocolMockObject.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		ED69D9B5A342FE9BD3F170D5CDDEC948 /* AFNetworkReachabilityManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E6172344176C9EE7301DDB8E7671EC0 /* AFNetworkReachabilityManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EEBEC3C68DD8C679511876B4610D582A /* OCMBoxedReturnValueProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = CC32CEABE3E4224F6ECAF22B9CE2B448 /* OCMBoxedReturnValueProvider.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		EFD3B309546EEF16E973EBDF1BCCB0FF /* MeliDevUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F6B2278E7CE477EF30A8EE79AE9E7DDC /* MeliDevUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F0E9BE1709D8B3501A9E791E8D36FBED /* NSNotificationCenter+OCMAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B2879A8018DB8F8543D69E544722A6 /* NSNotificationCenter+OCMAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F3774B1449FCE5B3CA3E1B336E11D284 /* AFHTTPSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BBA9FD3BCB58B659BA9DCCEB4B66EDD /* AFHTTPSessionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F727A9984527508EE36B936B3348413C /* MeliDevSyncHttpOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 71C85BC39A89DA99636BE32AEB43274A /* MeliDevSyncHttpOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FB294C8C8DCC4EACB074C58C027C9723 /* OCMIndirectReturnValueProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 1705E80AAE94393550BD24DCA8EABC36 /* OCMIndirectReturnValueProvider.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		FC7AF1F6B344F9335932E23399086387 /* MeliDevLoginViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DC4B29064D8D4A7BF9DBBDFF5073ECE /* MeliDevLoginViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FCDDD3BC67EA205C87238A2A87D5C36C /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE4CA5E914450B78D3E8E7DAE6DDA4E /* AFURLSessionManager.m */; };
 		FDFD77CF38AE5FDD235A02217B763809 /* OCMBlockCaller.h in Headers */ = {isa = PBXBuildFile; fileRef = AC5D33AF4B3E1B76AE52056C96E5540A /* OCMBlockCaller.h */; settings = {ATTRIBUTES = (Project, ); }; };
 /* End PBXBuildFile section */
@@ -153,25 +153,53 @@
 			remoteGlobalIDString = D058B89EB3B3DF45457A2DCD3971AFFE;
 			remoteInfo = MBProgressHUD;
 		};
-		188CDA41F7CCAAFB31C0F0E33B6A841A /* PBXContainerItemProxy */ = {
+		32E9B3BD7CB1CE16E94C54D828C17D47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E6F0530F4520EF240C076833ADDCA66;
+			remoteInfo = MeliDevSDK;
+		};
+		6A5B37CA944996A826365C23569D2380 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 4A2CAA839F2722C796C6F1DFDC806B92;
 			remoteInfo = OCMock;
 		};
-		32E9B3BD7CB1CE16E94C54D828C17D47 /* PBXContainerItemProxy */ = {
+		812F19C796EDBB654E67A9DD60F79D22 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 29BB4F2A994054BBACC7361DAC505D8C;
-			remoteInfo = MeliDevSDK;
+			remoteGlobalIDString = 928353533005A4198EBDA5B700D37B64;
+			remoteInfo = AFNetworking;
 		};
-		E148EFC773DA1AF4CF7E83E3F5241620 /* PBXContainerItemProxy */ = {
+		8426ECEDE240E06E1EAA8D874C1020B2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 29BB4F2A994054BBACC7361DAC505D8C;
+			remoteGlobalIDString = D058B89EB3B3DF45457A2DCD3971AFFE;
+			remoteInfo = MBProgressHUD;
+		};
+		C6D3954006E0EC87F9CC2240CF599519 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D058B89EB3B3DF45457A2DCD3971AFFE;
+			remoteInfo = MBProgressHUD;
+		};
+		D272EF3ED821CFB6459AA905459B48F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 928353533005A4198EBDA5B700D37B64;
+			remoteInfo = AFNetworking;
+		};
+		E435241AD11E767A9DF78A2900A59FA4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E6F0530F4520EF240C076833ADDCA66;
 			remoteInfo = MeliDevSDK;
 		};
 		F0ACD703C83ADB08BD5CF013239BF7CF /* PBXContainerItemProxy */ = {
@@ -383,19 +411,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F6BB8CA64DBE3056E953FF04A157CDC5 /* Frameworks */ = {
+		B82A232A8DCE4BE6DB453668CFDC4DB4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C05F3D9B12F72CAC2D7E1E38CC33037C /* Foundation.framework in Frameworks */,
+				B8ECFB054A284291804C4F3AE8B16FC2 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FCD7AE572AF378C0AEBDEB6114BE4DE2 /* Frameworks */ = {
+		DBFFB82602500FDDE0A2B995B1C1296D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A180BF0D438E9EF539D4DE4BBC962D1 /* Foundation.framework in Frameworks */,
+				67B6980476FA6DC07606124941E2F5A8 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -784,6 +812,21 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		25AB5D8FF715D544D94556BAB6BDE6A9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD1DFEF7293E1EF864FDE899594D2449 /* Meli.h in Headers */,
+				893E796B48463ECD3233F16376E0E1DF /* MeliDevAccessToken.h in Headers */,
+				ABF8E9E70981000AA95940BE1766DF92 /* MeliDevAsyncHttpOperation.h in Headers */,
+				AF5B8A1F5C2FA91B54420241B8C4953F /* MeliDevErrors.h in Headers */,
+				265EB8ADE4B17CBFB74073635EA0B21A /* MeliDevIdentity.h in Headers */,
+				FC7AF1F6B344F9335932E23399086387 /* MeliDevLoginViewController.h in Headers */,
+				F727A9984527508EE36B936B3348413C /* MeliDevSyncHttpOperation.h in Headers */,
+				EFD3B309546EEF16E973EBDF1BCCB0FF /* MeliDevUtils.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5AFF86D43561748E7227622A6EDDA92B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -826,21 +869,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B238239A027370572978ADB7433EC096 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BD553964D0F15C08CCD531CCEC8C2779 /* Meli.h in Headers */,
-				6F107E7376309D61F13FC83B52BCC9D4 /* MeliDevAccessToken.h in Headers */,
-				C841F9C3A7F2FAFE1069B1C690044EE5 /* MeliDevAsyncHttpOperation.h in Headers */,
-				3D8B3F857922789F147EB456AA7F8F9E /* MeliDevErrors.h in Headers */,
-				A8C76F0BE69D271FDC9A55E6C24B9E30 /* MeliDevIdentity.h in Headers */,
-				C44F4AA371052A3F1317525B0AAFBEB6 /* MeliDevLoginViewController.h in Headers */,
-				BDE2E18D871F618FE7DDCAF781B5881E /* MeliDevSyncHttpOperation.h in Headers */,
-				E31DDA247F2C7CD3562BE8CCF13221E7 /* MeliDevUtils.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		B981229135DBE9773A86BDB116C368D1 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -877,23 +905,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		29BB4F2A994054BBACC7361DAC505D8C /* MeliDevSDK */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0D48F1C9E54592DFE2DFD7BECE2C35DB /* Build configuration list for PBXNativeTarget "MeliDevSDK" */;
-			buildPhases = (
-				360BCC19DE2F93D8A856029CA603A03A /* Sources */,
-				FCD7AE572AF378C0AEBDEB6114BE4DE2 /* Frameworks */,
-				B238239A027370572978ADB7433EC096 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = MeliDevSDK;
-			productName = MeliDevSDK;
-			productReference = 97887B111ED6C662428C43E591383B06 /* libMeliDevSDK.a */;
-			productType = "com.apple.product-type.library.static";
-		};
 		4A2CAA839F2722C796C6F1DFDC806B92 /* OCMock */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 10542776D8ACCA3DA970BD708ACC2AF4 /* Build configuration list for PBXNativeTarget "OCMock" */;
@@ -911,6 +922,25 @@
 			productReference = A54CED1D39D2FF38B009D30C5F0390DD /* libOCMock.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		4E6F0530F4520EF240C076833ADDCA66 /* MeliDevSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1FFF6CEED00C3AC436EF5BCBB5ABB5A9 /* Build configuration list for PBXNativeTarget "MeliDevSDK" */;
+			buildPhases = (
+				86FA713F4BE5B5EF67F06573BFED03AE /* Sources */,
+				DBFFB82602500FDDE0A2B995B1C1296D /* Frameworks */,
+				25AB5D8FF715D544D94556BAB6BDE6A9 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D74BC50965797BB9F4CF24588B2D719D /* PBXTargetDependency */,
+				10A6151770CE6C298DB73BC36A42AB6C /* PBXTargetDependency */,
+			);
+			name = MeliDevSDK;
+			productName = MeliDevSDK;
+			productReference = 97887B111ED6C662428C43E591383B06 /* libMeliDevSDK.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		928353533005A4198EBDA5B700D37B64 /* AFNetworking */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 77CF2A7107BC61A2E90025871305961D /* Build configuration list for PBXNativeTarget "AFNetworking" */;
@@ -926,6 +956,26 @@
 			name = AFNetworking;
 			productName = AFNetworking;
 			productReference = 328718921A42BF7CBCF6A25A35BD17FA /* libAFNetworking.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		A053817ECBF3DFDB119685DA2481FE02 /* Pods-MeliDevSDKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C0908F7F6BBFB4D2C2A0EDC76DC12DC /* Build configuration list for PBXNativeTarget "Pods-MeliDevSDKTests" */;
+			buildPhases = (
+				DE7EAF39F34CF1FDA5CCCC37236F6662 /* Sources */,
+				B82A232A8DCE4BE6DB453668CFDC4DB4 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7FBAC499BB7F75AE3319B93310D37E1B /* PBXTargetDependency */,
+				798105F65BDAAE6A533B5451A596244C /* PBXTargetDependency */,
+				9447074482CFF6B7AF44F023616C775A /* PBXTargetDependency */,
+				926279170B7D5EAE681013ECC44EF3E7 /* PBXTargetDependency */,
+			);
+			name = "Pods-MeliDevSDKTests";
+			productName = "Pods-MeliDevSDKTests";
+			productReference = 04B37C06EA1E44E666B01A307B9176E6 /* libPods-MeliDevSDKTests.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		CDAB94A36A12E3EDD36AE88A51F8708F /* Pods-MeliDevSDK */ = {
@@ -964,24 +1014,6 @@
 			productReference = 6DC2708CD82FE6AD0DB1186DBD54B607 /* libMBProgressHUD.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		E38F2638D1B95ED6A540EB3FC8D80EBC /* Pods-MeliDevSDKTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 964E682A222AF3635DD0940C1ADD531F /* Build configuration list for PBXNativeTarget "Pods-MeliDevSDKTests" */;
-			buildPhases = (
-				9DC451CF2EF1649484E5F94FEF78AC94 /* Sources */,
-				F6BB8CA64DBE3056E953FF04A157CDC5 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A9D815E012D414C5BDA29B767C476D86 /* PBXTargetDependency */,
-				E1904CD18F4F8E12D7CDE25DB8774864 /* PBXTargetDependency */,
-			);
-			name = "Pods-MeliDevSDKTests";
-			productName = "Pods-MeliDevSDKTests";
-			productReference = 04B37C06EA1E44E666B01A307B9176E6 /* libPods-MeliDevSDKTests.a */;
-			productType = "com.apple.product-type.library.static";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1005,10 +1037,10 @@
 			targets = (
 				928353533005A4198EBDA5B700D37B64 /* AFNetworking */,
 				D058B89EB3B3DF45457A2DCD3971AFFE /* MBProgressHUD */,
-				29BB4F2A994054BBACC7361DAC505D8C /* MeliDevSDK */,
+				4E6F0530F4520EF240C076833ADDCA66 /* MeliDevSDK */,
 				4A2CAA839F2722C796C6F1DFDC806B92 /* OCMock */,
 				CDAB94A36A12E3EDD36AE88A51F8708F /* Pods-MeliDevSDK */,
-				E38F2638D1B95ED6A540EB3FC8D80EBC /* Pods-MeliDevSDKTests */,
+				A053817ECBF3DFDB119685DA2481FE02 /* Pods-MeliDevSDKTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1055,26 +1087,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		360BCC19DE2F93D8A856029CA603A03A /* Sources */ = {
+		86FA713F4BE5B5EF67F06573BFED03AE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				317245A243F929A58676C0E132B52CD2 /* Meli.m in Sources */,
-				925256BCAD34DAC8D9F9B7F334593703 /* MeliDevAccessToken.m in Sources */,
-				2637A49895D5C15361E0E9EA9EF83A53 /* MeliDevAsyncHttpOperation.m in Sources */,
-				B291EC25920DDB084205ECAE13124B69 /* MeliDevIdentity.m in Sources */,
-				102E779D190129889A9AF5CC8A37A853 /* MeliDevLoginViewController.m in Sources */,
-				050642DCB3B004DB0EA1D7F1B7DFD2D5 /* MeliDevSDK-dummy.m in Sources */,
-				04565F3CD07BAD54581088842A8C04D5 /* MeliDevSyncHttpOperation.m in Sources */,
-				C0E553DC71CB1AAF790199D9D71740B4 /* MeliDevUtils.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9DC451CF2EF1649484E5F94FEF78AC94 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				673ECEFFF04F0DD405D51A189ADF2A26 /* Pods-MeliDevSDKTests-dummy.m in Sources */,
+				B456A588BBA9D0BEB9E50ACF4F22CD7C /* Meli.m in Sources */,
+				019F984B31ABE62ED51AD822FCDAE7BE /* MeliDevAccessToken.m in Sources */,
+				AD2E5A7E4F2AEF7EB537705570F7608F /* MeliDevAsyncHttpOperation.m in Sources */,
+				0E62438D8BED3D705D282C19F699E994 /* MeliDevIdentity.m in Sources */,
+				1C3E599E222A26B34F82BCBCEA178F46 /* MeliDevLoginViewController.m in Sources */,
+				5462F44AE07650721B8FA4A1C5C56A8D /* MeliDevSDK-dummy.m in Sources */,
+				B5CC04461C1112D4E06D4ED2DADFDB15 /* MeliDevSyncHttpOperation.m in Sources */,
+				4FC55AC4D7003961A833F1EC6E73FA07 /* MeliDevUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1109,6 +1133,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DE7EAF39F34CF1FDA5CCCC37236F6662 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E5B01F8F360458388FA1A1840021BAC /* Pods-MeliDevSDKTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E9001FCA1D7F025E918399909B4942DA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1124,8 +1156,14 @@
 		0DDD77BAC29252E95156483328AFD05F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = MeliDevSDK;
-			target = 29BB4F2A994054BBACC7361DAC505D8C /* MeliDevSDK */;
+			target = 4E6F0530F4520EF240C076833ADDCA66 /* MeliDevSDK */;
 			targetProxy = 32E9B3BD7CB1CE16E94C54D828C17D47 /* PBXContainerItemProxy */;
+		};
+		10A6151770CE6C298DB73BC36A42AB6C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MBProgressHUD;
+			target = D058B89EB3B3DF45457A2DCD3971AFFE /* MBProgressHUD */;
+			targetProxy = C6D3954006E0EC87F9CC2240CF599519 /* PBXContainerItemProxy */;
 		};
 		2D3D7E9EADC6FC5308DD4F83A2D085FD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1139,17 +1177,35 @@
 			target = D058B89EB3B3DF45457A2DCD3971AFFE /* MBProgressHUD */;
 			targetProxy = 07757E49106975E61DB360DB2D235C79 /* PBXContainerItemProxy */;
 		};
-		A9D815E012D414C5BDA29B767C476D86 /* PBXTargetDependency */ = {
+		798105F65BDAAE6A533B5451A596244C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = MeliDevSDK;
-			target = 29BB4F2A994054BBACC7361DAC505D8C /* MeliDevSDK */;
-			targetProxy = E148EFC773DA1AF4CF7E83E3F5241620 /* PBXContainerItemProxy */;
+			name = MBProgressHUD;
+			target = D058B89EB3B3DF45457A2DCD3971AFFE /* MBProgressHUD */;
+			targetProxy = 8426ECEDE240E06E1EAA8D874C1020B2 /* PBXContainerItemProxy */;
 		};
-		E1904CD18F4F8E12D7CDE25DB8774864 /* PBXTargetDependency */ = {
+		7FBAC499BB7F75AE3319B93310D37E1B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AFNetworking;
+			target = 928353533005A4198EBDA5B700D37B64 /* AFNetworking */;
+			targetProxy = 812F19C796EDBB654E67A9DD60F79D22 /* PBXContainerItemProxy */;
+		};
+		926279170B7D5EAE681013ECC44EF3E7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = OCMock;
 			target = 4A2CAA839F2722C796C6F1DFDC806B92 /* OCMock */;
-			targetProxy = 188CDA41F7CCAAFB31C0F0E33B6A841A /* PBXContainerItemProxy */;
+			targetProxy = 6A5B37CA944996A826365C23569D2380 /* PBXContainerItemProxy */;
+		};
+		9447074482CFF6B7AF44F023616C775A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MeliDevSDK;
+			target = 4E6F0530F4520EF240C076833ADDCA66 /* MeliDevSDK */;
+			targetProxy = E435241AD11E767A9DF78A2900A59FA4 /* PBXContainerItemProxy */;
+		};
+		D74BC50965797BB9F4CF24588B2D719D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AFNetworking;
+			target = 928353533005A4198EBDA5B700D37B64 /* AFNetworking */;
+			targetProxy = D272EF3ED821CFB6459AA905459B48F4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1244,6 +1300,29 @@
 			};
 			name = Debug;
 		};
+		2A1F1ED793007D7A9BE62CC470492130 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B5EA1499D1DC49080AB5683AFB77AF5 /* MeliDevSDK.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/MeliDevSDK/MeliDevSDK-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
 		40E49B4A060E202FD24269DC961241C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7A19EE788A019CDE704AE10244FF187A /* MBProgressHUD.xcconfig */;
@@ -1290,28 +1369,28 @@
 			};
 			name = Release;
 		};
-		82AC4005154623A4A0DE5449EC29BBF8 /* Debug */ = {
+		68F1E76F137DF3446CAB1DDECA817A01 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B5EA1499D1DC49080AB5683AFB77AF5 /* MeliDevSDK.xcconfig */;
+			baseConfigurationReference = 2E8F9AF4979984FB60800815D60F55F4 /* Pods-MeliDevSDKTests.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/MeliDevSDK/MeliDevSDK-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
-			name = Debug;
+			name = Release;
 		};
 		862AF3139CD84E18D34FAF2F43CD0DA6 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1399,29 +1478,6 @@
 			};
 			name = Release;
 		};
-		B22245493F548BAB74BC02097B691517 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2E8F9AF4979984FB60800815D60F55F4 /* Pods-MeliDevSDKTests.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				MACH_O_TYPE = staticlib;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 		BBAC43DB9C2E1567347F5C7772034CA2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F2F15B37C3DB0787ECB8A525BA480CBC /* AFNetworking.xcconfig */;
@@ -1445,30 +1501,7 @@
 			};
 			name = Release;
 		};
-		CCA3E99FAB07CA7EA973396E72B54D87 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B6CB03AF12E676ED4B2643C4A9AD052E /* Pods-MeliDevSDKTests.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				MACH_O_TYPE = staticlib;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		DE4168757311F5A265B7CC5A65799127 /* Release */ = {
+		C04C73E6DE81F77F78FC4019B9222B8C /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0B5EA1499D1DC49080AB5683AFB77AF5 /* MeliDevSDK.xcconfig */;
 			buildSettings = {
@@ -1490,6 +1523,29 @@
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
+		};
+		C328D9B0FF6E932EB9EB1F7ECD74F1E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6CB03AF12E676ED4B2643C4A9AD052E /* Pods-MeliDevSDKTests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
 		};
 		EF41A14C5A9301135D584BE75A83708A /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1517,15 +1573,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0D48F1C9E54592DFE2DFD7BECE2C35DB /* Build configuration list for PBXNativeTarget "MeliDevSDK" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				82AC4005154623A4A0DE5449EC29BBF8 /* Debug */,
-				DE4168757311F5A265B7CC5A65799127 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		10542776D8ACCA3DA970BD708ACC2AF4 /* Build configuration list for PBXNativeTarget "OCMock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1540,6 +1587,15 @@
 			buildConfigurations = (
 				EF41A14C5A9301135D584BE75A83708A /* Debug */,
 				40E49B4A060E202FD24269DC961241C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1FFF6CEED00C3AC436EF5BCBB5ABB5A9 /* Build configuration list for PBXNativeTarget "MeliDevSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A1F1ED793007D7A9BE62CC470492130 /* Debug */,
+				C04C73E6DE81F77F78FC4019B9222B8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1571,11 +1627,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		964E682A222AF3635DD0940C1ADD531F /* Build configuration list for PBXNativeTarget "Pods-MeliDevSDKTests" */ = {
+		9C0908F7F6BBFB4D2C2A0EDC76DC12DC /* Build configuration list for PBXNativeTarget "Pods-MeliDevSDKTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CCA3E99FAB07CA7EA973396E72B54D87 /* Debug */,
-				B22245493F548BAB74BC02097B691517 /* Release */,
+				C328D9B0FF6E932EB9EB1F7ECD74F1E3 /* Debug */,
+				68F1E76F137DF3446CAB1DDECA817A01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

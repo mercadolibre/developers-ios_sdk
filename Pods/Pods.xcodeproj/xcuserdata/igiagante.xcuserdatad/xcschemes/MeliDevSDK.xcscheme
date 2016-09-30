@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '29BB4F2A994054BBACC7361DAC505D8C'
+               BlueprintIdentifier = '4E6F0530F4520EF240C076833ADDCA66'
                BlueprintName = 'MeliDevSDK'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libMeliDevSDK.a'>
