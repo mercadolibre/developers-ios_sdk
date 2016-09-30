@@ -14,12 +14,15 @@ Pod::Spec.new do |s|
   s.homepage     = "http://developers.mercadolibre.com/"
   s.license      = "MIT"
   s.author       = { "Ignacio Giagante" => "igiagante@gmail.com" }
-  s.source       = { :git => 'https://github.com/mercadolibre/developers-ios_sdk', :tag => s.version.to_s }
+  s.source       = { :git => 'https://github.com/mercadolibre/developers-ios_sdk.git', :tag => s.version.to_s }
 
   s.platform     = :ios, "8.0"
   s.requires_arc = true
   
   s.source_files = "LibraryComponents/Classes/**/*.{h,m}"
   s.resources    = "LibraryComponents/**/*.xib", "LibraryComponents/Assets/**/*.xcassets", "LibraryComponents/Assets/**/*.plist", "LibraryComponents/Assets/**/*.ttf"
+
+  s.dependency 'AFNetworking', '~> 3.0'
+  s.dependency 'MBProgressHUD', '~> 1.0.0'
 
 end

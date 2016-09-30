@@ -53,8 +53,8 @@ static BOOL isSDKInitialized = NO;
 
 + (void) startSDK: (NSString *) clientId withRedirectUrl:(NSString *) redirectUrl error:(NSError **) error {
     
-    [self verifyAppID:clientId error: &error];
-    [self verifyRedirectUrl:redirectUrl error: &error];
+    [self verifyAppID:clientId error:  error];
+    [self verifyRedirectUrl:redirectUrl error:  error];
     
     _clientId = clientId;
     _redirectUrl = redirectUrl;

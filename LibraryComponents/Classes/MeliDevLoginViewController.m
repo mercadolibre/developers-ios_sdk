@@ -10,9 +10,9 @@
 #import "MeliDevIdentity.h"
 #import "MBProgressHUD.h"
 
-const NSString * LOGIN_URL = @"http://auth.mercadolibre.com/authorization?response_type=token&client_id=";
-const NSString * CALLBACK_LOGIN = @"login";
-const NSString * CALLBACK_MESSAGE_DISPATCH = @"background_message_dispatch";
+NSString * const LOGIN_URL = @"http://auth.mercadolibre.com/authorization?response_type=token&client_id=";
+NSString * const CALLBACK_LOGIN = @"login";
+NSString * const CALLBACK_MESSAGE_DISPATCH = @"background_message_dispatch";
 
 @interface MeliDevLoginViewController ()
 
@@ -20,8 +20,6 @@ const NSString * CALLBACK_MESSAGE_DISPATCH = @"background_message_dispatch";
 @property (strong, nonatomic) MBProgressHUD *HUD;
 @property (nonatomic) MeliDevIdentity * identity;
 @property (copy) NSString * redirectUrl;
-
-- (void *) createParamDictionary: (NSString *) urlString;
 
 @end
 

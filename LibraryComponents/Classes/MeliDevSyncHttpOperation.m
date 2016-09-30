@@ -9,7 +9,7 @@
 #import "MeliDevSyncHttpOperation.h"
 #import "MeliDevErrors.h"
 
-static NSString const * MELI_IDENTITY_NIL_MESSAGE = @"Meli Identity is nil";
+static NSString * const MELI_IDENTITY_NIL_MESSAGE = @"Meli Identity is nil";
 
 @implementation MeliDevSyncHttpOperation
 
@@ -26,13 +26,13 @@ static NSString const * MELI_IDENTITY_NIL_MESSAGE = @"Meli Identity is nil";
     
     NSHTTPURLResponse *responseCode = nil;
     
-    NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
+    NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse: &responseCode error: error];
     
     if([responseCode statusCode] == 401){
         
         NSString * requestError = [NSString stringWithFormat:HTTP_REQUEST_ERROR_MESSAGE, [request URL], [responseCode statusCode]];
         
-        NSLog(HTTP_REQUEST_ERROR_MESSAGE, [request URL], [responseCode statusCode]);
+        NSLog(HTTP_REQUEST_ERROR_MESSAGE, [request URL], (long)[responseCode statusCode]);
         
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: requestError};
         
@@ -45,9 +45,10 @@ static NSString const * MELI_IDENTITY_NIL_MESSAGE = @"Meli Identity is nil";
     
     if(!([responseCode statusCode] == 200 || [responseCode statusCode] == 201)){
         
-        NSString * requestError = [NSString stringWithFormat:HTTP_REQUEST_ERROR_MESSAGE, [request URL], [responseCode statusCode]];
+        NSString * requestError = [NSString stringWithFormat:HTTP_REQUEST_ERROR_MESSAGE, [request URL],
+                                   (long)[responseCode statusCode]];
         
-        NSLog(HTTP_REQUEST_ERROR_MESSAGE, [request URL], [responseCode statusCode]);
+        NSLog(HTTP_REQUEST_ERROR_MESSAGE, [request URL], (long)[responseCode statusCode]);
         
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: requestError};
         
@@ -80,13 +81,13 @@ static NSString const * MELI_IDENTITY_NIL_MESSAGE = @"Meli Identity is nil";
     [request setHTTPMethod:@"GET"];
     [request setURL:[NSURL URLWithString:url]];
     
-    return [self execute:request error:&error];
+    return [self execute:request error: error];
 }
 
 - (NSString *) getWithAuth: (NSString *)path error: (NSError **) error {
     
     if(!self.identity) {
-        [self processError:&error];
+        [self processError: error];
         return nil;
     } else {
         
@@ -98,14 +99,14 @@ static NSString const * MELI_IDENTITY_NIL_MESSAGE = @"Meli Identity is nil";
         [request setHTTPMethod:@"GET"];
         [request setURL:[NSURL URLWithString:url]];
         
-        return [self execute:request error:&error];
+        return [self execute:request error: error];
     }
 }
 
 - (NSString *) delete: (NSString *)path error: (NSError **) error {
     
     if(!self.identity) {
-        [self processError:&error];
+        [self processError: error];
         return nil;
     } else {
         
@@ -117,14 +118,14 @@ static NSString const * MELI_IDENTITY_NIL_MESSAGE = @"Meli Identity is nil";
         [request setHTTPMethod:@"DELETE"];
         [request setURL:[NSURL URLWithString:url]];
         
-        return [self execute:request error:&error];
+        return [self execute:request error: error];
     }
 }
 
 - (NSString *) post:(NSString *)path withBody:(NSData *)body error: (NSError **) error {
     
     if(!self.identity) {
-        [self processError:&error];
+        [self processError: error];
         return nil;
     } else {
     
@@ -138,14 +139,14 @@ static NSString const * MELI_IDENTITY_NIL_MESSAGE = @"Meli Identity is nil";
         [request setValue:[NSString stringWithFormat:@"%d", [body length]] forHTTPHeaderField:@"Content-Length"];
         [request setURL:[NSURL URLWithString:url]];
     
-        return [self execute:request error:&error];
+        return [self execute:request error: error];
     }
 }
 
 - (NSString *) put:(NSString *)path withBody:(NSData *)body error: (NSError **) error {
     
     if(!self.identity) {
-        [self processError:&error];
+        [self processError: error];
         return nil;
     } else {
     
@@ -159,7 +160,7 @@ static NSString const * MELI_IDENTITY_NIL_MESSAGE = @"Meli Identity is nil";
         [request setValue:[NSString stringWithFormat:@"%d", [body length]] forHTTPHeaderField:@"Content-Length"];
         [request setURL:[NSURL URLWithString:url]];
     
-        return [self execute:request error:&error];
+        return [self execute:request error: error];
     }
 }
 
