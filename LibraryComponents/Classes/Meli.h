@@ -32,7 +32,7 @@ static NSString * const MELI_APP_ID_KEY = @"MeliAppId";
  *  Starts the Login process by calling the proper SDK behavior. The UIViewController provided
  *  in this method will be used to start the MeliDevLoginViewController. If the process is completed properly, a new
  *  identity will be created and the MeliDevLoginViewController will be poped from navigation view controller's stack. 
- *  In case there was an error, it will be notify through the block onErrorDetected.
+ *  In case there was an error, it will be notified through the block onErrorDetected.
  *  Note that if the login process has been executed successfully at least once on the device, an identity exists, so
  *  it should ask for it instead of calling the startLogin method.
  *

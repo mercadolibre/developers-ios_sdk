@@ -103,6 +103,8 @@ static BOOL isSDKInitialized = NO;
 
 + (void) startLogin: (UIViewController *) clientViewController {
     
+    if(isSDKInitialized){
+    
         MeliDevLoginViewController * loginViewController = [[MeliDevLoginViewController alloc] initWithRedirectUrl: _redirectUrl];
         loginViewController.appId = _clientId;
         
@@ -116,6 +118,10 @@ static BOOL isSDKInitialized = NO;
         };
         
         [clientViewController.navigationController pushViewController:loginViewController animated:YES];
+        
+    } else {
+        NSLog(@"The SDK should be initialized before starting the login process");
+    }
 }
 
 @end

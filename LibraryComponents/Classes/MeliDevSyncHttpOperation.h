@@ -24,9 +24,13 @@ static NSString * const HTTP_REQUEST_ERROR_MESSAGE = @"Error getting %@, HTTP st
 - (instancetype) initWithIdentity: (MeliDevIdentity *) identity;
 
 - (NSString *) get: (NSString *)path error: (NSError **) error;
+
 - (NSString *) getWithAuth: (NSString *)path error: (NSError **) error;
+
 - (NSString *) delete: (NSString *)path error: (NSError **) error;
+
 - (NSString *) post:(NSString *)path withBody:(NSData *)body error: (NSError **) error;
+
 - (NSString *) put:(NSString *)path withBody:(NSData *)body error: (NSError **) error;
 
 @end

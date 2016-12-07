@@ -32,10 +32,9 @@ typedef void (^OnLoginErrorDetected)(NSString *);
 @property (nonatomic, copy) OnLoginErrorDetected onErrorDetected;
 
 /**
- *  Create a MeliDevAccessToken instance.
+ *  Create a MeliDevLoginViewController instance.
  *
- *  @param token                    represents the token value.
- *  @param expiresIn                represents the token's expiration time.
+ *  @param redirectUrl            represents the application's redirect URL provided by the client application.
  */
 - (instancetype) initWithRedirectUrl: (NSString *) redirectUrl;
 
