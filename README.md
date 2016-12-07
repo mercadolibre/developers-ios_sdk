@@ -66,11 +66,17 @@ In order to do that, you need to follow these steps:
 1 - Ask for an Identity. If it exits, it means that you have already been granted to use the MercadoLibre APIs that require 
 authorization.
       
-2 - In case you don't have an Identity, you should start the login's process using the following static method.
+2 - In case you don't have an Identity, you should initialize the sdk and start the login's process using the following static methods.
+
+```objective-c
+  (void) startSDK: (NSString *) clientId withRedirectUrl:(NSString *) redirectUrl error:(NSError **) error;
+```
 
 ```objective-c
   (void) startLogin: (UIViewController *) clientViewController;
 ```
+
+This last method will check if the sdk was initialized. In case it wasn't, a message will be logged saying that you should do it.
 
 If there wasn't any error trying to get an Access Token, the navigation controller will get the control to the Client View Controller.
 
@@ -80,7 +86,7 @@ To execute sync http operations, you will need an instance of **MeliDevSyncHttpO
 MeliDevSyncHttpOperation *httpClient = [[MeliDevSyncHttpOperation alloc] initWithIdentity: self.identity];
 ```
 
-In case you need async http operations, you will need an instance of **MeliDevASyncHttpOperation** class.
+In case you need async http operations, you will need an instance of **MeliDevAsyncHttpOperation** class.
 
 ```objective-c
 MeliDevASyncHttpOperation *httpClient = [[MeliDevASyncHttpOperation alloc] initWithIdentity: self.identity];
