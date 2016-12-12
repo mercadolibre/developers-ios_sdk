@@ -22,7 +22,7 @@
     if(self) {
         _accessTokenValue = token;
         _expiresInValue = expiresIn;
-        _tokenDateExpiration = [NSDate dateWithTimeIntervalSinceNow:([expiresIn doubleValue])];
+        _tokenDateExpiration = [NSDate dateWithTimeIntervalSinceNow: [expiresIn doubleValue]];
     }
     return self;
 }

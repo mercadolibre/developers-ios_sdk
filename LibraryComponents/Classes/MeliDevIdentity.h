@@ -43,7 +43,7 @@ static NSString * const USER_ID = @"user_id";
 
 /**
  *  Attempt to restore the identity from User Defaults. In case the App Id was changed after an Identity was stored,
- *  it will be return nil.
+ *  it will be returned nil.
  *
  *  @param clientId                    represents the app id's client
  */

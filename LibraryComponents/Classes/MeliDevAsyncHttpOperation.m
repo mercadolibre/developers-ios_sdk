@@ -34,11 +34,7 @@ NSString * const MELI_API_URL = @"https://api.mercadolibre.com";
 
 - (void) getWithAuth: (NSString *)path successHandler:(SuccessHandler) successHandler failureHanlder:(FailureHandler) failureHandler {
     
-    NSString * url = [MELI_API_URL stringByAppendingString:path];
-    url = [url stringByAppendingString: @"?access_token="];
-    url = [url stringByAppendingString: self.identity.getMeliDevAccessTokenValue];
-    
-    NSURL *URL = [NSURL URLWithString: url];
+    NSURL *URL = [self createURL:path];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     [manager GET:URL.absoluteString parameters:nil progress:nil success: successHandler failure: failureHandler];
@@ -46,11 +42,7 @@ NSString * const MELI_API_URL = @"https://api.mercadolibre.com";
 
 - (void) delete: (NSString *)path successHandler:(SuccessHandler) successHandler failureHanlder: (FailureHandler) failureHandler {
     
-    NSString * url = [MELI_API_URL stringByAppendingString:path];
-    url = [url stringByAppendingString: @"?access_token="];
-    url = [url stringByAppendingString: self.identity.getMeliDevAccessTokenValue];
-    
-    NSURL *URL = [NSURL URLWithString: url];
+    NSURL *URL = [self createURL:path];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     [manager DELETE:URL.absoluteString parameters:nil success:(SuccessHandler) successHandler failure:failureHandler];
@@ -58,19 +50,19 @@ NSString * const MELI_API_URL = @"https://api.mercadolibre.com";
 
 - (void) post: (NSString *)path withBody:(NSDictionary *)params successHandler: (SuccessHandler) successHandler failureHanlder: (FailureHandler) failureHandler {
 
-    NSURL *URL = [self getURL:path];
+    NSURL *URL = [self createURL:path];
     
-    [[self getManager] POST:URL.absoluteString parameters:params progress:nil success: successHandler failure: failureHandler];
+    [[self getManagerWithSerializer] POST:URL.absoluteString parameters:params progress:nil success: successHandler failure: failureHandler];
 }
 
 - (void) put: (NSString *)path withBody:(NSDictionary *)params successHandler: (SuccessHandler) successHandler failureHanlder: (FailureHandler) failureHandler {
 
-    NSURL *URL = [self getURL:path];
+    NSURL *URL = [self createURL:path];
     
-    [[self getManager] PUT:URL.absoluteString parameters:params success:successHandler failure:failureHandler];
+    [[self getManagerWithSerializer] PUT:URL.absoluteString parameters:params success:successHandler failure:failureHandler];
 }
 
-- (NSURL *) getURL: (NSString *) path {
+- (NSURL *) createURL: (NSString *) path {
     
     NSString * url = [MELI_API_URL stringByAppendingString:path];
     url = [url stringByAppendingString: @"?access_token="];
@@ -79,7 +71,7 @@ NSString * const MELI_API_URL = @"https://api.mercadolibre.com";
     return [NSURL URLWithString: url];
 }
 
-- (AFHTTPSessionManager *) getManager {
+- (AFHTTPSessionManager *) getManagerWithSerializer {
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];

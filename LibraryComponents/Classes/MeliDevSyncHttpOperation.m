@@ -65,7 +65,7 @@ static NSString * const MELI_IDENTITY_NIL_MESSAGE = @"Meli Identity is nil";
 /**
  * If the identity was not created, the reference to the error will be modified.
  **/
-- (void) processError: (NSError **) error {
+- (void) processIdentityError: (NSError **) error {
     NSDictionary *userInfo = @{NSLocalizedDescriptionKey: MELI_IDENTITY_NIL_MESSAGE};
     
     *error = [NSError errorWithDomain:MeliDevErrorDomain
@@ -87,7 +87,7 @@ static NSString * const MELI_IDENTITY_NIL_MESSAGE = @"Meli Identity is nil";
 - (NSString *) getWithAuth: (NSString *)path error: (NSError **) error {
     
     if(!self.identity) {
-        [self processError: error];
+        [self processIdentityError: error];
         return nil;
     } else {
         
@@ -106,7 +106,7 @@ static NSString * const MELI_IDENTITY_NIL_MESSAGE = @"Meli Identity is nil";
 - (NSString *) delete: (NSString *)path error: (NSError **) error {
     
     if(!self.identity) {
-        [self processError: error];
+        [self processIdentityError: error];
         return nil;
     } else {
         
@@ -125,7 +125,7 @@ static NSString * const MELI_IDENTITY_NIL_MESSAGE = @"Meli Identity is nil";
 - (NSString *) post:(NSString *)path withBody:(NSData *)body error: (NSError **) error {
     
     if(!self.identity) {
-        [self processError: error];
+        [self processIdentityError: error];
         return nil;
     } else {
     
@@ -146,7 +146,7 @@ static NSString * const MELI_IDENTITY_NIL_MESSAGE = @"Meli Identity is nil";
 - (NSString *) put:(NSString *)path withBody:(NSData *)body error: (NSError **) error {
     
     if(!self.identity) {
-        [self processError: error];
+        [self processIdentityError: error];
         return nil;
     } else {
     

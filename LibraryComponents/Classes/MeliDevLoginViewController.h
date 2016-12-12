@@ -28,7 +28,9 @@ typedef void (^OnLoginErrorDetected)(NSString *);
  *  Represent the application identifier provided by the client application.
  */
 @property (copy) NSString * appId;
+
 @property (nonatomic, copy) OnLoginCompleted onLoginCompleted;
+
 @property (nonatomic, copy) OnLoginErrorDetected onErrorDetected;
 
 /**
@@ -41,7 +43,7 @@ typedef void (^OnLoginErrorDetected)(NSString *);
 /**
  *  Get Identity data in order to create the Identity.
  *
- *  @param urlParams                    represents all the params information needed to create the identity.
+ *  @param urlParams              represents all the params information needed to create the identity.
  */
 - (void) getIdentityData: (NSString *) urlParams;
 

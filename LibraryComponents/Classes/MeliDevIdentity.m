@@ -41,6 +41,7 @@
     [defaults setValue:_accessToken.expiresInValue forKey:EXPIRES_IN];
     
     NSLog(@"Client Id: %@", _clientId);
+    NSLog(@"User Id: %@", _userId);
     NSLog(@"Access Token: %@", _accessToken.accessTokenValue);
     NSLog(@"Expires In: %@", _accessToken.expiresInValue);
     NSLog(@"%@", @"The identity was saved correctly");
@@ -56,8 +57,11 @@
         return nil;
     }
     
+    NSString *userId = [defaults valueForKey: USER_ID];
+    
     MeliDevIdentity * identity = [[MeliDevIdentity alloc]init];
     identity.clientId = clientId;
+    identity.userId = userId;
     
     NSString * accessTokenValue = [defaults valueForKey:ACCESS_TOKEN];
     NSString * expiresInValue = [defaults valueForKey:EXPIRES_IN];

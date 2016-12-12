@@ -53,8 +53,8 @@ static BOOL isSDKInitialized = NO;
 
 + (void) startSDK: (NSString *) clientId withRedirectUrl:(NSString *) redirectUrl error:(NSError **) error {
     
-    [self verifyAppID:clientId error:  error];
-    [self verifyRedirectUrl:redirectUrl error:  error];
+    [self verifyAppID:clientId error: error];
+    [self verifyRedirectUrl:redirectUrl error: error];
     
     _clientId = clientId;
     _redirectUrl = redirectUrl;
@@ -70,16 +70,16 @@ static BOOL isSDKInitialized = NO;
         *error = [NSError errorWithDomain:MeliDevErrorDomain
                                      code:AppIdIsNotInitializedError
                                  userInfo:userInfo];
-    } else if( [MeliDevUtils isNumeric: appId] ) {
-        NSLog(@"App ID correct %@", appId);
-    } else {
+    } else if( ![MeliDevUtils isNumeric: appId] ) {
+        
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: APP_ID_IS_NOT_NUMERIC_KEY};
-
+        
         *error = [NSError errorWithDomain:MeliDevErrorDomain
                                      code:AppIdNotValidError
                                  userInfo:userInfo];
+    } else {
+        NSLog(@"App ID correct %@", appId);
     }
-    
 }
 
 + (void) verifyRedirectUrl: (NSString *) redirectUrl error:(NSError **) error {
@@ -90,14 +90,15 @@ static BOOL isSDKInitialized = NO;
         *error = [NSError errorWithDomain:MeliDevErrorDomain
                                      code:RedirectUrlIsNotInitializedError
                                  userInfo:userInfo];
-    } else if( [MeliDevUtils validateUrl: redirectUrl] ) {
-        NSLog(@"Redirect URL is valid %@", redirectUrl);
-    } else {
+    } else if( ![MeliDevUtils validateUrl: redirectUrl] ) {
+        
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: REDIRECT_URL_IS_NOT_VALID_KEY};
         
         *error = [NSError errorWithDomain:MeliDevErrorDomain
                                      code:RedirectUrlNotValidError
                                  userInfo:userInfo];
+    } else {
+        NSLog(@"Redirect URL is valid %@", redirectUrl);
     }
 }
 

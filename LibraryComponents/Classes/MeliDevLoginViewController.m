@@ -62,8 +62,10 @@ NSString * const CALLBACK_MESSAGE_DISPATCH = @"background_message_dispatch";
     
     if([urlString containsString:self.redirectUrl]) {
         NSArray * urlParts = [urlString componentsSeparatedByString:@"#"];
-        [self getIdentityData: urlParts[1]];
-        [self.navigationController popViewControllerAnimated:YES];
+        if (urlParts != nil || [urlParts count] > 1) {
+            [self getIdentityData: urlParts[1]];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
     
     if([urlString containsString: CALLBACK_LOGIN] || [urlString containsString: CALLBACK_MESSAGE_DISPATCH]) {

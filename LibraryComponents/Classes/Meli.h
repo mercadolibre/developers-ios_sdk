@@ -15,7 +15,7 @@ static NSString * const MELI_APP_ID_KEY = @"MeliAppId";
 @interface Meli : NSObject
 
 /**
- *  Get an Identity if this exists. In the other hand, it return nil.
+ *  Get an Identity if this exists. In the other hand, it returns nil.
  *
  */
 + (MeliDevIdentity *) getIdentity;

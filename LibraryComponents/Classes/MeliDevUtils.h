@@ -18,7 +18,7 @@
 + (BOOL) validateUrl: (NSString *) candidate;
 
 /**
- *  Used to validate if an string is numeric.
+ *  Used to validate if a string is numeric.
  *
  *  @param candidate
  */

@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "MeliDEvLoginViewController.h"
+#import "MeliDevLoginViewController.h"
 #import <OCMock/OCMock.h>
 
 @interface MeliDevLoginViewController(Tests) <UIWebViewDelegate>
@@ -45,10 +45,10 @@
     XCTAssertTrue([loginController checkIfPropertiesExist: _data] == YES, @"The dictionary does not contain the correct keys");
 }
 
-- (void)testCheckIfPropertiesExist_withInCorrectKeys_shouldReturnNo {
+- (void)testCheckIfPropertiesExist_withIncorrectKeys_shouldReturnNo {
     
     MeliDevLoginViewController *loginController = [[MeliDevLoginViewController alloc] init];
-    XCTAssertTrue([loginController checkIfPropertiesExist: _wrongData] == NO, @"The dictionary does not contain the correct keys");
+    XCTAssertTrue([loginController checkIfPropertiesExist: _wrongData] == NO, @"The dictionary contain the correct keys");
 }
 
 - (void) success: (NSString *) message {
