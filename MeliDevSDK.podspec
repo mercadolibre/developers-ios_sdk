@@ -8,11 +8,11 @@
 
 Pod::Spec.new do |s|
 
-  s.name         = "MeliDevSDK"
-  s.version      = "0.1.2"
+  s.name         = "mercadolibre_ios_sdk"
+  s.version      = "0.1.3"
   s.summary      = "The official iOS SDK for MercadoLibre's Platform."
   s.homepage     = "http://developers.mercadolibre.com/"
-  s.license   = { :type => 'MIT', :file => 'LICENSE.txt' }
+  s.license      = { :type => 'MIT', :file => 'LICENSE.txt' }
   s.author       = { "Ignacio Giagante" => "igiagante@gmail.com" }
   s.source       = { :git => 'https://github.com/mercadolibre/developers-ios_sdk.git', :tag => s.version.to_s }
 
