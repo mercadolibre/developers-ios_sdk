@@ -21,20 +21,16 @@
     self = [super init];
     if(self) {
         _accessTokenValue = token;
-        _expiresInValue = expiresIn;
-        _tokenDateExpiration = [NSDate dateWithTimeIntervalSinceNow: [expiresIn doubleValue]];
+        _tokenDateExpiration = [NSDate dateWithTimeIntervalSinceNow:([expiresIn doubleValue])];
     }
     return self;
 }
 
 - (BOOL) isTokenExpired {
-
-    NSDate *now = [NSDate date];
-    
-    if([now timeIntervalSinceDate:self.tokenDateExpiration] > 0){
-        return YES;
-    }
-    return NO;
+    return [[NSDate date] timeIntervalSinceDate:self.tokenDateExpiration] > 0;
 }
-
+    
+- (NSString *) getAccessTokenValue {
+    return self.accessTokenValue;
+}
 @end

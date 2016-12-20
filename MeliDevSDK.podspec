@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 
-  s.name         = "mercadolibre_ios_sdk"
+  s.name         = "MeliDevSDK"
   s.version      = "0.1.3"
   s.summary      = "The official iOS SDK for MercadoLibre's Platform."
   s.homepage     = "http://developers.mercadolibre.com/"

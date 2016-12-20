@@ -9,10 +9,18 @@
 #import "MeliDevIdentity.h"
 #import "Meli.h"
 
+@interface MeliDevIdentity()
+    
+@property (nonatomic, copy) NSString * clientId;
+@property (copy, nonatomic) NSString * userId;
+@property (nonatomic, strong, copy) MeliDevAccessToken * accessToken;
+
+@end
+
 @implementation MeliDevIdentity
 
 - (NSString *) getMeliDevAccessTokenValue {
-    return _accessToken.accessTokenValue;
+    return [self.accessToken getAccessTokenValue];
 }
 
 + (void) createIdentity:(NSDictionary *) loginData {
@@ -38,16 +46,13 @@
     [defaults setValue:_clientId forKey:CLIENT_ID];
     [defaults setValue:_userId forKey:USER_ID];
     [defaults setValue:_accessToken.accessTokenValue forKey:ACCESS_TOKEN];
-    [defaults setValue:_accessToken.expiresInValue forKey:EXPIRES_IN];
     
-    NSLog(@"Client Id: %@", _clientId);
-    NSLog(@"User Id: %@", _userId);
-    NSLog(@"Access Token: %@", _accessToken.accessTokenValue);
-    NSLog(@"Expires In: %@", _accessToken.expiresInValue);
     NSLog(@"%@", @"The identity was saved correctly");
 }
 
 + (MeliDevIdentity *) restoreIdentity: (NSString *) clientId {
+    
+    MeliDevIdentity * identity = nil;
 
     NSUserDefaults *defaults = [[NSUserDefaults alloc]init];
     NSString *clientIdSaved = [defaults valueForKey: CLIENT_ID];
@@ -57,22 +62,18 @@
         return nil;
     }
     
-    NSString *userId = [defaults valueForKey: USER_ID];
-    
-    MeliDevIdentity * identity = [[MeliDevIdentity alloc]init];
-    identity.clientId = clientId;
-    identity.userId = userId;
-    
     NSString * accessTokenValue = [defaults valueForKey:ACCESS_TOKEN];
     NSString * expiresInValue = [defaults valueForKey:EXPIRES_IN];
     
     MeliDevAccessToken *accessToken = [[MeliDevAccessToken alloc] initWithMeliDevAccessToken:accessTokenValue andExpiresIn:expiresInValue];
-    identity.accessToken = accessToken;
     
-    if([accessToken isTokenExpired]) {
-        identity = nil;
+    if(![accessToken isTokenExpired]) {
+        identity = [[MeliDevIdentity alloc]init];
+        NSString *userId = [defaults valueForKey: USER_ID];
+        identity.clientId = clientId;
+        identity.userId = userId;
+        identity.accessToken = accessToken;
     }
-    
     return identity;
 }
 

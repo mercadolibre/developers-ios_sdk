@@ -14,7 +14,6 @@ static NSString * const ACCESS_TOKEN = @"access_token";
 static NSString * const EXPIRES_IN = @"expires_in";
 static NSString * const USER_ID = @"user_id";
 
-
 /**
  * Model class that represents the identity of the user. It contains
  * information related to the user and the access tokens granted to the client
@@ -25,14 +24,14 @@ static NSString * const USER_ID = @"user_id";
 /**
  *  Represent the application identifier provided by the client application.
  */
-@property (copy) NSString * clientId;
+@property (nonatomic, readonly) NSString * clientId;
 
 /**
  *  Represent the user identifier who provides permissions to the client application.
  */
-@property (copy) NSString * userId;
+@property (readonly, nonatomic) NSString * userId;
 
-@property (nonatomic, strong) MeliDevAccessToken * accessToken;
+@property (nonatomic, strong, readonly) MeliDevAccessToken * accessToken;
 
 /**
  *  Create an Identity and store it in User Defaults.
@@ -43,7 +42,7 @@ static NSString * const USER_ID = @"user_id";
 
 /**
  *  Attempt to restore the identity from User Defaults. In case the App Id was changed after an Identity was stored,
- *  it will be returned nil.
+ *  it will be return nil.
  *
  *  @param clientId                    represents the app id's client
  */

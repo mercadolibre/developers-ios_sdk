@@ -10,16 +10,18 @@
 #import "MeliDevIdentity.h"
 #import "MBProgressHUD.h"
 
-NSString * const LOGIN_URL = @"http://auth.mercadolibre.com/authorization?response_type=token&client_id=";
-NSString * const CALLBACK_LOGIN = @"login";
-NSString * const CALLBACK_MESSAGE_DISPATCH = @"background_message_dispatch";
+const NSString * LOGIN_URL = @"http://auth.mercadolibre.com/authorization?response_type=token&client_id=";
+const NSString * CALLBACK_LOGIN = @"login";
+const NSString * CALLBACK_MESSAGE_DISPATCH = @"background_message_dispatch";
 
 @interface MeliDevLoginViewController ()
 
-@property (unsafe_unretained, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (strong, nonatomic) MBProgressHUD *HUD;
 @property (nonatomic) MeliDevIdentity * identity;
 @property (copy) NSString * redirectUrl;
+
+- (void *) createParamDictionary: (NSString *) urlString;
 
 @end
 
@@ -51,10 +53,6 @@ NSString * const CALLBACK_MESSAGE_DISPATCH = @"background_message_dispatch";
     [_webView loadRequest:urlRequest];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSURL *url = [request URL];
@@ -62,7 +60,7 @@ NSString * const CALLBACK_MESSAGE_DISPATCH = @"background_message_dispatch";
     
     if([urlString containsString:self.redirectUrl]) {
         NSArray * urlParts = [urlString componentsSeparatedByString:@"#"];
-        if (urlParts != nil || [urlParts count] > 1) {
+        if (urlParts != nil && [urlParts count] > 1) {
             [self getIdentityData: urlParts[1]];
             [self.navigationController popViewControllerAnimated:YES];
         }
@@ -74,7 +72,7 @@ NSString * const CALLBACK_MESSAGE_DISPATCH = @"background_message_dispatch";
     return YES;
 }
 
-- (void) getIdentityData: (NSString *) urlParams {
+- (void *) getIdentityData: (NSString *) urlParams {
     
     NSMutableDictionary *queryStringDictionary = [[NSMutableDictionary alloc] init];
     NSArray *urlComponents = [urlParams componentsSeparatedByString:@"&"];
@@ -88,7 +86,7 @@ NSString * const CALLBACK_MESSAGE_DISPATCH = @"background_message_dispatch";
         [queryStringDictionary setObject:value forKey:key];
     }
 
-    if([queryStringDictionary count] != 0 && [self checkIfPropertiesExist:queryStringDictionary]) {
+    if([queryStringDictionary count] != 0 && [self checkIfUserPropertiesExist:queryStringDictionary]) {
         self.onLoginCompleted(queryStringDictionary);
     } else {
         self.onErrorDetected(@"Something was wrong!");
@@ -97,9 +95,8 @@ NSString * const CALLBACK_MESSAGE_DISPATCH = @"background_message_dispatch";
     [self.HUD hideAnimated:TRUE];
 }
 
-- (BOOL) checkIfPropertiesExist: (NSDictionary *) data {
-    BOOL test = [data objectForKey:USER_ID] != nil && [data objectForKey:ACCESS_TOKEN] != nil && [data objectForKey:EXPIRES_IN] != nil;
-    return test;
+- (BOOL) checkIfUserPropertiesExist: (NSDictionary *) data {
+    return [data objectForKey:USER_ID] != nil && [data objectForKey:ACCESS_TOKEN] != nil && [data objectForKey:EXPIRES_IN] != nil;
 }
 
 @end

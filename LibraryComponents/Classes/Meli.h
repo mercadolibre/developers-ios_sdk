@@ -8,14 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "MeliDevIdentity.h"
+#import "MeliDevAsyncHttpOperation.h"
+#import "MeliDevSyncHttpOperation.h"
 
 static NSString * const MELI_DEV_SUCCESS = @"success";
-static NSString * const MELI_APP_ID_KEY = @"MeliAppId";
+static NSString const * MELI_APP_ID_KEY = @"MeliAppId";
 
 @interface Meli : NSObject
 
 /**
- *  Get an Identity if this exists. In the other hand, it returns nil.
+ *  Get an Identity if this exists. In the other hand, it return nil.
  *
  */
 + (MeliDevIdentity *) getIdentity;
@@ -32,12 +34,23 @@ static NSString * const MELI_APP_ID_KEY = @"MeliAppId";
  *  Starts the Login process by calling the proper SDK behavior. The UIViewController provided
  *  in this method will be used to start the MeliDevLoginViewController. If the process is completed properly, a new
  *  identity will be created and the MeliDevLoginViewController will be poped from navigation view controller's stack. 
- *  In case there was an error, it will be notified through the block onErrorDetected.
+ *  In case there was an error, it will be notify through the block onErrorDetected.
  *  Note that if the login process has been executed successfully at least once on the device, an identity exists, so
  *  it should ask for it instead of calling the startLogin method.
  *
  *  @param clientViewController - an UIViewController that will be used as process initializer.
  */
 + (void) startLogin: (UIViewController *) clientViewController;
-
+    
++ (NSString *) get: (NSString *)path error: (NSError **) error;
++ (NSString *) getWithAuth: (NSString *)path error: (NSError **) error;
++ (NSString *) post:(NSString *)path withBody:(NSData *)body error: (NSError **) error;
++ (NSString *) put:(NSString *)path withBody:(NSData *)body error: (NSError **) error;
++ (NSString *) delete: (NSString *)path error: (NSError **) error;
+    
++ (void) getAsync: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
++ (void) getWithAuthAsync: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
++ (void) postAsync: (NSString *)path withBody:(NSDictionary *)params successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
++ (void) putAsync: (NSString *)path withBody:(NSDictionary *)params successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
++ (void) deleteAsync: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
 @end

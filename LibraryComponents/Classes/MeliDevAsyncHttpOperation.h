@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MeliDevIdentity.h"
+#import "MeliDevHttpOperation.h"
 
 /**
  *  Block used as a callback when the http request was success.
@@ -15,7 +15,7 @@
  *  @param task
  *  @param responseObject
  */
-typedef void (^SuccessHandler) (NSURLSessionTask *task, id responseObject);
+typedef void (^AsyncHttpOperationSuccessBlock) (NSURLSessionTask *task, id responseObject);
 
 /**
  *  Block used as a callback when the http request has failed.
@@ -23,27 +23,14 @@ typedef void (^SuccessHandler) (NSURLSessionTask *task, id responseObject);
  *  @param operation
  *  @param error
  */
-typedef void (^FailureHandler) (NSURLSessionTask *operation, NSError *error);
+typedef void (^AsyncHttpOperationFailBlock) (NSURLSessionTask *operation, NSError *error);
 
-@interface MeliDevAsyncHttpOperation : NSObject
+@interface MeliDevAsyncHttpOperation : MeliDevHttpOperation
 
-@property (nonatomic) MeliDevIdentity * identity;
-
-/**
- *  Create a MeliDevSyncHttpOperation instance.
- *
- *  @param identity       Model that represents user's identification.
- */
-- (instancetype) initWithIdentity: (MeliDevIdentity *) identity;
-
-- (void) get: (NSString *)path successHandler:(SuccessHandler) successHandler failureHanlder:(FailureHandler) failureHandler;
-
-- (void) getWithAuth: (NSString *)path successHandler:(SuccessHandler) successHandler failureHanlder:(FailureHandler) failureHandler;
-
-- (void) post: (NSString *)path withBody:(NSDictionary *)params successHandler:(SuccessHandler) successHandler failureHanlder: (FailureHandler) failureHandler;
-
-- (void) put: (NSString *)path withBody:(NSDictionary *)params successHandler:(SuccessHandler) successHandler failureHanlder: (FailureHandler) failureHandler;
-
-- (void) delete: (NSString *)path successHandler:(SuccessHandler) successHandler failureHanlder:(FailureHandler) failureHandler;
+- (void) get: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successHandler failureBlock:(AsyncHttpOperationFailBlock) failureHandler;
+- (void) getWithAuth: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successHandler failureBlock:(AsyncHttpOperationFailBlock) failureHandler;
+- (void) post: (NSString *)path withBody:(NSData *) body successBlock:(AsyncHttpOperationSuccessBlock) successHandler failureBlock:(AsyncHttpOperationFailBlock) failureHandler;
+- (void) put: (NSString *)path withBody:(NSData *) body successBlock:(AsyncHttpOperationSuccessBlock) successHandler failureBlock:(AsyncHttpOperationFailBlock) failureHandler;
+- (void) delete: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successHandler failureBlock:(AsyncHttpOperationFailBlock) failureHandler;
 
 @end

@@ -8,9 +8,14 @@
 
 #import "MeliDevAsyncHttpOperation.h"
 #import "MeliDevErrors.h"
-#import "AFNetworking.h"
+#import <AFNetworking.h>
 
-NSString * const MELI_API_URL = @"https://api.mercadolibre.com";
+@interface MeliDevAsyncHttpOperation ()
+    
+@property (nonatomic, weak) AFHTTPSessionManager *manager;
+@property (nonatomic) MeliDevIdentity * identity;
+    
+@end
 
 @implementation MeliDevAsyncHttpOperation
 
@@ -19,65 +24,79 @@ NSString * const MELI_API_URL = @"https://api.mercadolibre.com";
     self = [super init];
     if (self) {
         _identity = identity;
+        _manager = [AFHTTPSessionManager manager];
     }
     return self;
 }
 
-- (void) get: (NSString *)path successHandler:(SuccessHandler) successHandler failureHanlder:(FailureHandler) failureHandler {
+- (void) get: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successHandler failureBlock:(AsyncHttpOperationFailBlock) failureHandler; {
     
     NSString * url = [MELI_API_URL stringByAppendingString:path];
     NSURL *URL = [NSURL URLWithString: url];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    [manager GET:URL.absoluteString parameters:nil progress:nil success: successHandler failure: failureHandler];
+    [self.manager GET:URL.absoluteString parameters:nil progress:nil success: successHandler failure: failureHandler];
 }
 
-- (void) getWithAuth: (NSString *)path successHandler:(SuccessHandler) successHandler failureHanlder:(FailureHandler) failureHandler {
+- (void) getWithAuth: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successHandler failureBlock:(AsyncHttpOperationFailBlock) failureHandler; {
     
-    NSURL *URL = [self createURL:path];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSURL *URL = [self getURLWithAccessToken:path];
     
-    [manager GET:URL.absoluteString parameters:nil progress:nil success: successHandler failure: failureHandler];
+    [self.manager GET:URL.absoluteString parameters:nil progress:nil success: successHandler failure: failureHandler];
 }
 
-- (void) delete: (NSString *)path successHandler:(SuccessHandler) successHandler failureHanlder: (FailureHandler) failureHandler {
+- (void) post: (NSString *)path withBody:(NSData *)body successBlock:(AsyncHttpOperationSuccessBlock) successHandler failureBlock:(AsyncHttpOperationFailBlock) failureHandler; {
+
+    NSURL *URL = [self getURLWithAccessToken:path];
     
-    NSURL *URL = [self createURL:path];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    [manager DELETE:URL.absoluteString parameters:nil success:(SuccessHandler) successHandler failure:failureHandler];
+    NSMutableURLRequest *request = [self createRequest:body withMethod:@"POST" withURL:URL.absoluteString];
+
+    [[self.manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        
+        if (!error) {
+            NSLog(@"Response: %@", responseObject);
+        } else {
+            NSLog(@"Error: %@, %@, %@", error, response, responseObject);
+        }
+    }] resume];
 }
 
-- (void) post: (NSString *)path withBody:(NSDictionary *)params successHandler: (SuccessHandler) successHandler failureHanlder: (FailureHandler) failureHandler {
+- (void) put: (NSString *)path withBody:(NSData *) body successBlock:(AsyncHttpOperationSuccessBlock) successHandler failureBlock:(AsyncHttpOperationFailBlock) failureHandler; {
 
-    NSURL *URL = [self createURL:path];
+    NSURL *URL = [self getURLWithAccessToken:path];
     
-    [[self getManagerWithSerializer] POST:URL.absoluteString parameters:params progress:nil success: successHandler failure: failureHandler];
+    NSMutableURLRequest *request = [self createRequest:body withMethod:@"PUT" withURL:URL.absoluteString];
+    
+    [[self.manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        
+        if (!error) {
+            NSLog(@"Response: %@", responseObject);
+        } else {
+            NSLog(@"Error: %@, %@, %@", error, response, responseObject);
+        }
+    }] resume];
 }
-
-- (void) put: (NSString *)path withBody:(NSDictionary *)params successHandler: (SuccessHandler) successHandler failureHanlder: (FailureHandler) failureHandler {
-
-    NSURL *URL = [self createURL:path];
     
-    [[self getManagerWithSerializer] PUT:URL.absoluteString parameters:params success:successHandler failure:failureHandler];
+- (NSMutableURLRequest *) createRequest: (NSData *) body withMethod: (NSString *)method withURL: (NSString *) url {
+
+    NSError *error;
+    
+    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:method URLString:url parameters:nil error:nil];
+    [request setHTTPMethod:method];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:body options:0 error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    [request setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    return request;
 }
-
-- (NSURL *) createURL: (NSString *) path {
     
-    NSString * url = [MELI_API_URL stringByAppendingString:path];
-    url = [url stringByAppendingString: @"?access_token="];
-    url = [url stringByAppendingString: self.identity.getMeliDevAccessTokenValue];
+- (void) delete: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successHandler failureBlock:(AsyncHttpOperationFailBlock) failureHandler; {
     
-    return [NSURL URLWithString: url];
-}
-
-- (AFHTTPSessionManager *) getManagerWithSerializer {
+    NSURL *URL = [self getURLWithAccessToken:path];
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
-    return manager;
+    [self.manager DELETE:URL.absoluteString parameters:nil success:(AsyncHttpOperationSuccessBlock) successHandler failure:failureHandler];
 }
 
 @end

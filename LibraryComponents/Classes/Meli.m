@@ -19,9 +19,6 @@ static NSString const * REDIRECT_URL_NOT_DEFINED_KEY = @"Redirect URL is not def
 static NSString const * APP_ID_IS_NOT_NUMERIC_KEY = @"App ID is not numeric";
 static NSString const * REDIRECT_URL_IS_NOT_VALID_KEY = @"Redirect URL is not valid";
 
-@interface Meli ()
-
-@end
 
 @implementation Meli
 
@@ -31,12 +28,19 @@ static NSString * _redirectUrl;
 static MeliDevIdentity * identity;
 static NSDictionary *dictionary;
 static BOOL isSDKInitialized = NO;
+    
+static MeliDevAsyncHttpOperation * meliDevAsyncHttpOperation;
+static MeliDevSyncHttpOperation * meliDevSyncHttpOperation;
 
 + (MeliDevIdentity *) getIdentity {
     
     identity = [MeliDevIdentity restoreIdentity: _clientId];
     
     if(identity.clientId) {
+        
+        meliDevSyncHttpOperation = [[MeliDevSyncHttpOperation alloc] initWithIdentity: identity];
+        meliDevAsyncHttpOperation = [[MeliDevAsyncHttpOperation alloc] initWithIdentity: identity];
+        
         return identity;
     } else {
         return nil;
@@ -59,7 +63,9 @@ static BOOL isSDKInitialized = NO;
     _clientId = clientId;
     _redirectUrl = redirectUrl;
     
-    isSDKInitialized = YES;
+    if(*error == nil) {
+        isSDKInitialized = YES;
+    }
 }
 
 + (void) verifyAppID: (NSString *) appId error:(NSError **) error {
@@ -70,16 +76,16 @@ static BOOL isSDKInitialized = NO;
         *error = [NSError errorWithDomain:MeliDevErrorDomain
                                      code:AppIdIsNotInitializedError
                                  userInfo:userInfo];
-    } else if( ![MeliDevUtils isNumeric: appId] ) {
-        
+    } else if( [MeliDevUtils isNumeric: appId] ) {
+        NSLog(@"App ID correct %@", appId);
+    } else {
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: APP_ID_IS_NOT_NUMERIC_KEY};
-        
+
         *error = [NSError errorWithDomain:MeliDevErrorDomain
                                      code:AppIdNotValidError
                                  userInfo:userInfo];
-    } else {
-        NSLog(@"App ID correct %@", appId);
     }
+    
 }
 
 + (void) verifyRedirectUrl: (NSString *) redirectUrl error:(NSError **) error {
@@ -90,22 +96,20 @@ static BOOL isSDKInitialized = NO;
         *error = [NSError errorWithDomain:MeliDevErrorDomain
                                      code:RedirectUrlIsNotInitializedError
                                  userInfo:userInfo];
-    } else if( ![MeliDevUtils validateUrl: redirectUrl] ) {
-        
+    } else if( [MeliDevUtils validateUrl: redirectUrl] ) {
+        NSLog(@"Redirect URL is valid %@", redirectUrl);
+    } else {
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: REDIRECT_URL_IS_NOT_VALID_KEY};
         
         *error = [NSError errorWithDomain:MeliDevErrorDomain
                                      code:RedirectUrlNotValidError
                                  userInfo:userInfo];
-    } else {
-        NSLog(@"Redirect URL is valid %@", redirectUrl);
     }
 }
 
 + (void) startLogin: (UIViewController *) clientViewController {
     
-    if(isSDKInitialized){
-    
+    if(isSDKInitialized) {
         MeliDevLoginViewController * loginViewController = [[MeliDevLoginViewController alloc] initWithRedirectUrl: _redirectUrl];
         loginViewController.appId = _clientId;
         
@@ -119,10 +123,60 @@ static BOOL isSDKInitialized = NO;
         };
         
         [clientViewController.navigationController pushViewController:loginViewController animated:YES];
-        
     } else {
-        NSLog(@"The SDK should be initialized before starting the login process");
+        NSLog(@"%@", @"The SDK should be initialized");
     }
+}
+
++ (NSString *) get: (NSString *)path error: (NSError **) error {
+
+    return [meliDevSyncHttpOperation get:path error:&error];
+}
+    
++ (NSString *) getWithAuth: (NSString *)path error: (NSError **) error {
+    
+    return [meliDevSyncHttpOperation getWithAuth:path error:&error];
+}
+    
++ (NSString *) post:(NSString *)path withBody:(NSData *)body error: (NSError **) error {
+    
+    return [meliDevSyncHttpOperation post:path withBody:body error:&error];
+}
+    
++ (NSString *) put:(NSString *)path withBody:(NSData *)body error: (NSError **) error {
+    
+    return [meliDevSyncHttpOperation put:path withBody:body error:&error];
+}
+
++ (NSString *) delete: (NSString *)path error: (NSError **) error {
+    
+    return [meliDevSyncHttpOperation delete:path error:&error];
+}
+    
+
++ (void) getAsync: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock; {
+    
+    [meliDevAsyncHttpOperation get:path successBlock:successBlock failureBlock:failureBlock];
+}
+    
++ (void) getWithAuthAsync: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock; {
+    
+    [meliDevAsyncHttpOperation getWithAuth:path successBlock:successBlock failureBlock:failureBlock];
+}
+    
++ (void) postAsync: (NSString *)path withBody:(NSData*) body successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock: (AsyncHttpOperationFailBlock) failureBlock {
+    
+    [meliDevAsyncHttpOperation post:path withBody:body successBlock:successBlock failureBlock:failureBlock];
+}
+
++ (void) putAsync: (NSString *)path withBody:(NSDictionary *)params successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock {
+    
+    [meliDevAsyncHttpOperation put:path withBody:params successBlock:successBlock failureBlock:failureBlock];
+}
+    
++ (void) deleteAsync: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock {
+    
+    [meliDevAsyncHttpOperation delete:path successBlock:successBlock failureBlock:failureBlock];
 }
 
 @end

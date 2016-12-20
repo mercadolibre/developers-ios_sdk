@@ -45,13 +45,8 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
     
     [super viewDidLoad];
 }
-
-- (void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-
-- (IBAction)login:(id)sender {
     
+- (IBAction)login:(id)sender {
     [Meli startLogin:self];
 }
 
@@ -63,11 +58,15 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
     }
 }
 
-- (void) processAsyncError: (NSURLSessionTask *) operation error:(NSError *)error {
+- (void) processError: (NSURLSessionTask *) operation error:(NSError *)error {
     
     NSURLRequest * request = operation.currentRequest;
     NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)operation.response;
     
+    // It should ask for a new access token
+    if([httpResponse statusCode] == 401){
+        [Meli startLogin:self];
+    }
     NSString * requestError = [NSString stringWithFormat: HTTP_REQUEST_ERROR_MESSAGE, [request URL],
                                (long)[httpResponse statusCode] ];
     NSLog(@"Http request error %@", requestError);
@@ -86,93 +85,87 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
 
 - (void) getUsersItemsAsync {
     
-    MeliDevAsyncHttpOperation *httpClient = [[MeliDevAsyncHttpOperation alloc] initWithIdentity: self.identity];
-    
     NSString *userPath = [@"/users/" stringByAppendingString: self.identity.userId];
     NSString *path = [userPath stringByAppendingString: @"/items/search"];
     
-    SuccessHandler successHandler = ^(NSURLSessionTask *task, id responseObject) {
+    AsyncHttpOperationSuccessBlock successBlock = ^(NSURLSessionTask *task, id responseObject) {
         [self parseData:responseObject];
     };
     
-    FailureHandler failureHandler = ^(NSURLSessionTask *operation, NSError *error) {
+    AsyncHttpOperationFailBlock failureBlock = ^(NSURLSessionTask *operation, NSError *error) {
         if(error) {
-            [self processAsyncError:operation error:error];
+            [self processError:operation error:error];
         }
     };
     
-    [httpClient getWithAuth:path successHandler:successHandler failureHanlder:failureHandler];
+    [Meli getWithAuthAsync:path successBlock:successBlock failureBlock:failureBlock];
 }
 
 - (void) testPostAsync {
     
-    MeliDevAsyncHttpOperation *httpClient = [[MeliDevAsyncHttpOperation alloc] initWithIdentity: self.identity];
     NSString *path = @"/items";
     
     NSError *error;
     NSDictionary * params = [NSJSONSerialization JSONObjectWithData:[self createJsonDataForPost] options:kNilOptions error:&error];
     
-    SuccessHandler successHandler = ^(NSURLSessionTask *task, id responseObject) {
+    AsyncHttpOperationSuccessBlock successBlock = ^(NSURLSessionTask *task, id responseObject) {
         [self parseData:responseObject];
     };
     
-    FailureHandler failureHandler = ^(NSURLSessionTask *operation, NSError *error) {
+    AsyncHttpOperationFailBlock failureBlock = ^(NSURLSessionTask *operation, NSError *error) {
         if(error) {
-            [self processAsyncError:operation error:error];
+            [self processError:operation error:error];
         }
     };
     
-    [httpClient post:path withBody:params successHandler:successHandler failureHanlder:failureHandler];
+    [Meli postAsync:path withBody:params successBlock:successBlock failureBlock:failureBlock];
 }
 
 - (void) testPutAsync {
     
-    MeliDevAsyncHttpOperation *httpClient = [[MeliDevAsyncHttpOperation alloc] initWithIdentity: self.identity];
-    NSString *path = @"/items/#{ITEM_ID}";
+    NSString *path = @"/items/MLA647265242";
     
     NSError *error;
     NSDictionary * params = [NSJSONSerialization JSONObjectWithData:[self createJsonDataForPut] options:kNilOptions error:&error];
     
-    SuccessHandler successHandler = ^(NSURLSessionTask *task, id responseObject) {
+    AsyncHttpOperationSuccessBlock successBlock = ^(NSURLSessionTask *task, id responseObject) {
         [self parseData:responseObject];
     };
     
-    FailureHandler failureHandler = ^(NSURLSessionTask *operation, NSError *error) {
+    AsyncHttpOperationFailBlock failureBlock = ^(NSURLSessionTask *operation, NSError *error) {
         if(error) {
-            [self processAsyncError:operation error:error];
+            [self processError:operation error:error];
         }
     };
     
-    [httpClient put:path withBody:params successHandler:successHandler failureHanlder:failureHandler];
+    [Meli putAsync:path withBody:params successBlock:successBlock failureBlock:failureBlock];
 }
-
+    
 - (void) testDeleteAsync {
     
-    MeliDevAsyncHttpOperation *httpClient = [[MeliDevAsyncHttpOperation alloc] initWithIdentity: self.identity];
     NSString *path = @"/items/#{ITEM_ID}/pictures/#{PICTURE_ID}";
-    
-    SuccessHandler successHandler = ^(NSURLSessionTask *task, id responseObject) {
+        
+    AsyncHttpOperationSuccessBlock successBlock = ^(NSURLSessionTask *task, id responseObject) {
         [self parseData:responseObject];
     };
     
-    FailureHandler failureHandler = ^(NSURLSessionTask *operation, NSError *error) {
+    AsyncHttpOperationFailBlock failureBlock = ^(NSURLSessionTask *operation, NSError *error) {
         if(error) {
-            [self processAsyncError:operation error:error];
+            [self processError:operation error:error];
         }
     };
     
-    [httpClient delete:path successHandler:successHandler failureHanlder:failureHandler];
+    [Meli deleteAsync:path successBlock:successBlock failureBlock:failureBlock];
 }
 
 - (void) getUsersItems {
     
     NSError *error;
-    MeliDevSyncHttpOperation *httpClient = [[MeliDevSyncHttpOperation alloc] initWithIdentity: self.identity];
     
     NSString *userPath = [@"/users/" stringByAppendingString: self.identity.userId];
     NSString *path = [userPath stringByAppendingString: @"/items/search"];
     
-    NSString * result = [httpClient getWithAuth:path error:&error];
+    NSString * result = [Meli getWithAuth:path error: &error];
     
     if(error) {
         NSLog(@"Http request error %@", [error userInfo]);
@@ -199,7 +192,7 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
     
     NSError *error;
     MeliDevSyncHttpOperation *httpClient = [[MeliDevSyncHttpOperation alloc] initWithIdentity: self.identity];
-    NSString *path = @"/items/#{ITEM_ID}";
+    NSString *path = @"/items/MLA647265242";
     NSString * result =[httpClient put:path withBody:[self createJsonDataForPut] error:&error];
     
     if(error) {
@@ -208,7 +201,7 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
         NSLog(@"Result %@", result);
     }
 }
-
+    
 - (void) testDelete {
     
     NSError *error;
@@ -234,8 +227,10 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
     //create dictionary to convert json object
     NSDictionary * jsonData=[[NSMutableDictionary alloc] initWithObjects:objects forKeys:keys];
     
+    
     //convert dictionary to json data
     NSData * json =[NSJSONSerialization dataWithJSONObject:jsonData options:NSJSONWritingPrettyPrinted error:nil];
+    
     
     //convert json data to string for showing if you create it truely
     NSString * jsonString=[[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
@@ -266,15 +261,8 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
     //create dictionary to convert json object
     NSDictionary * jsonData=[[NSMutableDictionary alloc] initWithObjects:objects forKeys:keys];
     
-    
     //convert dictionary to json data
     NSData * json =[NSJSONSerialization dataWithJSONObject:jsonData options:NSJSONWritingPrettyPrinted error:nil];
-    
-    
-    //convert json data to string for showing if you create it truely
-    NSString * jsonString=[[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
-    
-    NSLog(@"%@",jsonString);
     
     return json;
 }
