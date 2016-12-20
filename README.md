@@ -32,7 +32,7 @@ Copy and paste the following lines into the TextEdit window:
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 platform :ios, '8.0'
-pod 'MeliDevSDK', '~> 0.1.0'
+pod 'MeliDevSDK', '~> 0.1.3'
 ```
 You shouldn’t use TextEdit to edit the pod file because TextEdit likes to replace standard quotes with more graphically appealing quotes. This can cause CocoaPods to get confused and display errors, so it’s best to just use Xcode or another programming text editor.
 
@@ -41,6 +41,7 @@ You shouldn’t use TextEdit to edit the pod file because TextEdit likes to repl
 Now you can install the dependencies in your project:
 
 $ pod install
+
 From now on, be sure to always open the generated Xcode workspace (.xcworkspace) instead of the project file when building your project:
 
 $ open <YourProjectName>.xcworkspace
