@@ -27,14 +27,13 @@
     
     MeliDevIdentity * identity = [[MeliDevIdentity alloc]init];
     identity.userId = [loginData valueForKey:USER_ID];
+    identity.clientId = [loginData valueForKey: MELI_APP_ID_KEY];
     
     NSString * accessTokenValue = [loginData valueForKey:ACCESS_TOKEN];
     NSString * expiresInValue = [loginData valueForKey:EXPIRES_IN];
     
     MeliDevAccessToken *accessToken = [[MeliDevAccessToken alloc] initWithMeliDevAccessToken:accessTokenValue andExpiresIn:expiresInValue];
     identity.accessToken = accessToken;
-    
-    identity.clientId = [loginData valueForKey: MELI_APP_ID_KEY];
     
     [identity storeIdentity];
 }
@@ -69,9 +68,8 @@
     
     if(![accessToken isTokenExpired]) {
         identity = [[MeliDevIdentity alloc]init];
-        NSString *userId = [defaults valueForKey: USER_ID];
+        identity.userId = [defaults valueForKey: USER_ID];
         identity.clientId = clientId;
-        identity.userId = userId;
         identity.accessToken = accessToken;
     }
     return identity;

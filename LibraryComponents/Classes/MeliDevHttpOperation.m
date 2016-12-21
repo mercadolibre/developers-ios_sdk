@@ -11,9 +11,9 @@
 
 @interface MeliDevHttpOperation()
     
-    @property (nonatomic) MeliDevIdentity * identity;
+@property (nonatomic) MeliDevIdentity * identity;
     
-    @end
+@end
 
 @implementation MeliDevHttpOperation
     
@@ -35,9 +35,9 @@
     return [NSURL URLWithString: url];
 }
     
-- (NSMutableURLRequest *) prepareRequest: (NSString *)type withBody: (NSData *)body {
+- (NSMutableURLRequest *) prepareRequest: (NSString *)method withBody: (NSData *)body {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:type];
+    [request setHTTPMethod:method];
     [request setHTTPBody:body];
     [request setValue:[NSString stringWithFormat:@"%lu", [body length]] forHTTPHeaderField:@"Content-Length"];
     return request;

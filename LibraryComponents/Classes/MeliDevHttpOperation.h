@@ -16,15 +16,26 @@ static NSString * const HTTP_REQUEST_ERROR_MESSAGE = @"Error getting %@, HTTP st
 
 @interface MeliDevHttpOperation : NSObject
     
-    /**
-     *  Create a MeliDevSyncHttpOperation instance.
-     *
-     *  @param identity                  Model that represents user's identification.
-     */
+/**
+*  Create a MeliDevHttpOperation instance.
+*
+*  @param identity                  Model that represents user's identification.
+*/
 - (instancetype) initWithIdentity: (MeliDevIdentity *) identity;
     
+/**
+ *  Return a URL conformed by the path provided by the user and the access token.
+ *
+ *  @param path
+ */
 - (NSURL *) getURLWithAccessToken: (NSString *) path;
     
-- (NSMutableURLRequest *) prepareRequest: (NSString *)type withBody: (NSData *)body;
+/**
+ *  Create and setup a request with a specific http method and its body.
+ *
+ *  @param method                    represents the http method.
+ *  @param body                      represents the data that user wants to send.
+ */
+- (NSMutableURLRequest *) prepareRequest: (NSString *)method withBody: (NSData *)body;
     
 @end

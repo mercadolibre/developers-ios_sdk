@@ -50,7 +50,7 @@ static NSString const * MELI_APP_ID_KEY = @"MeliAppId";
     
 + (void) getAsync: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
 + (void) getWithAuthAsync: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
-+ (void) postAsync: (NSString *)path withBody:(NSDictionary *)params successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
-+ (void) putAsync: (NSString *)path withBody:(NSDictionary *)params successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
++ (void) postAsync: (NSString *)path withBody:(NSData*) body completionHandler:(AsyncHttpOperationBlock) completionHandler;
++ (void) putAsync: (NSString *)path withBody:(NSData*) body completionHandler:(AsyncHttpOperationBlock) completionHandler;
 + (void) deleteAsync: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
 @end

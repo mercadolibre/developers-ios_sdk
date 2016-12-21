@@ -24,20 +24,16 @@ typedef void (^OnLoginErrorDetected)(NSString *);
 
 @interface MeliDevLoginViewController : UIViewController
 
-/**
- *  Represent the application identifier provided by the client application.
- */
-@property (copy) NSString * appId;
 @property (nonatomic, copy) OnLoginCompleted onLoginCompleted;
 @property (nonatomic, copy) OnLoginErrorDetected onErrorDetected;
 
 /**
- *  Create a MeliDevAccessToken instance.
+ *  Create a MeliDevLoginViewController instance.
  *
- *  @param token                    represents the token value.
- *  @param expiresIn                represents the token's expiration time.
+ *  @param appId                    represent the application identifier provided by the client application.
+ *  @param redirectUrl              represent the application's redirect URL provided by the client application.
  */
-- (instancetype) initWithRedirectUrl: (NSString *) redirectUrl;
+- (instancetype) initWithAppId: (NSString *) appId andRedirectUrl: (NSString *) redirectUrl;
 
 /**
  *  Get Identity data in order to create the Identity.
@@ -45,12 +41,5 @@ typedef void (^OnLoginErrorDetected)(NSString *);
  *  @param urlParams                    represents all the params information needed to create the identity.
  */
 - (void *) getIdentityData: (NSString *) urlParams;
-
-/**
- *  Check if all properties related to the identity are provided properly.
- *
- *  @param data                    represents the data which will be associated with the Identity Instance.
- */
-- (BOOL) checkIfPropertiesExist: (NSDictionary *) data;
 
 @end

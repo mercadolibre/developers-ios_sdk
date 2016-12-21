@@ -12,7 +12,7 @@
 
 @interface MeliDevAsyncHttpOperation ()
     
-@property (nonatomic, weak) AFHTTPSessionManager *manager;
+@property (nonatomic, strong) AFHTTPSessionManager *manager;
 @property (nonatomic) MeliDevIdentity * identity;
     
 @end
@@ -44,39 +44,26 @@
     [self.manager GET:URL.absoluteString parameters:nil progress:nil success: successHandler failure: failureHandler];
 }
 
-- (void) post: (NSString *)path withBody:(NSData *)body successBlock:(AsyncHttpOperationSuccessBlock) successHandler failureBlock:(AsyncHttpOperationFailBlock) failureHandler; {
+- (void) post: (NSString *)path withBody:(NSData *)body completionHandler:(AsyncHttpOperationBlock) completionHandler {
 
-    NSURL *URL = [self getURLWithAccessToken:path];
-    
-    NSMutableURLRequest *request = [self createRequest:body withMethod:@"POST" withURL:URL.absoluteString];
-
-    [[self.manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        
-        if (!error) {
-            NSLog(@"Response: %@", responseObject);
-        } else {
-            NSLog(@"Error: %@, %@, %@", error, response, responseObject);
-        }
-    }] resume];
+    [self createOrUpdate:path withBody: body withHttpMethod: @"POST" completionHandler:completionHandler];
 }
+ 
+- (void) put: (NSString *)path withBody:(NSData *)body completionHandler:(AsyncHttpOperationBlock) completionHandler {
 
-- (void) put: (NSString *)path withBody:(NSData *) body successBlock:(AsyncHttpOperationSuccessBlock) successHandler failureBlock:(AsyncHttpOperationFailBlock) failureHandler; {
-
-    NSURL *URL = [self getURLWithAccessToken:path];
-    
-    NSMutableURLRequest *request = [self createRequest:body withMethod:@"PUT" withURL:URL.absoluteString];
-    
-    [[self.manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        
-        if (!error) {
-            NSLog(@"Response: %@", responseObject);
-        } else {
-            NSLog(@"Error: %@, %@, %@", error, response, responseObject);
-        }
-    }] resume];
+    [self createOrUpdate:path withBody: body withHttpMethod: @"PUT" completionHandler:completionHandler];
 }
     
-- (NSMutableURLRequest *) createRequest: (NSData *) body withMethod: (NSString *)method withURL: (NSString *) url {
+- (void) createOrUpdate: (NSString *) path withBody:(NSData *)body withHttpMethod: (NSString *) method completionHandler:(AsyncHttpOperationBlock) completionHandler {
+    
+    NSURL *URL = [self getURLWithAccessToken:path];
+    
+    NSMutableURLRequest *request = [self createRequest:body withHttpMethod:method withURL:URL.absoluteString];
+    
+    [[self.manager dataTaskWithRequest:request completionHandler:completionHandler] resume];
+}
+    
+- (NSMutableURLRequest *) createRequest: (NSData *) body withHttpMethod: (NSString *)method withURL: (NSString *) url {
 
     NSError *error;
     
@@ -92,11 +79,11 @@
     return request;
 }
     
-- (void) delete: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successHandler failureBlock:(AsyncHttpOperationFailBlock) failureHandler; {
+- (void) delete: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock; {
     
     NSURL *URL = [self getURLWithAccessToken:path];
     
-    [self.manager DELETE:URL.absoluteString parameters:nil success:(AsyncHttpOperationSuccessBlock) successHandler failure:failureHandler];
+    [self.manager DELETE:URL.absoluteString parameters:nil success:(AsyncHttpOperationSuccessBlock) successBlock failure:failureBlock];
 }
 
 @end

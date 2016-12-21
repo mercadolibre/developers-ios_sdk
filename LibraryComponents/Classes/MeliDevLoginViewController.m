@@ -17,8 +17,19 @@ const NSString * CALLBACK_MESSAGE_DISPATCH = @"background_message_dispatch";
 @interface MeliDevLoginViewController ()
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+    
 @property (strong, nonatomic) MBProgressHUD *HUD;
+    
 @property (nonatomic) MeliDevIdentity * identity;
+    
+/**
+ *  Represent the application identifier provided by the client application.
+ */
+@property (copy) NSString * appId;
+  
+/**
+ *  Represent the application's redirect URL provided by the client application.
+ */
 @property (copy) NSString * redirectUrl;
 
 - (void *) createParamDictionary: (NSString *) urlString;
@@ -27,10 +38,11 @@ const NSString * CALLBACK_MESSAGE_DISPATCH = @"background_message_dispatch";
 
 @implementation MeliDevLoginViewController
 
-- (instancetype) initWithRedirectUrl: (NSString *) redirectUrl {
+- (instancetype) initWithAppId: (NSString *) appId andRedirectUrl: (NSString *) redirectUrl {
     
     self = [super init];
     if (self) {
+        _appId = appId;
         _redirectUrl = redirectUrl;
     }
     return self;

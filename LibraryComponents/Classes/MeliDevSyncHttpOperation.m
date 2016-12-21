@@ -11,6 +11,9 @@
 
 @implementation MeliDevSyncHttpOperation
 
+- (MeliDevError *) getErrorForStatusCode: (NSInteger *) statusCode {
+    return (statusCode == 401) ? InvalidAccessToken : HttpRequestError;
+}
     
 - (NSError *) errorForStatusCode: (NSInteger *) responseStatusCode withURL: (NSString *) url {
         
@@ -24,10 +27,6 @@
                                              code:[self getErrorForStatusCode: responseStatusCode]
                                          userInfo:userInfo];
     return error;
-}
-    
-- (MeliDevError *) getErrorForStatusCode: (NSInteger *) statusCode {
-    return (statusCode == 401) ? InvalidAccessToken : HttpRequestError;
 }
 
 - (NSString *) execute: (NSMutableURLRequest *)request error: (NSError **) error {

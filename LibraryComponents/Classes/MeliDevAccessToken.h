@@ -31,9 +31,9 @@
 - (BOOL) isTokenExpired;
     
 /**
-*  Retrieve Access Token Value.
-*
-*/
+ *  Retrieve Access Token Value.
+ *
+ */
 - (NSString *) getAccessTokenValue;
 
 @end

@@ -29,7 +29,7 @@ static NSString * const USER_ID = @"user_id";
 /**
  *  Represent the user identifier who provides permissions to the client application.
  */
-@property (readonly, nonatomic) NSString * userId;
+@property (nonatomic, readonly) NSString * userId;
 
 @property (nonatomic, strong, readonly) MeliDevAccessToken * accessToken;
 

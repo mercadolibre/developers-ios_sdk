@@ -110,9 +110,8 @@ static MeliDevSyncHttpOperation * meliDevSyncHttpOperation;
 + (void) startLogin: (UIViewController *) clientViewController {
     
     if(isSDKInitialized) {
-        MeliDevLoginViewController * loginViewController = [[MeliDevLoginViewController alloc] initWithRedirectUrl: _redirectUrl];
-        loginViewController.appId = _clientId;
-        
+        MeliDevLoginViewController * loginViewController = [[MeliDevLoginViewController alloc] initWithAppId: _clientId
+                                                                                          andRedirectUrl: _redirectUrl];
         loginViewController.onLoginCompleted = ^(NSDictionary *data){
             [data setValue: _clientId forKey:MELI_APP_ID_KEY];
             [MeliDevIdentity createIdentity:data];
@@ -164,14 +163,14 @@ static MeliDevSyncHttpOperation * meliDevSyncHttpOperation;
     [meliDevAsyncHttpOperation getWithAuth:path successBlock:successBlock failureBlock:failureBlock];
 }
     
-+ (void) postAsync: (NSString *)path withBody:(NSData*) body successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock: (AsyncHttpOperationFailBlock) failureBlock {
++ (void) postAsync: (NSString *)path withBody:(NSData*) body completionHandler:(AsyncHttpOperationBlock) completionHandler {
     
-    [meliDevAsyncHttpOperation post:path withBody:body successBlock:successBlock failureBlock:failureBlock];
+    [meliDevAsyncHttpOperation post:path withBody:body completionHandler: completionHandler];
 }
 
-+ (void) putAsync: (NSString *)path withBody:(NSDictionary *)params successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock {
++ (void) putAsync: (NSString *)path withBody:(NSData*) body completionHandler:(AsyncHttpOperationBlock) completionHandler; {
     
-    [meliDevAsyncHttpOperation put:path withBody:params successBlock:successBlock failureBlock:failureBlock];
+    [meliDevAsyncHttpOperation put:path withBody:body completionHandler:completionHandler];
 }
     
 + (void) deleteAsync: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock {

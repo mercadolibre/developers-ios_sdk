@@ -106,39 +106,35 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
     NSString *path = @"/items";
     
     NSError *error;
-    NSDictionary * params = [NSJSONSerialization JSONObjectWithData:[self createJsonDataForPost] options:kNilOptions error:&error];
+    NSData * body = [NSJSONSerialization JSONObjectWithData:[self createJsonDataForPost] options:kNilOptions error:&error];
     
-    AsyncHttpOperationSuccessBlock successBlock = ^(NSURLSessionTask *task, id responseObject) {
-        [self parseData:responseObject];
-    };
-    
-    AsyncHttpOperationFailBlock failureBlock = ^(NSURLSessionTask *operation, NSError *error) {
-        if(error) {
-            [self processError:operation error:error];
+    AsyncHttpOperationBlock completionHandler = ^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"Response: %@", responseObject);
+        } else {
+            NSLog(@"Error: %@, %@, %@", error, response, responseObject);
         }
     };
     
-    [Meli postAsync:path withBody:params successBlock:successBlock failureBlock:failureBlock];
+    [Meli postAsync:path withBody:body completionHandler:completionHandler];
 }
 
 - (void) testPutAsync {
     
-    NSString *path = @"/items/MLA647265242";
+    NSString *path = @"/items/MLA647404908";
     
     NSError *error;
-    NSDictionary * params = [NSJSONSerialization JSONObjectWithData:[self createJsonDataForPut] options:kNilOptions error:&error];
+    NSData * body = [NSJSONSerialization JSONObjectWithData:[self createJsonDataForPut] options:kNilOptions error:&error];
     
-    AsyncHttpOperationSuccessBlock successBlock = ^(NSURLSessionTask *task, id responseObject) {
-        [self parseData:responseObject];
-    };
-    
-    AsyncHttpOperationFailBlock failureBlock = ^(NSURLSessionTask *operation, NSError *error) {
-        if(error) {
-            [self processError:operation error:error];
+    AsyncHttpOperationBlock completionHandler = ^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"Response: %@", responseObject);
+        } else {
+            NSLog(@"Error: %@, %@, %@", error, response, responseObject);
         }
     };
     
-    [Meli putAsync:path withBody:params successBlock:successBlock failureBlock:failureBlock];
+    [Meli putAsync:path withBody:body completionHandler:completionHandler];
 }
     
 - (void) testDeleteAsync {
