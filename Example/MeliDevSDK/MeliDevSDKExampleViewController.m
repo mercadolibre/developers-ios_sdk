@@ -121,7 +121,7 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
 
 - (void) testPutAsync {
     
-    NSString *path = @"/items/MLA647404908";
+    NSString *path = @"/items/#{ITEM_ID}";
     
     NSError *error;
     NSData * body = [NSJSONSerialization JSONObjectWithData:[self createJsonDataForPut] options:kNilOptions error:&error];
@@ -188,7 +188,7 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
     
     NSError *error;
     MeliDevSyncHttpOperation *httpClient = [[MeliDevSyncHttpOperation alloc] initWithIdentity: self.identity];
-    NSString *path = @"/items/MLA647265242";
+    NSString *path = @"/items/#{ITEM_ID}";
     NSString * result =[httpClient put:path withBody:[self createJsonDataForPut] error:&error];
     
     if(error) {
@@ -262,8 +262,5 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
     
     return json;
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
+    
 @end

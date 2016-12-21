@@ -98,7 +98,7 @@ MeliDevASyncHttpOperation *httpClient = [[MeliDevASyncHttpOperation alloc] initW
 ### Anonymous
 
 ```objective-c
-NSString * result = [httpClient get:path error:&error];
+NSString * result = [Meli get:path error:&error];
 ```
   or
 
@@ -113,13 +113,13 @@ FailureHandler failureHandler = ^(NSURLSessionTask *operation, NSError *error) {
     }
 };
     
-[httpClient get:path successHandler:successHandler failureHanlder:failureHandler];
+[Meli get:path successHandler:successHandler failureHanlder:failureHandler];
 ```
 
 ### Authenticated
 
 ```objective-c
-NSString * result = [httpClient getWithAuth:path error:&error];
+NSString * result = [Meli getWithAuthAsync:path error:&error];
 ```
   or
 
@@ -134,59 +134,53 @@ FailureHandler failureHandler = ^(NSURLSessionTask *operation, NSError *error) {
     }
 };
     
-[httpClient getWithAuth:path successHandler:successHandler failureHanlder:failureHandler];
+[Meli getWithAuthAsync:path successHandler:successHandler failureHanlder:failureHandler];
 ```
 
 ## Making POST calls
 
 ```objective-c
-NSString * result =[ httpClient post:path withBody:[self createJsonDataForPost] error:&error];
+NSString * result = [Meli post:path withBody:jsonData error:&error];
 ```
     or
 
 ```objective-c
-NSDictionary * params = [NSJSONSerialization JSONObjectWithData:[self createJsonDataForPost] options:kNilOptions error:&error];
 
-SuccessHandler successHandler = ^(NSURLSessionTask *task, id responseObject) {
-    [self parseData:responseObject];
-};
-
-FailureHandler failureHandler = ^(NSURLSessionTask *operation, NSError *error) {
-    if(error) {
-        [self processError:operation error:error];
-    }
-};
-
-[httpClient post:path withBody:params successHandler:successHandler failureHanlder:failureHandler];
+AsyncHttpOperationBlock completionHandler = ^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"Response: %@", responseObject);
+        } else {
+            NSLog(@"Error: %@, %@, %@", error, response, responseObject);
+        }
+    };
+    
+    [Meli postAsync:path withBody:body completionHandler:completionHandler];
 ```
 
 ## Making PUT calls
 
 ```objective-c
-NSString * result = [httpClient put:path withBody:[self createJsonDataForPut] error:&error];
+NSString * result = [Meli put:path withBody:jsonData error:&error];
 ```
     or
 
 ```objective-c
-NSDictionary * params = [NSJSONSerialization JSONObjectWithData:[self createJsonDataForPut] options:kNilOptions error:&error];
+
+AsyncHttpOperationBlock completionHandler = ^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"Response: %@", responseObject);
+        } else {
+            NSLog(@"Error: %@, %@, %@", error, response, responseObject);
+        }
+    };
     
-SuccessHandler successHandler = ^(NSURLSessionTask *task, id responseObject) {
-    [self parseData:responseObject];
-};
-
-FailureHandler failureHandler = ^(NSURLSessionTask *operation, NSError *error) {
-    if(error) {
-        [self processError:operation error:error];
-    }
-};
-
-[httpClient put:path withBody:params successHandler:successHandler failureHanlder:failureHandler];
+    [Meli putAsync:path withBody:body completionHandler:completionHandler];
 ```
 
 ## Making DELETE calls
 
 ```objective-c
-NSString * result = [httpClient delete:path error:&error];
+NSString * result = [Meli delete:path error:&error];
 ```
 
     or
@@ -202,7 +196,7 @@ FailureHandler failureHandler = ^(NSURLSessionTask *operation, NSError *error) {
     }
 };
 
-[httpClient delete:path successHandler:successHandler failureHanlder:failureHandler];
+[Meli delete:path successHandler:successHandler failureHanlder:failureHandler];
 ```
 
 ## Examples
