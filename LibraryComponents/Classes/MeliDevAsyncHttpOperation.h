@@ -37,9 +37,9 @@ typedef void (^AsyncHttpOperationBlock) (NSURLResponse * _Nonnull response, id  
 @interface MeliDevAsyncHttpOperation : MeliDevHttpOperation
 
 - (void) get: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successHandler failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
-- (void) getWithAuth: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureHandler;
-- (void) post: (NSString *)path withBody:(NSData *) body completionHandler:(AsyncHttpOperationBlock) completionHandler;
-- (void) put: (NSString *)path withBody:(NSData *) body completionHandler:(AsyncHttpOperationBlock) completionHandler;
+- (void) getWithAuth: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
+- (void) post: (NSString *)path withBody:(NSData *) body operationBlock:(AsyncHttpOperationBlock) operationBlock;
+- (void) put: (NSString *)path withBody:(NSData *) body operationBlock:(AsyncHttpOperationBlock) operationBlock;
 - (void) delete: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
 
 @end

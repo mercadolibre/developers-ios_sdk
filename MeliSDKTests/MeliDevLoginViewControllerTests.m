@@ -10,6 +10,11 @@
 #import "MeliDevLoginViewController.h"
 #import <OCMock/OCMock.h>
 
+static NSString * const CLIENT_ID = @"app_id";
+static NSString * const ACCESS_TOKEN = @"access_token";
+static NSString * const EXPIRES_IN = @"expires_in";
+static NSString * const USER_ID = @"user_id";
+
 @interface MeliDevLoginViewController(Tests) <UIWebViewDelegate>
 
 @property(nonatomic, weak) IBOutlet UIWebView *webView;
@@ -38,17 +43,19 @@
 - (void)tearDown {
     [super tearDown];
 }
+    
+- (BOOL) checkIfUserPropertiesExist: (NSDictionary *) data {
+    return [data objectForKey:USER_ID] != nil && [data objectForKey:ACCESS_TOKEN] != nil && [data objectForKey:EXPIRES_IN] != nil;
+}
 
 - (void)testCheckIfPropertiesExist_withCorrectKeys_shouldReturnYes {
     
-    MeliDevLoginViewController *loginController = [[MeliDevLoginViewController alloc] init];
-    XCTAssertTrue([loginController checkIfPropertiesExist: _data] == YES, @"The dictionary does not contain the correct keys");
+    XCTAssertTrue([self checkIfUserPropertiesExist: _data] == YES, @"The dictionary does not contain the correct keys");
 }
 
 - (void)testCheckIfPropertiesExist_withIncorrectKeys_shouldReturnNo {
     
-    MeliDevLoginViewController *loginController = [[MeliDevLoginViewController alloc] init];
-    XCTAssertTrue([loginController checkIfPropertiesExist: _wrongData] == NO, @"The dictionary contain the correct keys");
+    XCTAssertTrue([self checkIfUserPropertiesExist: _wrongData] == NO, @"The dictionary contain the correct keys");
 }
 
 - (void) success: (NSString *) message {
@@ -65,7 +72,7 @@
     MeliDevLoginViewController *loginController = [[MeliDevLoginViewController alloc] init];
     NSString * params = @"access_token=APP_USR-5197208004815569-092710-c5a973091106231723d0e9491b1fa6d9__M_B__-221910727&expires_in=21600&user_id=221910727&domains=www.example.com";
     
-    OCMStub([loginController checkIfPropertiesExist: _data]).andReturn(YES);
+    OCMStub([self checkIfUserPropertiesExist: _data]).andReturn(YES);
     
     __weak MeliDevLoginViewControllerTests * weakSelf = self;
     
@@ -90,7 +97,7 @@
     MeliDevLoginViewController *loginController = [[MeliDevLoginViewController alloc] init];
     NSString * params = @"access_token=APP_USR-5197208004815569-092710-c5a973091106231723d0e9491b1fa6d9__M_B__-221910727&user_id=221910727&domains=www.example.com";
 
-    OCMStub([loginController checkIfPropertiesExist: _wrongData]).andReturn(NO);
+    OCMStub([self checkIfUserPropertiesExist: _wrongData]).andReturn(NO);
     
     __weak MeliDevLoginViewControllerTests * weakSelf = self;
     
@@ -118,8 +125,9 @@
         [mockNavigationController popViewControllerAnimated:NO];
     }];
     
+    NSString *appId = @"5197208004815569";
     NSString *redirectUrl = @"https://www.example.com";
-    MeliDevLoginViewController *mockedLoginVC = OCMPartialMock([[MeliDevLoginViewController alloc] initWithRedirectUrl: redirectUrl]);
+    MeliDevLoginViewController *mockedLoginVC = OCMPartialMock([[MeliDevLoginViewController alloc] initWithAppId: appId andRedirectUrl: redirectUrl]);
     [mockNavigationController pushViewController:mockedLoginVC animated:NO];
     
     NSString * params = @"access_token=APP_USR-5197208004815569-092710-c5a973091106231723d0e9491b1fa6d9__M_B__-221910727&user_id=221910727&domains=www.example.com";

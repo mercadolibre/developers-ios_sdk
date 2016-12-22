@@ -51,11 +51,11 @@ const NSString * CALLBACK_MESSAGE_DISPATCH = @"background_message_dispatch";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _webView.delegate = self;
-    _webView.opaque = NO;
-    _webView.backgroundColor = [UIColor colorWithRed: 1.0f green: 1.0f blue: 0.0f alpha:1.0f];
+    self.webView.delegate = self;
+    self.webView.opaque = NO;
+    self.webView.backgroundColor = [UIColor colorWithRed: 1.0f green: 1.0f blue: 0.0f alpha:1.0f];
     
-    NSString *urlLogin = [LOGIN_URL stringByAppendingString:_appId];
+    NSString *urlLogin = [LOGIN_URL stringByAppendingString: self.appId];
     NSURL *url = [NSURL URLWithString:urlLogin];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
 

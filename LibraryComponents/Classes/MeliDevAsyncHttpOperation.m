@@ -29,38 +29,38 @@
     return self;
 }
 
-- (void) get: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successHandler failureBlock:(AsyncHttpOperationFailBlock) failureHandler; {
+- (void) get: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock; {
     
     NSString * url = [MELI_API_URL stringByAppendingString:path];
     NSURL *URL = [NSURL URLWithString: url];
     
-    [self.manager GET:URL.absoluteString parameters:nil progress:nil success: successHandler failure: failureHandler];
+    [self.manager GET:URL.absoluteString parameters:nil progress:nil success: successBlock failure: failureBlock];
 }
 
-- (void) getWithAuth: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successHandler failureBlock:(AsyncHttpOperationFailBlock) failureHandler; {
+- (void) getWithAuth: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock; {
     
     NSURL *URL = [self getURLWithAccessToken:path];
     
-    [self.manager GET:URL.absoluteString parameters:nil progress:nil success: successHandler failure: failureHandler];
+    [self.manager GET:URL.absoluteString parameters:nil progress:nil success: successBlock failure: failureBlock];
 }
 
-- (void) post: (NSString *)path withBody:(NSData *)body completionHandler:(AsyncHttpOperationBlock) completionHandler {
+- (void) post: (NSString *)path withBody:(NSData *)body operationBlock:(AsyncHttpOperationBlock) operationBlock {
 
-    [self createOrUpdate:path withBody: body withHttpMethod: @"POST" completionHandler:completionHandler];
+    [self createOrUpdate:path withBody: body withHttpMethod: @"POST" operationBlock:operationBlock];
 }
  
-- (void) put: (NSString *)path withBody:(NSData *)body completionHandler:(AsyncHttpOperationBlock) completionHandler {
+- (void) put: (NSString *)path withBody:(NSData *)body operationBlock:(AsyncHttpOperationBlock) operationBlock {
 
-    [self createOrUpdate:path withBody: body withHttpMethod: @"PUT" completionHandler:completionHandler];
+    [self createOrUpdate:path withBody: body withHttpMethod: @"PUT" operationBlock:operationBlock];
 }
     
-- (void) createOrUpdate: (NSString *) path withBody:(NSData *)body withHttpMethod: (NSString *) method completionHandler:(AsyncHttpOperationBlock) completionHandler {
+- (void) createOrUpdate: (NSString *) path withBody:(NSData *)body withHttpMethod: (NSString *) method operationBlock:(AsyncHttpOperationBlock) operationBlock {
     
     NSURL *URL = [self getURLWithAccessToken:path];
     
     NSMutableURLRequest *request = [self createRequest:body withHttpMethod:method withURL:URL.absoluteString];
     
-    [[self.manager dataTaskWithRequest:request completionHandler:completionHandler] resume];
+    [[self.manager dataTaskWithRequest:request completionHandler:operationBlock] resume];
 }
     
 - (NSMutableURLRequest *) createRequest: (NSData *) body withHttpMethod: (NSString *)method withURL: (NSString *) url {
@@ -83,7 +83,7 @@
     
     NSURL *URL = [self getURLWithAccessToken:path];
     
-    [self.manager DELETE:URL.absoluteString parameters:nil success:(AsyncHttpOperationSuccessBlock) successBlock failure:failureBlock];
+    [self.manager DELETE:URL.absoluteString parameters:nil success:successBlock failure:failureBlock];
 }
 
 @end

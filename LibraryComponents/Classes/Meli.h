@@ -43,14 +43,14 @@ static NSString const * MELI_APP_ID_KEY = @"MeliAppId";
 + (void) startLogin: (UIViewController *) clientViewController;
     
 + (NSString *) get: (NSString *)path error: (NSError **) error;
-+ (NSString *) getWithAuth: (NSString *)path error: (NSError **) error;
++ (NSString *) getAuth: (NSString *)path error: (NSError **) error;
 + (NSString *) post:(NSString *)path withBody:(NSData *)body error: (NSError **) error;
 + (NSString *) put:(NSString *)path withBody:(NSData *)body error: (NSError **) error;
 + (NSString *) delete: (NSString *)path error: (NSError **) error;
     
-+ (void) getAsync: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
-+ (void) getWithAuthAsync: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
-+ (void) postAsync: (NSString *)path withBody:(NSData*) body completionHandler:(AsyncHttpOperationBlock) completionHandler;
-+ (void) putAsync: (NSString *)path withBody:(NSData*) body completionHandler:(AsyncHttpOperationBlock) completionHandler;
-+ (void) deleteAsync: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
++ (void) asyncGet: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
++ (void) asyncGetAuth: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
++ (void) asyncPost: (NSString *)path withBody:(NSData*) body operationBlock:(AsyncHttpOperationBlock) operationBlock;
++ (void) asyncPut: (NSString *)path withBody:(NSData*) body operationBlock:(AsyncHttpOperationBlock) operationBlock;
++ (void) asyncDelete: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
 @end

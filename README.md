@@ -32,7 +32,7 @@ Copy and paste the following lines into the TextEdit window:
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 platform :ios, '8.0'
-pod 'MeliDevSDK', '~> 0.1.3'
+pod 'MeliDevSDK', '~> 0.1.4'
 ```
 You shouldn’t use TextEdit to edit the pod file because TextEdit likes to replace standard quotes with more graphically appealing quotes. This can cause CocoaPods to get confused and display errors, so it’s best to just use Xcode or another programming text editor.
 
@@ -81,18 +81,6 @@ This last method will check if the sdk was initialized. In case it wasn't, a mes
 
 If there wasn't any error trying to get an Access Token, the navigation controller will get the control to the Client View Controller.
 
-To execute sync http operations, you will need an instance of **MeliDevSyncHttpOperation** class.
-
-```objective-c
-MeliDevSyncHttpOperation *httpClient = [[MeliDevSyncHttpOperation alloc] initWithIdentity: self.identity];
-```
-
-In case you need async http operations, you will need an instance of **MeliDevAsyncHttpOperation** class.
-
-```objective-c
-MeliDevASyncHttpOperation *httpClient = [[MeliDevASyncHttpOperation alloc] initWithIdentity: self.identity];
-```
-
 ## Making GET calls
 
 ### Anonymous
@@ -103,38 +91,38 @@ NSString * result = [Meli get:path error:&error];
   or
 
 ```objective-c
-SuccessHandler successHandler = ^(NSURLSessionTask *task, id responseObject) {
+SuccessBlock successBlock = ^(NSURLSessionTask *task, id responseObject) {
     [self parseData:responseObject];
 };
 
-FailureHandler failureHandler = ^(NSURLSessionTask *operation, NSError *error) {
+FailureBlock failureBlock = ^(NSURLSessionTask *operation, NSError *error) {
     if(error) {
         [self processError:operation error:error];
     }
 };
     
-[Meli get:path successHandler:successHandler failureHanlder:failureHandler];
+[Meli get:path successBlock:successBlock failureBlock:failureBlock];
 ```
 
 ### Authenticated
 
 ```objective-c
-NSString * result = [Meli getWithAuthAsync:path error:&error];
+NSString * result = [Meli getAuth:path error:&error];
 ```
   or
 
 ```objective-c
-SuccessHandler successHandler = ^(NSURLSessionTask *task, id responseObject) {
+SuccessBlock successBlock = ^(NSURLSessionTask *task, id responseObject) {
     [self parseData:responseObject];
 };
 
-FailureHandler failureHandler = ^(NSURLSessionTask *operation, NSError *error) {
+FailureBlock failureBlock = ^(NSURLSessionTask *operation, NSError *error) {
     if(error) {
         [self processError:operation error:error];
     }
 };
     
-[Meli getWithAuthAsync:path successHandler:successHandler failureHanlder:failureHandler];
+[Meli asyncGetAuth:path successBlock:successBlock failureBlock:failureBlock];
 ```
 
 ## Making POST calls
@@ -146,7 +134,7 @@ NSString * result = [Meli post:path withBody:jsonData error:&error];
 
 ```objective-c
 
-AsyncHttpOperationBlock completionHandler = ^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+AsyncHttpOperationBlock operationBlock = ^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (!error) {
             NSLog(@"Response: %@", responseObject);
         } else {
@@ -154,7 +142,7 @@ AsyncHttpOperationBlock completionHandler = ^(NSURLResponse * _Nonnull response,
         }
     };
     
-    [Meli postAsync:path withBody:body completionHandler:completionHandler];
+[Meli asyncPost:path withBody:body operationBlock:operationBlock];
 ```
 
 ## Making PUT calls
@@ -166,7 +154,7 @@ NSString * result = [Meli put:path withBody:jsonData error:&error];
 
 ```objective-c
 
-AsyncHttpOperationBlock completionHandler = ^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+AsyncHttpOperationBlock operationBlock = ^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (!error) {
             NSLog(@"Response: %@", responseObject);
         } else {
@@ -174,7 +162,7 @@ AsyncHttpOperationBlock completionHandler = ^(NSURLResponse * _Nonnull response,
         }
     };
     
-    [Meli putAsync:path withBody:body completionHandler:completionHandler];
+[Meli asyncPut:path withBody:body operationBlock:operationBlock];
 ```
 
 ## Making DELETE calls
@@ -186,17 +174,17 @@ NSString * result = [Meli delete:path error:&error];
     or
 
 ```objective-c
-SuccessHandler successHandler = ^(NSURLSessionTask *task, id responseObject) {
+SuccessBlock successBlock = ^(NSURLSessionTask *task, id responseObject) {
     [self parseData:responseObject];
 };
 
-FailureHandler failureHandler = ^(NSURLSessionTask *operation, NSError *error) {
+FailureBlock failureBlock = ^(NSURLSessionTask *operation, NSError *error) {
     if(error) {
         [self processError:operation error:error];
     }
 };
 
-[Meli delete:path successHandler:successHandler failureHanlder:failureHandler];
+[Meli asyncDelete:path successBlock:successBlock failureBlock:failureBlock];
 ```
 
 ## Examples

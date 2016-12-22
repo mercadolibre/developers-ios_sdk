@@ -132,7 +132,7 @@ static MeliDevSyncHttpOperation * meliDevSyncHttpOperation;
     return [meliDevSyncHttpOperation get:path error:&error];
 }
     
-+ (NSString *) getWithAuth: (NSString *)path error: (NSError **) error {
++ (NSString *) getAuth: (NSString *)path error: (NSError **) error {
     
     return [meliDevSyncHttpOperation getWithAuth:path error:&error];
 }
@@ -153,27 +153,27 @@ static MeliDevSyncHttpOperation * meliDevSyncHttpOperation;
 }
     
 
-+ (void) getAsync: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock; {
++ (void) asyncGet: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock; {
     
     [meliDevAsyncHttpOperation get:path successBlock:successBlock failureBlock:failureBlock];
 }
     
-+ (void) getWithAuthAsync: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock; {
++ (void) asyncGetAuth: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock; {
     
     [meliDevAsyncHttpOperation getWithAuth:path successBlock:successBlock failureBlock:failureBlock];
 }
     
-+ (void) postAsync: (NSString *)path withBody:(NSData*) body completionHandler:(AsyncHttpOperationBlock) completionHandler {
++ (void) asyncPost: (NSString *)path withBody:(NSData*) body operationBlock:(AsyncHttpOperationBlock) operationBlock {
     
-    [meliDevAsyncHttpOperation post:path withBody:body completionHandler: completionHandler];
+    [meliDevAsyncHttpOperation post:path withBody:body operationBlock: operationBlock];
 }
 
-+ (void) putAsync: (NSString *)path withBody:(NSData*) body completionHandler:(AsyncHttpOperationBlock) completionHandler; {
++ (void) asyncPut: (NSString *)path withBody:(NSData*) body operationBlock:(AsyncHttpOperationBlock) operationBlock; {
     
-    [meliDevAsyncHttpOperation put:path withBody:body completionHandler:completionHandler];
+    [meliDevAsyncHttpOperation put:path withBody:body operationBlock:operationBlock];
 }
     
-+ (void) deleteAsync: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock {
++ (void) asyncDelete: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock {
     
     [meliDevAsyncHttpOperation delete:path successBlock:successBlock failureBlock:failureBlock];
 }

@@ -23,11 +23,11 @@
                         <constraint firstAttribute="height" constant="52" id="IHt-iG-dck"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="29"/>
-                    <state key="normal" title="Users Items">
+                    <state key="normal" title="User Items">
                         <color key="titleColor" red="0.010594865110000001" green="0.070730761889999993" blue="0.09044471154" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
-                        <action selector="getUsers:" destination="-1" eventType="touchUpInside" id="szg-CI-PYz"/>
+                        <action selector="getUserItems:" destination="-1" eventType="touchUpInside" id="Sui-K7-ckP"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cF1-f2-srL">

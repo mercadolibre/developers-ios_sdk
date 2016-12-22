@@ -42,9 +42,9 @@
     
     NSUserDefaults *defaults = [[NSUserDefaults alloc]init];
     
-    [defaults setValue:_clientId forKey:CLIENT_ID];
-    [defaults setValue:_userId forKey:USER_ID];
-    [defaults setValue:_accessToken.accessTokenValue forKey:ACCESS_TOKEN];
+    [defaults setValue:self.clientId forKey:CLIENT_ID];
+    [defaults setValue:self.userId forKey:USER_ID];
+    [defaults setValue:[self.accessToken getAccessTokenValue] forKey:ACCESS_TOKEN];
     
     NSLog(@"%@", @"The identity was saved correctly");
 }

@@ -48,7 +48,6 @@ static NSString * EXPIRES_IN_VALUE = @"21600";
     XCTAssertNotNil(identity, @"The identity should not be nil");
     XCTAssertTrue([identity.clientId isEqualToString: MELI_APP_ID_VALUE]);
     XCTAssertTrue([identity.getMeliDevAccessTokenValue isEqualToString: ACCESS_TOKEN_VALUE]);
-    XCTAssertTrue([identity.accessToken.expiresInValue isEqualToString: EXPIRES_IN_VALUE]);
 }
 
 - (void) testRestoreMeliDevIdentity_withClientIdChanged_shouldReturnNil {

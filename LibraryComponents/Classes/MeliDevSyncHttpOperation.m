@@ -32,19 +32,19 @@
 - (NSString *) execute: (NSMutableURLRequest *)request error: (NSError **) error {
     
     NSHTTPURLResponse *responseCode;
-    NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
     
     NSInteger responseStatusCode = [responseCode statusCode];
-    NSString *responseData = nil;
+    NSString *result = nil;
     
     if((responseStatusCode == 200 || responseStatusCode == 201)){
-        responseData = [[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
+        result = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
         *error = nil;
     } else {
         *error = [self errorForStatusCode: responseStatusCode withURL:[request URL]];
     }
     
-    return responseData;
+    return result;
 }
 
 - (NSString *) get: (NSString *)path error: (NSError **) error {
