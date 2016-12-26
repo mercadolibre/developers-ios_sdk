@@ -29,8 +29,5 @@
 - (BOOL) isTokenExpired {
     return [[NSDate date] timeIntervalSinceDate:self.tokenDateExpiration] > 0;
 }
-    
-- (NSString *) getAccessTokenValue {
-    return self.accessTokenValue;
-}
+
 @end

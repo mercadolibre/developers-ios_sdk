@@ -21,9 +21,8 @@
 
 - (instancetype) initWithIdentity: (MeliDevIdentity *) identity {
     
-    self = [super init];
+    self = [super initWithIdentity:identity];
     if (self) {
-        _identity = identity;
         _manager = [AFHTTPSessionManager manager];
     }
     return self;

@@ -40,7 +40,7 @@ static NSString const * MELI_APP_ID_KEY = @"MeliAppId";
  *
  *  @param clientViewController - an UIViewController that will be used as process initializer.
  */
-+ (void) startLogin: (UIViewController *) clientViewController;
++ (void) startLogin: (UIViewController *) clientViewController withSuccesBlock: (void (^)()) successBlock withErrorBlock: (void (^)(NSString *)) errorBlock;
     
 + (NSString *) get: (NSString *)path error: (NSError **) error;
 + (NSString *) getAuth: (NSString *)path error: (NSError **) error;

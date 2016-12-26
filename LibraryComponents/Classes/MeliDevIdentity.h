@@ -9,11 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "MeliDevAccessToken.h"
 
-static NSString * const CLIENT_ID = @"app_id";
-static NSString * const ACCESS_TOKEN = @"access_token";
-static NSString * const EXPIRES_IN = @"expires_in";
-static NSString * const USER_ID = @"user_id";
-
 /**
  * Model class that represents the identity of the user. It contains
  * information related to the user and the access tokens granted to the client
@@ -38,7 +33,7 @@ static NSString * const USER_ID = @"user_id";
  *
  *  @param loginData                    data related to login process
  */
-+ (void) createIdentity:(NSDictionary *) loginData;
++ (BOOL) createIdentity:(NSDictionary *) loginData clientId: (NSString *) clientId;
 
 /**
  *  Attempt to restore the identity from User Defaults. In case the App Id was changed after an Identity was stored,
@@ -52,6 +47,6 @@ static NSString * const USER_ID = @"user_id";
  *  Retrieve Access Token Value.
  *
  */
-- (NSString *) getMeliDevAccessTokenValue;
+- (NSString *) accessTokenValue;
 
 @end

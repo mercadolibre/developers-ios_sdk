@@ -19,6 +19,8 @@ static NSString const * REDIRECT_URL_NOT_DEFINED_KEY = @"Redirect URL is not def
 static NSString const * APP_ID_IS_NOT_NUMERIC_KEY = @"App ID is not numeric";
 static NSString const * REDIRECT_URL_IS_NOT_VALID_KEY = @"Redirect URL is not valid";
 
+static NSString const * SDK_IS_NOT_INITIALIZED = @"The SDK should be initialized";
+
 
 @implementation Meli
 
@@ -34,17 +36,18 @@ static MeliDevSyncHttpOperation * meliDevSyncHttpOperation;
 
 + (MeliDevIdentity *) getIdentity {
     
-    identity = [MeliDevIdentity restoreIdentity: _clientId];
-    
-    if(identity.clientId) {
+    if(!identity) {
         
-        meliDevSyncHttpOperation = [[MeliDevSyncHttpOperation alloc] initWithIdentity: identity];
-        meliDevAsyncHttpOperation = [[MeliDevAsyncHttpOperation alloc] initWithIdentity: identity];
+        identity = [MeliDevIdentity restoreIdentity: _clientId];
         
-        return identity;
-    } else {
-        return nil;
+        if(identity) {
+            
+            meliDevSyncHttpOperation = [[MeliDevSyncHttpOperation alloc] initWithIdentity: identity];
+            meliDevAsyncHttpOperation = [[MeliDevAsyncHttpOperation alloc] initWithIdentity: identity];
+        }
     }
+    
+    return identity;
 }
 
 + (NSString *) getClientId {
@@ -76,9 +79,10 @@ static MeliDevSyncHttpOperation * meliDevSyncHttpOperation;
         *error = [NSError errorWithDomain:MeliDevErrorDomain
                                      code:AppIdIsNotInitializedError
                                  userInfo:userInfo];
-    } else if( [MeliDevUtils isNumeric: appId] ) {
-        NSLog(@"App ID correct %@", appId);
-    } else {
+    }
+    
+    if( ![MeliDevUtils isNumeric: appId] ) {
+        
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: APP_ID_IS_NOT_NUMERIC_KEY};
 
         *error = [NSError errorWithDomain:MeliDevErrorDomain
@@ -96,9 +100,10 @@ static MeliDevSyncHttpOperation * meliDevSyncHttpOperation;
         *error = [NSError errorWithDomain:MeliDevErrorDomain
                                      code:RedirectUrlIsNotInitializedError
                                  userInfo:userInfo];
-    } else if( [MeliDevUtils validateUrl: redirectUrl] ) {
-        NSLog(@"Redirect URL is valid %@", redirectUrl);
-    } else {
+    }
+    
+    if( ![MeliDevUtils validateUrl: redirectUrl] ) {
+        
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: REDIRECT_URL_IS_NOT_VALID_KEY};
         
         *error = [NSError errorWithDomain:MeliDevErrorDomain
@@ -107,23 +112,29 @@ static MeliDevSyncHttpOperation * meliDevSyncHttpOperation;
     }
 }
 
-+ (void) startLogin: (UIViewController *) clientViewController {
++ (void) startLogin: (UIViewController *) clientViewController withSuccesBlock: (void (^)()) successBlock withErrorBlock: (void (^)(NSString *)) errorBlock {
     
     if(isSDKInitialized) {
         MeliDevLoginViewController * loginViewController = [[MeliDevLoginViewController alloc] initWithAppId: _clientId
                                                                                           andRedirectUrl: _redirectUrl];
-        loginViewController.onLoginCompleted = ^(NSDictionary *data){
-            [data setValue: _clientId forKey:MELI_APP_ID_KEY];
-            [MeliDevIdentity createIdentity:data];
+        loginViewController.onLoginCompleted = ^(){
+            NSLog(@"Meli login successful");
+            successBlock();
         };
         
         loginViewController.onErrorDetected = ^(NSString *error){
-            NSLog(@"%@", error);
+            NSLog(@"Something was wrong. %@", error);
+            errorBlock(error);
         };
         
         [clientViewController.navigationController pushViewController:loginViewController animated:YES];
     } else {
-        NSLog(@"%@", @"The SDK should be initialized");
+        
+        NSDictionary *userInfo = @{NSLocalizedDescriptionKey: SDK_IS_NOT_INITIALIZED};
+        NSError *error = [NSError errorWithDomain:MeliDevErrorDomain
+                                     code:SdkIsNotInitialized
+                                 userInfo:userInfo];
+        errorBlock(error);
     }
 }
 

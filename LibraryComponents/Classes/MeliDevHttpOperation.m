@@ -30,7 +30,7 @@
     
     NSString * url = [MELI_API_URL stringByAppendingString:path];
     url = [url stringByAppendingString: @"?access_token="];
-    url = [url stringByAppendingString: self.identity.getMeliDevAccessTokenValue];
+    url = [url stringByAppendingString: self.identity.accessTokenValue];
     
     return [NSURL URLWithString: url];
 }

@@ -97,18 +97,16 @@ const NSString * CALLBACK_MESSAGE_DISPATCH = @"background_message_dispatch";
         
         [queryStringDictionary setObject:value forKey:key];
     }
+    
+    BOOL created = [MeliDevIdentity createIdentity:queryStringDictionary clientId: self.appId];
 
-    if([queryStringDictionary count] != 0 && [self checkIfUserPropertiesExist:queryStringDictionary]) {
-        self.onLoginCompleted(queryStringDictionary);
+    if(created) {
+        self.onLoginCompleted();
     } else {
         self.onErrorDetected(@"Something was wrong!");
     }
     
     [self.HUD hideAnimated:TRUE];
-}
-
-- (BOOL) checkIfUserPropertiesExist: (NSDictionary *) data {
-    return [data objectForKey:USER_ID] != nil && [data objectForKey:ACCESS_TOKEN] != nil && [data objectForKey:EXPIRES_IN] != nil;
 }
 
 @end

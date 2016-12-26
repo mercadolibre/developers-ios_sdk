@@ -9,6 +9,11 @@
 #import "MeliDevIdentity.h"
 #import "Meli.h"
 
+static NSString * const CLIENT_ID = @"app_id";
+static NSString * const ACCESS_TOKEN = @"access_token";
+static NSString * const EXPIRES_IN = @"expires_in";
+static NSString * const USER_ID = @"user_id";
+
 @interface MeliDevIdentity()
     
 @property (nonatomic, copy) NSString * clientId;
@@ -19,23 +24,34 @@
 
 @implementation MeliDevIdentity
 
-- (NSString *) getMeliDevAccessTokenValue {
-    return [self.accessToken getAccessTokenValue];
+- (NSString *) accessTokenValue {
+    return [self.accessToken accessTokenValue];
 }
 
-+ (void) createIdentity:(NSDictionary *) loginData {
++ (BOOL) identityCanBeCreated: (NSDictionary *) data {
+    return [data objectForKey:USER_ID] != nil && [data objectForKey:ACCESS_TOKEN] != nil && [data objectForKey:EXPIRES_IN] != nil;
+}
+
++ (BOOL) createIdentity:(NSDictionary *) loginData clientId: (NSString *) clientId {
     
-    MeliDevIdentity * identity = [[MeliDevIdentity alloc]init];
-    identity.userId = [loginData valueForKey:USER_ID];
-    identity.clientId = [loginData valueForKey: MELI_APP_ID_KEY];
+    if([self identityCanBeCreated:loginData]) {
+        
+        MeliDevIdentity * identity = [[MeliDevIdentity alloc]init];
+        identity.userId = [loginData valueForKey:USER_ID];
+        identity.clientId = clientId;
+        
+        NSString * accessTokenValue = [loginData valueForKey:ACCESS_TOKEN];
+        NSString * expiresInValue = [loginData valueForKey:EXPIRES_IN];
+        
+        MeliDevAccessToken *accessToken = [[MeliDevAccessToken alloc] initWithMeliDevAccessToken:accessTokenValue andExpiresIn:expiresInValue];
+        identity.accessToken = accessToken;
+        
+        [identity storeIdentity];
+        
+        return YES;
+    }
     
-    NSString * accessTokenValue = [loginData valueForKey:ACCESS_TOKEN];
-    NSString * expiresInValue = [loginData valueForKey:EXPIRES_IN];
-    
-    MeliDevAccessToken *accessToken = [[MeliDevAccessToken alloc] initWithMeliDevAccessToken:accessTokenValue andExpiresIn:expiresInValue];
-    identity.accessToken = accessToken;
-    
-    [identity storeIdentity];
+    return NO;
 }
 
 - (void) storeIdentity {
@@ -44,7 +60,7 @@
     
     [defaults setValue:self.clientId forKey:CLIENT_ID];
     [defaults setValue:self.userId forKey:USER_ID];
-    [defaults setValue:[self.accessToken getAccessTokenValue] forKey:ACCESS_TOKEN];
+    [defaults setValue:[self.accessToken accessTokenValue] forKey:ACCESS_TOKEN];
     
     NSLog(@"%@", @"The identity was saved correctly");
 }

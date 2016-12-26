@@ -28,4 +28,5 @@ typedef NS_ENUM(NSInteger, MeliDevError) {
     HttpRequestError,
     MeliIdentityIsNil,
     InvalidAccessToken,
+    SdkIsNotInitialized
 };

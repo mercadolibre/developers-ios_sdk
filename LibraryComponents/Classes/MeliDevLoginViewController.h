@@ -13,7 +13,7 @@
  *
  *  @param dictionary with login's data
  */
-typedef void (^OnLoginCompleted)(NSDictionary *);
+typedef void (^OnLoginCompleted)();
 
 /**
  *  Block used as a callback when the login process has finished with errors.

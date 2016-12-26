@@ -24,10 +24,6 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
 @property (copy) NSString * result;
 @property (nonatomic) NSError * error;
 
-- (IBAction)login:(id)sender;
-
-- (IBAction)getUsers:(id)sender;
-
 @end
 
 @implementation MeliDevSDKExampleViewController
@@ -47,7 +43,11 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
 }
     
 - (IBAction)login:(id)sender {
-    [Meli startLogin:self];
+    [Meli startLogin:self withSuccesBlock:^{
+        NSLog(@"Login success");
+    } withErrorBlock:^(NSString * error) {
+        NSLog(@"Login Fail %@", error);
+    }];
 }
 
 - (IBAction)getUserItems:(id)sender {
@@ -62,10 +62,6 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
     NSURLRequest * request = operation.currentRequest;
     NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)operation.response;
     
-    // It should ask for a new access token
-    if([httpResponse statusCode] == 401){
-        [Meli startLogin:self];
-    }
     NSString * requestError = [NSString stringWithFormat: HTTP_REQUEST_ERROR_MESSAGE, [request URL],
                                (long)[httpResponse statusCode] ];
     NSLog(@"Http request error %@", requestError);
