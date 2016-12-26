@@ -39,6 +39,8 @@ static NSString const * MELI_APP_ID_KEY = @"MeliAppId";
  *  it should ask for it instead of calling the startLogin method.
  *
  *  @param clientViewController - an UIViewController that will be used as process initializer.
+ *  @param succesBlock - block used as a callback when the login process was success.
+ *  @param errorBlock - block used as a callback when the login process has failed.
  */
 + (void) startLogin: (UIViewController *) clientViewController withSuccesBlock: (void (^)()) successBlock withErrorBlock: (void (^)(NSString *)) errorBlock;
     

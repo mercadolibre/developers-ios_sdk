@@ -19,6 +19,7 @@ static NSString * const MeliDevErrorDomain = @"com.MeliDev.ErrorDomain";
  *  HttpRequestError: when some error happens during a http request.
  *  MeliIdentityIsNil: when the identity was not created before trying to execute a task.
  *  InvalidAccessToken: when the access token is wrong.
+ *  SdkIsNotInitialized: when the sdk was not initialized correctly.
  */
 typedef NS_ENUM(NSInteger, MeliDevError) {
     AppIdNotValidError,

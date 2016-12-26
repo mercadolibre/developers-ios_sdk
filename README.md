@@ -74,7 +74,7 @@ authorization.
 ```
 
 ```objective-c
-  (void) startLogin: (UIViewController *) clientViewController;
+  (void) startLogin: (UIViewController *) clientViewController withSuccesBlock: (void (^)()) successBlock withErrorBlock: (void (^)(NSString *)) errorBlock;
 ```
 
 This last method will check if the sdk was initialized. In case it wasn't, a message will be logged saying that you should do it.
