@@ -27,7 +27,7 @@ static NSString * const USER_ID = @"user_id";
 @property (nonatomic, strong) NSDictionary *wrongData;
 
 - (void) success: (NSString *) message;
-- (void) error: (NSString *) error;
+- (void) error: (NSError *) error;
 
 @end
 
@@ -38,10 +38,6 @@ static NSString * const USER_ID = @"user_id";
     
     _data = @{ @"user_id" : @"221910727", @"access_token" : @"token", @"expires_in" : @"26100" };
     _wrongData = @{ @"user_id" : @"221910727", @"access_token" : @"token" };
-}
-
-- (void)tearDown {
-    [super tearDown];
 }
     
 - (BOOL) checkIfUserPropertiesExist: (NSDictionary *) data {
@@ -62,7 +58,7 @@ static NSString * const USER_ID = @"user_id";
     NSLog(@"%@", message);
 }
 
-- (void) error: (NSString *) error {
+- (void) error: (NSError *) error {
     NSLog(@"%@", error);
 }
 
@@ -80,7 +76,7 @@ static NSString * const USER_ID = @"user_id";
         [weakSelf success:@"OK"];
     };
     
-    loginController.onErrorDetected = ^(NSString *error){
+    loginController.onErrorDetected = ^(NSError *error){
         [weakSelf error:error];
     };
     
@@ -105,7 +101,7 @@ static NSString * const USER_ID = @"user_id";
         [weakSelf success:@"OK"];
     };
     
-    loginController.onErrorDetected = ^(NSString *error){
+    loginController.onErrorDetected = ^(NSError *error){
         [weakSelf error:error];
     };
     
@@ -139,7 +135,7 @@ static NSString * const USER_ID = @"user_id";
         [weakSelf success:@"OK"];
     };
     
-    mockedLoginVC.onErrorDetected = ^(NSString *error){
+    mockedLoginVC.onErrorDetected = ^(NSError *error){
         [weakSelf error:error];
     };
     

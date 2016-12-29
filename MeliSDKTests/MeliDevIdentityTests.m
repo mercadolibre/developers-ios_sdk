@@ -38,17 +38,11 @@ static NSString * EXPIRES_IN_VALUE = @"21600";
     [MeliDevIdentity createIdentity:loginData clientId:MELI_APP_ID_VALUE];
 }
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
 - (void) testRestoreMeliDevIdentity_withLoginData_shouldReturnMeliDevIdentity {
     
     MeliDevIdentity * identity = [MeliDevIdentity restoreIdentity: MELI_APP_ID_VALUE];
     
     XCTAssertNotNil(identity, @"The identity should not be nil");
-    XCTAssertTrue([identity.clientId isEqualToString: MELI_APP_ID_VALUE]);
     XCTAssertTrue([identity.accessTokenValue isEqualToString: ACCESS_TOKEN_VALUE]);
 }
 

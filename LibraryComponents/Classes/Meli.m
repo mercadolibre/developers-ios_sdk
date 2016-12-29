@@ -12,15 +12,15 @@
 #import "MeliDevUtils.h"
 #import "MeliDevErrors.h"
 
-static NSString const * MELI_REDIRECT_URL_KEY = @"MeliRedirectUrl";
+static NSString * const MELI_REDIRECT_URL_KEY = @"MeliRedirectUrl";
 
-static NSString const * APP_ID_NOT_DEFINED_KEY = @"App ID is not defined at info.plist";
-static NSString const * REDIRECT_URL_NOT_DEFINED_KEY = @"Redirect URL is not defined at info.plist";
-static NSString const * APP_ID_IS_NOT_NUMERIC_KEY = @"App ID is not numeric";
-static NSString const * REDIRECT_URL_IS_NOT_VALID_KEY = @"Redirect URL is not valid";
+static NSString * const APP_ID_NOT_DEFINED_KEY = @"App ID is not defined at info.plist";
+static NSString * const REDIRECT_URL_NOT_DEFINED_KEY = @"Redirect URL is not defined at info.plist";
+static NSString * const APP_ID_IS_NOT_NUMERIC_KEY = @"App ID is not numeric";
+static NSString * const REDIRECT_URL_IS_NOT_VALID_KEY = @"Redirect URL is not valid";
 
-static NSString const * SDK_IS_NOT_INITIALIZED = @"The SDK should be initialized";
-
+static NSString * const SDK_IS_NOT_INITIALIZED = @"The SDK should be initialized";
+static NSString * const LOGIN_PROCESS_NOT_COMPLETED = @"You need to perform a login process before using this method";
 
 @implementation Meli
 
@@ -34,19 +34,19 @@ static BOOL isSDKInitialized = NO;
 static MeliDevAsyncHttpOperation * meliDevAsyncHttpOperation;
 static MeliDevSyncHttpOperation * meliDevSyncHttpOperation;
 
++ (void) initIdentity {
+    
+    identity = [MeliDevIdentity restoreIdentity: _clientId];
+        
+    meliDevSyncHttpOperation = [[MeliDevSyncHttpOperation alloc] initWithIdentity: identity];
+    meliDevAsyncHttpOperation = [[MeliDevAsyncHttpOperation alloc] initWithIdentity: identity];
+}
+
 + (MeliDevIdentity *) getIdentity {
-    
+
     if(!identity) {
-        
-        identity = [MeliDevIdentity restoreIdentity: _clientId];
-        
-        if(identity) {
-            
-            meliDevSyncHttpOperation = [[MeliDevSyncHttpOperation alloc] initWithIdentity: identity];
-            meliDevAsyncHttpOperation = [[MeliDevAsyncHttpOperation alloc] initWithIdentity: identity];
-        }
+        [self initIdentity];
     }
-    
     return identity;
 }
 
@@ -58,7 +58,7 @@ static MeliDevSyncHttpOperation * meliDevSyncHttpOperation;
     return _redirectUrl;
 }
 
-+ (void) startSDK: (NSString *) clientId withRedirectUrl:(NSString *) redirectUrl error:(NSError **) error {
++ (void) initializeSDK: (NSString *) clientId withRedirectUrl:(NSString *) redirectUrl error:(NSError **) error {
     
     [self verifyAppID:clientId error: error];
     [self verifyRedirectUrl:redirectUrl error: error];
@@ -112,22 +112,23 @@ static MeliDevSyncHttpOperation * meliDevSyncHttpOperation;
     }
 }
 
-+ (void) startLogin: (UIViewController *) clientViewController withSuccesBlock: (void (^)()) successBlock withErrorBlock: (void (^)(NSString *)) errorBlock {
++ (void) startLogin: (UIViewController *) clientViewController withSuccesBlock: (void (^)()) successBlock withErrorBlock: (void (^)(NSError *)) errorBlock {
     
     if(isSDKInitialized) {
+        
         MeliDevLoginViewController * loginViewController = [[MeliDevLoginViewController alloc] initWithAppId: _clientId
                                                                                           andRedirectUrl: _redirectUrl];
         loginViewController.onLoginCompleted = ^(){
-            NSLog(@"Meli login successful");
+            [self initIdentity];
             successBlock();
         };
         
-        loginViewController.onErrorDetected = ^(NSString *error){
-            NSLog(@"Something was wrong. %@", error);
+        loginViewController.onErrorDetected = ^(NSError *error){
             errorBlock(error);
         };
         
         [clientViewController.navigationController pushViewController:loginViewController animated:YES];
+        
     } else {
         
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: SDK_IS_NOT_INITIALIZED};
@@ -138,55 +139,122 @@ static MeliDevSyncHttpOperation * meliDevSyncHttpOperation;
     }
 }
 
++ (void) setIdentityIfRequired: (MeliDevIdentity *) meliDevIdentity error: (NSError **) error {
+    
+    *error = nil;
+    
+    if(identity == nil){
+        
+        identity = meliDevIdentity;
+        
+        if(identity == nil) {
+            
+            NSDictionary *userInfo = @{NSLocalizedDescriptionKey: LOGIN_PROCESS_NOT_COMPLETED};
+            
+            *error = [NSError errorWithDomain:MeliDevErrorDomain
+                                         code:LoginProcessIncompleted
+                                     userInfo:userInfo];
+        }
+    }
+}
+
 + (NSString *) get: (NSString *)path error: (NSError **) error {
 
-    return [meliDevSyncHttpOperation get:path error:&error];
+    return [[MeliDevSyncHttpOperation alloc] get:path error:&error];
 }
     
-+ (NSString *) getAuth: (NSString *)path error: (NSError **) error {
++ (NSString *) getAuth: (NSString *)path withIdentity: (MeliDevIdentity * _Nullable) identity error: (NSError **) error {
     
-    return [meliDevSyncHttpOperation getWithAuth:path error:&error];
+    [self setIdentityIfRequired:identity error:error];
+    
+    if(*error == nil) {
+        return [meliDevSyncHttpOperation getWithAuth:path error:error];
+    }
 }
     
-+ (NSString *) post:(NSString *)path withBody:(NSData *)body error: (NSError **) error {
++ (NSString *) post:(NSString *)path withBody:(NSData *)body withIdentity: (MeliDevIdentity * _Nullable) identity error: (NSError **) error {
     
-    return [meliDevSyncHttpOperation post:path withBody:body error:&error];
-}
+    [self setIdentityIfRequired:identity error:error];
     
-+ (NSString *) put:(NSString *)path withBody:(NSData *)body error: (NSError **) error {
-    
-    return [meliDevSyncHttpOperation put:path withBody:body error:&error];
+    if(*error == nil) {
+        return [meliDevSyncHttpOperation post:path withBody:body error:error];
+    }
 }
 
-+ (NSString *) delete: (NSString *)path error: (NSError **) error {
++ (NSString *) put:(NSString *)path withBody:(NSData *)body withIdentity: (MeliDevIdentity * _Nullable) identity error: (NSError **) error {
     
-    return [meliDevSyncHttpOperation delete:path error:&error];
+    [self setIdentityIfRequired:identity error:error];
+    
+    if(*error == nil) {
+        return [meliDevSyncHttpOperation put:path withBody:body error:error];
+    }
 }
+
++ (NSString *) delete: (NSString *)path withIdentity: (MeliDevIdentity * _Nullable) identity error: (NSError **) error {
     
+    [self setIdentityIfRequired:identity error:error];
+    
+    if(*error == nil) {
+        return [meliDevSyncHttpOperation delete:path error:error];
+    }
+}
+
 
 + (void) asyncGet: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock; {
     
-    [meliDevAsyncHttpOperation get:path successBlock:successBlock failureBlock:failureBlock];
+    [[[MeliDevAsyncHttpOperation alloc]init] get:path successBlock:successBlock failureBlock:failureBlock];
 }
     
-+ (void) asyncGetAuth: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock; {
++ (void) asyncGetAuth: (NSString *)path withIdentity: (MeliDevIdentity * _Nullable) identity successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock; {
     
-    [meliDevAsyncHttpOperation getWithAuth:path successBlock:successBlock failureBlock:failureBlock];
-}
+    NSError *error;
     
-+ (void) asyncPost: (NSString *)path withBody:(NSData*) body operationBlock:(AsyncHttpOperationBlock) operationBlock {
+    [self setIdentityIfRequired:identity error:&error];
     
-    [meliDevAsyncHttpOperation post:path withBody:body operationBlock: operationBlock];
+    if(!error) {
+        [meliDevAsyncHttpOperation getWithAuth:path successBlock:successBlock failureBlock:failureBlock];
+    } else {
+        failureBlock(nil, error);
+    }
 }
 
-+ (void) asyncPut: (NSString *)path withBody:(NSData*) body operationBlock:(AsyncHttpOperationBlock) operationBlock; {
++ (void) asyncPost: (NSString *)path withBody:(NSData*) body withIdentity: (MeliDevIdentity * _Nullable) identity operationBlock:(AsyncHttpOperationBlock) operationBlock {
     
-    [meliDevAsyncHttpOperation put:path withBody:body operationBlock:operationBlock];
+    NSError *error;
+    
+    [self setIdentityIfRequired:identity error:&error];
+    
+    if(!error) {
+        [meliDevAsyncHttpOperation post:path withBody:body operationBlock: operationBlock];
+    } else {
+        operationBlock(nil, nil, error);
+    }
 }
+
++ (void) asyncPut: (NSString *)path withBody:(NSData*) body withIdentity: (MeliDevIdentity * _Nullable) identity operationBlock:(AsyncHttpOperationBlock) operationBlock; {
     
-+ (void) asyncDelete: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock {
+    NSError *error;
     
-    [meliDevAsyncHttpOperation delete:path successBlock:successBlock failureBlock:failureBlock];
+    [self setIdentityIfRequired:identity error:&error];
+    
+    if(!error) {
+        [meliDevAsyncHttpOperation put:path withBody:body operationBlock:operationBlock];
+    } else {
+        operationBlock(nil, nil, error);
+    }
+}
+
++ (void) asyncDelete: (NSString *)path withIdentity: (MeliDevIdentity * _Nullable) identity successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock {
+    
+    NSError *error;
+    
+    [self setIdentityIfRequired:identity error:&error];
+    
+    if(!error) {
+       
+    } else {
+        failureBlock(nil, error);
+    }
 }
 
 @end

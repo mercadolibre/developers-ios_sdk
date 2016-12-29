@@ -9,10 +9,27 @@
 #import "MeliDevSyncHttpOperation.h"
 #import "MeliDevErrors.h"
 
+static NSInteger * const HTTP_STATUS_CODE_NOT_AUTHORIZED = 401;
+static NSInteger * const HTTP_STATUS_CODE_OK = 200;
+static NSInteger * const HTTP_STATUS_CODE_UPDATED = 201;
+
+static NSString * const HTTP_METHOD_GET = @"GET";
+static NSString * const HTTP_METHOD_POST = @"POST";
+static NSString * const HTTP_METHOD_PUT = @"PUT";
+static NSString * const HTTP_METHOD_DELETE = @"DELETE";
+
 @implementation MeliDevSyncHttpOperation
 
-- (MeliDevError *) getErrorForStatusCode: (NSInteger *) statusCode {
-    return (statusCode == 401) ? InvalidAccessToken : HttpRequestError;
+- (NSMutableURLRequest *) prepareRequest: (NSString *)method withBody: (NSData *)body {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:method];
+    [request setHTTPBody:body];
+    [request setValue:[NSString stringWithFormat:@"%lu", [body length]] forHTTPHeaderField:@"Content-Length"];
+    return request;
+}
+
+- (MeliDevError *) errorForStatusCode: (NSInteger *) statusCode {
+    return (statusCode == HTTP_STATUS_CODE_NOT_AUTHORIZED) ? InvalidAccessToken : HttpRequestError;
 }
     
 - (NSError *) errorForStatusCode: (NSInteger *) responseStatusCode withURL: (NSString *) url {
@@ -24,7 +41,7 @@
     NSDictionary *userInfo = @{NSLocalizedDescriptionKey: requestError};
         
     NSError *error = [NSError errorWithDomain:MeliDevErrorDomain
-                                             code:[self getErrorForStatusCode: responseStatusCode]
+                                             code:[self errorForStatusCode: responseStatusCode]
                                          userInfo:userInfo];
     return error;
 }
@@ -37,7 +54,7 @@
     NSInteger responseStatusCode = [responseCode statusCode];
     NSString *result = nil;
     
-    if((responseStatusCode == 200 || responseStatusCode == 201)){
+    if((responseStatusCode == HTTP_STATUS_CODE_OK || responseStatusCode == HTTP_STATUS_CODE_UPDATED)){
         result = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
         *error = nil;
     } else {
@@ -52,7 +69,7 @@
     NSString * url = [MELI_API_URL stringByAppendingString:path];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"GET"];
+    [request setHTTPMethod: HTTP_METHOD_GET];
     [request setURL:[NSURL URLWithString:url]];
     
     return [self execute:request error:&error];
@@ -61,16 +78,7 @@
 - (NSString *) getWithAuth: (NSString *)path error: (NSError **) error {
   
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"GET"];
-    [request setURL:[self getURLWithAccessToken:path]];
-    
-    return [self execute:request error:&error];
-}
-
-- (NSString *) delete: (NSString *)path error: (NSError **) error {
-
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"DELETE"];
+    [request setHTTPMethod: HTTP_METHOD_GET];
     [request setURL:[self getURLWithAccessToken:path]];
     
     return [self execute:request error:&error];
@@ -78,7 +86,7 @@
 
 - (NSString *) post:(NSString *)path withBody:(NSData *)body error: (NSError **) error {
     
-    NSMutableURLRequest *request = [self prepareRequest:@"POST" withBody:body];
+    NSMutableURLRequest *request = [self prepareRequest: HTTP_METHOD_POST withBody:body];
     [request setURL:[self getURLWithAccessToken:path]];
     
     return [self execute:request error:&error];
@@ -86,7 +94,16 @@
 
 - (NSString *) put:(NSString *)path withBody:(NSData *)body error: (NSError **) error {
     
-    NSMutableURLRequest *request = [self prepareRequest:@"PUT" withBody:body];
+    NSMutableURLRequest *request = [self prepareRequest: HTTP_METHOD_PUT withBody:body];
+    [request setURL:[self getURLWithAccessToken:path]];
+    
+    return [self execute:request error:&error];
+}
+
+- (NSString *) delete: (NSString *)path error: (NSError **) error {
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod: HTTP_METHOD_DELETE];
     [request setURL:[self getURLWithAccessToken:path]];
     
     return [self execute:request error:&error];

@@ -15,6 +15,7 @@
 @interface MeliDevAccessToken : NSObject
 
 @property (copy, nonatomic, readonly) NSString * accessTokenValue;
+@property (copy, nonatomic, readonly) NSString * expiresIn;
 
 /**
  *  Create a MeliDevAccessToken instance.

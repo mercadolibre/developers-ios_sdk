@@ -9,10 +9,12 @@
 #import "MeliDevLoginViewController.h"
 #import "MeliDevIdentity.h"
 #import "MBProgressHUD.h"
+#import "MeliDevErrors.h"
 
 const NSString * LOGIN_URL = @"http://auth.mercadolibre.com/authorization?response_type=token&client_id=";
 const NSString * CALLBACK_LOGIN = @"login";
 const NSString * CALLBACK_MESSAGE_DISPATCH = @"background_message_dispatch";
+const NSString * IDENTITY_COULD_NOT_BE_CREATED = @"There was an error trying to retrieve the identity's data";
 
 @interface MeliDevLoginViewController ()
 
@@ -73,7 +75,7 @@ const NSString * CALLBACK_MESSAGE_DISPATCH = @"background_message_dispatch";
     if([urlString containsString:self.redirectUrl]) {
         NSArray * urlParts = [urlString componentsSeparatedByString:@"#"];
         if (urlParts != nil && [urlParts count] > 1) {
-            [self getIdentityData: urlParts[1]];
+            [self generateIdentityWithData: urlParts[1]];
             [self.navigationController popViewControllerAnimated:YES];
         }
     }
@@ -84,7 +86,7 @@ const NSString * CALLBACK_MESSAGE_DISPATCH = @"background_message_dispatch";
     return YES;
 }
 
-- (void *) getIdentityData: (NSString *) urlParams {
+- (void) generateIdentityWithData: (NSString *) urlParams {
     
     NSMutableDictionary *queryStringDictionary = [[NSMutableDictionary alloc] init];
     NSArray *urlComponents = [urlParams componentsSeparatedByString:@"&"];
@@ -98,12 +100,19 @@ const NSString * CALLBACK_MESSAGE_DISPATCH = @"background_message_dispatch";
         [queryStringDictionary setObject:value forKey:key];
     }
     
-    BOOL created = [MeliDevIdentity createIdentity:queryStringDictionary clientId: self.appId];
+    BOOL created = [MeliDevIdentity createIdentity:queryStringDictionary appId: self.appId];
 
     if(created) {
         self.onLoginCompleted();
     } else {
-        self.onErrorDetected(@"Something was wrong!");
+        
+        NSDictionary *userInfo = @{NSLocalizedDescriptionKey: IDENTITY_COULD_NOT_BE_CREATED};
+        
+        NSError *error = [NSError errorWithDomain:MeliDevErrorDomain
+                                             code:IdentityCouldNotBeCreated
+                                         userInfo:userInfo];
+        
+        self.onErrorDetected(error);
     }
     
     [self.HUD hideAnimated:TRUE];

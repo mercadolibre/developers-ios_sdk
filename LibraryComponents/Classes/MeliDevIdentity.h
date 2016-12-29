@@ -17,11 +17,6 @@
 @interface MeliDevIdentity : NSObject
 
 /**
- *  Represent the application identifier provided by the client application.
- */
-@property (nonatomic, readonly) NSString * clientId;
-
-/**
  *  Represent the user identifier who provides permissions to the client application.
  */
 @property (nonatomic, readonly) NSString * userId;
@@ -31,9 +26,10 @@
 /**
  *  Create an Identity and store it in User Defaults.
  *
- *  @param loginData                    data related to login process
+ *  @param loginData                   data related to login process
+ *  @param appId                    represents the app id's client
  */
-+ (BOOL) createIdentity:(NSDictionary *) loginData clientId: (NSString *) clientId;
++ (BOOL) createIdentity:(NSDictionary *) loginData appId: (NSString *) appId;
 
 /**
  *  Attempt to restore the identity from User Defaults. In case the App Id was changed after an Identity was stored,

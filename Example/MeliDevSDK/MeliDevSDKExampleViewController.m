@@ -31,7 +31,7 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
 - (void)viewDidLoad {
     
     NSError *error;
-    [Meli startSDK: CLIENT_ID_VALUE withRedirectUrl: REDIRECT_URL_VALUE error:&error];
+    [Meli initializeSDK: CLIENT_ID_VALUE withRedirectUrl: REDIRECT_URL_VALUE error:&error];
     
     if(error) {
         NSLog(@"Domain: %@", error.domain);
@@ -43,28 +43,35 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
 }
     
 - (IBAction)login:(id)sender {
+    
     [Meli startLogin:self withSuccesBlock:^{
+        
         NSLog(@"Login success");
-    } withErrorBlock:^(NSString * error) {
+        self.identity = [Meli getIdentity];
+        
+    } withErrorBlock:^(NSError * error) {
         NSLog(@"Login Fail %@", error);
     }];
 }
 
 - (IBAction)getUserItems:(id)sender {
-    self.identity = [Meli getIdentity];
-    if(self.identity) {
-        [self getUsersItems];
-    }
+
+    [self getUsersItems];
 }
 
 - (void) processError: (NSURLSessionTask *) operation error:(NSError *)error {
     
-    NSURLRequest * request = operation.currentRequest;
-    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)operation.response;
-    
-    NSString * requestError = [NSString stringWithFormat: HTTP_REQUEST_ERROR_MESSAGE, [request URL],
-                               (long)[httpResponse statusCode] ];
-    NSLog(@"Http request error %@", requestError);
+    if(operation) {
+        NSURLRequest * request = operation.currentRequest;
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)operation.response;
+        
+        NSString * requestError = [NSString stringWithFormat: HTTP_REQUEST_ERROR_MESSAGE, [request URL],
+                                   (long)[httpResponse statusCode] ];
+        
+        NSLog(@"Http request error %@", requestError);
+    } else {
+        NSLog(@"Error: %@ ", [error userInfo] );
+    }
 }
 
 - (void) parseData: (id) responseObject {
@@ -97,20 +104,25 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
 
 - (void) getUsersItemsAsync {
     
-    NSString *userPath = [@"/users/" stringByAppendingString: self.identity.userId];
-    NSString *path = [userPath stringByAppendingString: @"/items/search"];
+    MeliDevIdentity * identity = [Meli getIdentity];
     
-    AsyncHttpOperationSuccessBlock successBlock = ^(NSURLSessionTask *task, id responseObject) {
-        [self parseData:responseObject];
-    };
-    
-    AsyncHttpOperationFailBlock failureBlock = ^(NSURLSessionTask *operation, NSError *error) {
-        if(error) {
-            [self processError:operation error:error];
-        }
-    };
-    
-    [Meli asyncGetAuth:path successBlock:successBlock failureBlock:failureBlock];
+    if(identity) {
+        
+        NSString *userPath = [@"/users/" stringByAppendingString: identity.userId];
+        NSString *path = [userPath stringByAppendingString: @"/items/search"];
+        
+        AsyncHttpOperationSuccessBlock successBlock = ^(NSURLSessionTask *task, id responseObject) {
+            [self parseData:responseObject];
+        };
+        
+        AsyncHttpOperationFailBlock failureBlock = ^(NSURLSessionTask *operation, NSError *error) {
+            if(error) {
+                [self processError:operation error:error];
+            }
+        };
+        
+        [Meli asyncGetAuth:path withIdentity: identity successBlock:successBlock failureBlock:failureBlock];
+    }
 }
 
 - (void) testPostAsync {
@@ -128,7 +140,7 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
         }
     };
     
-    [Meli asyncPost:path withBody:body operationBlock:operationBlock];
+    [Meli asyncPost:path withBody:body withIdentity: [Meli getIdentity] operationBlock:operationBlock];
 }
 
 - (void) testPutAsync {
@@ -146,12 +158,12 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
         }
     };
     
-    [Meli asyncPut:path withBody:body operationBlock:operationBlock];
+    [Meli asyncPut:path withBody:body withIdentity: [Meli getIdentity] operationBlock:operationBlock];
 }
     
 - (void) testDeleteAsync {
     
-    NSString *path = @"/items/#{ITEM_ID}/pictures/#{PICTURE_ID}";
+    NSString *path = @"/items/MLA648282047/pictures/986515-MLA25253621885_122016";
         
     AsyncHttpOperationSuccessBlock successBlock = ^(NSURLSessionTask *task, id responseObject) {
         [self parseData:responseObject];
@@ -163,7 +175,7 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
         }
     };
     
-    [Meli asyncDelete:path successBlock:successBlock failureBlock:failureBlock];
+    [Meli asyncDelete:path withIdentity: [Meli getIdentity] successBlock:successBlock failureBlock:failureBlock];
 }
     
 - (void) processOut: (NSString *)result withError: (NSError **) error {
@@ -186,12 +198,14 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
 
 - (void) getUsersItems {
     
-    NSError *error;
+    MeliDevIdentity * identity = [Meli getIdentity];
     
-    NSString *userPath = [@"/users/" stringByAppendingString: self.identity.userId];
+    NSError *error;
+
+    NSString *userPath = [@"/users/" stringByAppendingString: identity.userId];
     NSString *path = [userPath stringByAppendingString: @"/items/search"];
     
-    NSString * result = [Meli getAuth:path error: &error];
+    NSString * result = [Meli getAuth:path withIdentity: [Meli getIdentity] error: &error];
     
     [self processOut:result withError: &error];
 }
@@ -199,9 +213,9 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
 - (void) testPost {
     
     NSError *error;
-    MeliDevSyncHttpOperation *httpClient = [[MeliDevSyncHttpOperation alloc] initWithIdentity: self.identity];
+    
     NSString *path = @"/items";
-    NSString * result =[httpClient post:path withBody:[self createJsonDataForPost] error:&error];
+    NSString * result = [Meli post:path withBody:[self createJsonDataForPost] withIdentity: [Meli getIdentity] error:&error];
     
     [self processOut:result withError: &error];
 }
@@ -209,9 +223,9 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
 - (void) testPut {
     
     NSError *error;
-    MeliDevSyncHttpOperation *httpClient = [[MeliDevSyncHttpOperation alloc] initWithIdentity: self.identity];
-    NSString *path = @"/items/#{ITEM_ID}";
-    NSString * result =[httpClient put:path withBody:[self createJsonDataForPut] error:&error];
+    
+    NSString *path = @"/items/MLA648280443";
+    NSString * result =[Meli put:path withBody:[self createJsonDataForPut] withIdentity: [Meli getIdentity] error:&error];
     
     [self processOut:result withError: &error];
 }
@@ -219,9 +233,9 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
 - (void) testDelete {
     
     NSError *error;
-    MeliDevSyncHttpOperation *httpClient = [[MeliDevSyncHttpOperation alloc] initWithIdentity: self.identity];
-    NSString *path = @"/items/#{ITEM_ID}/pictures/#{PICTURE_ID}";
-    NSString * result =[httpClient delete:path error:&error];
+    
+    NSString *path = @"/items/MLA648280443/pictures/463515-MLA25253600782_122016";
+    NSString * result = [Meli delete:path withIdentity: [Meli getIdentity] error:&error];
     
     [self processOut:result withError: &error];
 }

@@ -28,7 +28,7 @@ static NSString const * MELI_APP_ID_KEY = @"MeliAppId";
  *  @param clientId                    represents the application identifier provided by the client application
  *  @param redirectUrl                 represents the application's redirect URL provided by the client application
  */
-+ (void) startSDK: (NSString *) clientId withRedirectUrl:(NSString *) redirectUrl error:(NSError **) error;
++ (void) initializeSDK: (NSString *) clientId withRedirectUrl:(NSString *) redirectUrl error:(NSError **) error;
 
 /**
  *  Starts the Login process by calling the proper SDK behavior. The UIViewController provided
@@ -42,17 +42,17 @@ static NSString const * MELI_APP_ID_KEY = @"MeliAppId";
  *  @param succesBlock - block used as a callback when the login process was success.
  *  @param errorBlock - block used as a callback when the login process has failed.
  */
-+ (void) startLogin: (UIViewController *) clientViewController withSuccesBlock: (void (^)()) successBlock withErrorBlock: (void (^)(NSString *)) errorBlock;
++ (void) startLogin: (UIViewController *) clientViewController withSuccesBlock: (void (^)()) successBlock withErrorBlock: (void (^)(NSError *)) errorBlock;
     
 + (NSString *) get: (NSString *)path error: (NSError **) error;
-+ (NSString *) getAuth: (NSString *)path error: (NSError **) error;
-+ (NSString *) post:(NSString *)path withBody:(NSData *)body error: (NSError **) error;
-+ (NSString *) put:(NSString *)path withBody:(NSData *)body error: (NSError **) error;
-+ (NSString *) delete: (NSString *)path error: (NSError **) error;
++ (NSString *) getAuth: (NSString *)path withIdentity: (MeliDevIdentity * _Nullable) identity error: (NSError **) error;
++ (NSString *) post:(NSString *)path withBody:(NSData *)body withIdentity: (MeliDevIdentity * _Nullable) identity error: (NSError **) error;
++ (NSString *) put:(NSString *)path withBody:(NSData *)body withIdentity: (MeliDevIdentity * _Nullable) identity error: (NSError **) error;
++ (NSString *) delete: (NSString *)path withIdentity: (MeliDevIdentity * _Nullable) identity error: (NSError **) error;
     
 + (void) asyncGet: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
-+ (void) asyncGetAuth: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
-+ (void) asyncPost: (NSString *)path withBody:(NSData*) body operationBlock:(AsyncHttpOperationBlock) operationBlock;
-+ (void) asyncPut: (NSString *)path withBody:(NSData*) body operationBlock:(AsyncHttpOperationBlock) operationBlock;
-+ (void) asyncDelete: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
++ (void) asyncGetAuth: (NSString *)path withIdentity: (MeliDevIdentity * _Nullable) identity successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
++ (void) asyncPost: (NSString *)path withBody:(NSData*) body withIdentity: (MeliDevIdentity * _Nullable) identity operationBlock:(AsyncHttpOperationBlock) operationBlock;
++ (void) asyncPut: (NSString *)path withBody:(NSData*) body withIdentity: (MeliDevIdentity * _Nullable) identity operationBlock:(AsyncHttpOperationBlock) operationBlock;
++ (void) asyncDelete: (NSString *)path withIdentity: (MeliDevIdentity * _Nullable) identity successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
 @end

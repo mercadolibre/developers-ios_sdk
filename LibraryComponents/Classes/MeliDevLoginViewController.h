@@ -20,7 +20,7 @@ typedef void (^OnLoginCompleted)();
  *
  *  @param error message
  */
-typedef void (^OnLoginErrorDetected)(NSString *);
+typedef void (^OnLoginErrorDetected)(NSError *);
 
 @interface MeliDevLoginViewController : UIViewController
 

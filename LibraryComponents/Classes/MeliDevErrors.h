@@ -20,6 +20,8 @@ static NSString * const MeliDevErrorDomain = @"com.MeliDev.ErrorDomain";
  *  MeliIdentityIsNil: when the identity was not created before trying to execute a task.
  *  InvalidAccessToken: when the access token is wrong.
  *  SdkIsNotInitialized: when the sdk was not initialized correctly.
+ *  IdentityCouldNotBeCreated: when some data related to the identity is wrong or there was an error at the server.
+ *  LoginProcessIncompleted: You need to perform a login process before using this method.
  */
 typedef NS_ENUM(NSInteger, MeliDevError) {
     AppIdNotValidError,
@@ -29,5 +31,7 @@ typedef NS_ENUM(NSInteger, MeliDevError) {
     HttpRequestError,
     MeliIdentityIsNil,
     InvalidAccessToken,
-    SdkIsNotInitialized
+    SdkIsNotInitialized,
+    IdentityCouldNotBeCreated,
+    LoginProcessIncompleted,
 };

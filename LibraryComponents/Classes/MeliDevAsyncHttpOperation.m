@@ -10,14 +10,25 @@
 #import "MeliDevErrors.h"
 #import <AFNetworking.h>
 
+static NSString * const HTTP_METHOD_POST = @"POST";
+static NSString * const HTTP_METHOD_PUT = @"PUT";
+
 @interface MeliDevAsyncHttpOperation ()
     
 @property (nonatomic, strong) AFHTTPSessionManager *manager;
-@property (nonatomic) MeliDevIdentity * identity;
     
 @end
 
 @implementation MeliDevAsyncHttpOperation
+
+- (instancetype) init {
+    
+    self = [super init];
+    if (self) {
+        _manager = [AFHTTPSessionManager manager];
+    }
+    return self;
+}
 
 - (instancetype) initWithIdentity: (MeliDevIdentity *) identity {
     
@@ -45,12 +56,12 @@
 
 - (void) post: (NSString *)path withBody:(NSData *)body operationBlock:(AsyncHttpOperationBlock) operationBlock {
 
-    [self createOrUpdate:path withBody: body withHttpMethod: @"POST" operationBlock:operationBlock];
+    [self createOrUpdate:path withBody: body withHttpMethod: HTTP_METHOD_POST operationBlock:operationBlock];
 }
  
 - (void) put: (NSString *)path withBody:(NSData *)body operationBlock:(AsyncHttpOperationBlock) operationBlock {
 
-    [self createOrUpdate:path withBody: body withHttpMethod: @"PUT" operationBlock:operationBlock];
+    [self createOrUpdate:path withBody: body withHttpMethod: HTTP_METHOD_PUT operationBlock:operationBlock];
 }
     
 - (void) createOrUpdate: (NSString *) path withBody:(NSData *)body withHttpMethod: (NSString *) method operationBlock:(AsyncHttpOperationBlock) operationBlock {
@@ -64,12 +75,11 @@
     
 - (NSMutableURLRequest *) createRequest: (NSData *) body withHttpMethod: (NSString *)method withURL: (NSString *) url {
 
-    NSError *error;
-    
     NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:method URLString:url parameters:nil error:nil];
     [request setHTTPMethod:method];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
+    NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:body options:0 error:&error];
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     

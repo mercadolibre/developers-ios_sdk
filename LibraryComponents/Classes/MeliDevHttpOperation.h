@@ -10,11 +10,13 @@
 #import "MeliDevIdentity.h"
 
 static NSString * const MELI_API_URL = @"https://api.mercadolibre.com";
-static NSString const * MELI_IDENTITY_NIL_MESSAGE = @"Meli Identity is nil";
+static NSString * const MELI_IDENTITY_NIL_MESSAGE = @"Meli Identity is nil";
 static NSString * const HTTP_REQUEST_ERROR_MESSAGE = @"Error getting %@, HTTP status code %li";
 
 
 @interface MeliDevHttpOperation : NSObject
+
+@property (nonatomic) MeliDevIdentity * identity;
     
 /**
 *  Create a MeliDevHttpOperation instance.
@@ -29,13 +31,5 @@ static NSString * const HTTP_REQUEST_ERROR_MESSAGE = @"Error getting %@, HTTP st
  *  @param path
  */
 - (NSURL *) getURLWithAccessToken: (NSString *) path;
-    
-/**
- *  Create and setup a request with a specific http method and its body.
- *
- *  @param method                    represents the http method.
- *  @param body                      represents the data that user wants to send.
- */
-- (NSMutableURLRequest *) prepareRequest: (NSString *)method withBody: (NSData *)body;
     
 @end
