@@ -15,15 +15,17 @@
 @interface MeliDevAccessToken : NSObject
 
 @property (copy, nonatomic, readonly) NSString * accessTokenValue;
-@property (copy, nonatomic, readonly) NSString * expiresIn;
-
+@property (nonatomic, strong) NSDate * tokenDateExpiration;
 /**
  *  Create a MeliDevAccessToken instance.
  *
  *  @param token                    represents the token value.
  *  @param expiresIn                represents the token's expiration time.
  */
-- (id) initWithMeliDevAccessToken: (NSString *) token andExpiresIn: (NSString *) expiresIn;
+- (instancetype) initWithMeliDevAccessToken: (NSString *) token andExpiresIn: (NSString *) expiresIn;
+
+
+- (instancetype) initWithMeliDevAccessToken: (NSString *) token andTokenExpirationDate: (NSDate *) tokenExpirationDate;
 
 /**
  *  Verify if the token has been expired.

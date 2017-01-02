@@ -56,7 +56,7 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
 
 - (IBAction)getUserItems:(id)sender {
 
-    [self getUsersItems];
+    [self getUsersItemsAsync];
 }
 
 - (void) processError: (NSURLSessionTask *) operation error:(NSError *)error {
@@ -163,7 +163,7 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
     
 - (void) testDeleteAsync {
     
-    NSString *path = @"/items/MLA648282047/pictures/986515-MLA25253621885_122016";
+    NSString *path = @"/questions/#{QUESTION_ID}";
         
     AsyncHttpOperationSuccessBlock successBlock = ^(NSURLSessionTask *task, id responseObject) {
         [self parseData:responseObject];
@@ -210,7 +210,7 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
     [self processOut:result withError: &error];
 }
 
-- (void) testPost {
+- (void) testPostItem {
     
     NSError *error;
     
@@ -224,8 +224,18 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
     
     NSError *error;
     
-    NSString *path = @"/items/MLA648280443";
-    NSString * result =[Meli put:path withBody:[self createJsonDataForPut] withIdentity: [Meli getIdentity] error:&error];
+    NSString *path = @"/items/#{ITEM_ID}";
+    NSString * result = [Meli put:path withBody:[self createJsonDataForPut] withIdentity: [Meli getIdentity] error:&error];
+    
+    [self processOut:result withError: &error];
+}
+
+- (void) createQuestion {
+    
+    NSError *error;
+    
+    NSString *path = @"/questions/#{ITEM_ID}";
+    NSString * result = [Meli post:path withBody:[self createQuestionForDelete] withIdentity: [Meli getIdentity] error:&error];
     
     [self processOut:result withError: &error];
 }
@@ -234,7 +244,7 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
     
     NSError *error;
     
-    NSString *path = @"/items/MLA648280443/pictures/463515-MLA25253600782_122016";
+    NSString *path = @"/questions/#{QUESTION_ID}";
     NSString * result = [Meli delete:path withIdentity: [Meli getIdentity] error:&error];
     
     [self processOut:result withError: &error];
@@ -290,5 +300,22 @@ static NSString * REDIRECT_URL_VALUE = @"https://www.example.com";
     
     return json;
 }
+
+-(NSData *)createQuestionForDelete
+{
+    //your keys for json
+    NSArray * keys = @[@"item_id",@"text"];
     
+    //your objects for json
+    NSArray * objects = @[@"#{ITEM_ID}", @"Test question"];
+    
+    //create dictionary to convert json object
+    NSDictionary * jsonData=[[NSMutableDictionary alloc] initWithObjects:objects forKeys:keys];
+    
+    //convert dictionary to json data
+    NSData * json =[NSJSONSerialization dataWithJSONObject:jsonData options:NSJSONWritingPrettyPrinted error:nil];
+    
+    return json;
+}
+
 @end

@@ -13,6 +13,7 @@ static NSString * const APP_ID = @"app_id";
 static NSString * const ACCESS_TOKEN = @"access_token";
 static NSString * const EXPIRES_IN = @"expires_in";
 static NSString * const USER_ID = @"user_id";
+static NSString * const TOKEN_EXPIRATION_DATE = @"token_expiration_date";
 
 @interface MeliDevIdentity()
 
@@ -59,7 +60,7 @@ static NSString * const USER_ID = @"user_id";
     [defaults setValue: appId forKey: APP_ID];
     [defaults setValue: self.userId forKey: USER_ID];
     [defaults setValue: [self.accessToken accessTokenValue] forKey: ACCESS_TOKEN];
-    [defaults setValue: [self.accessToken expiresIn] forKey: EXPIRES_IN];
+    [defaults setValue: [self.accessToken tokenDateExpiration] forKey: TOKEN_EXPIRATION_DATE];
     
     NSLog(@"%@", @"The identity was saved correctly");
 }
@@ -76,10 +77,10 @@ static NSString * const USER_ID = @"user_id";
         return nil;
     }
     
-    NSString * accessTokenValue = [defaults valueForKey:ACCESS_TOKEN];
-    NSString * expiresInValue = [defaults valueForKey:EXPIRES_IN];
+    NSString * accessTokenValue = [defaults valueForKey: ACCESS_TOKEN];
+    NSDate * tokenExpirationDate = [defaults valueForKey: TOKEN_EXPIRATION_DATE];
     
-    MeliDevAccessToken *accessToken = [[MeliDevAccessToken alloc] initWithMeliDevAccessToken:accessTokenValue andExpiresIn:expiresInValue];
+    MeliDevAccessToken *accessToken = [[MeliDevAccessToken alloc] initWithMeliDevAccessToken:accessTokenValue andTokenExpirationDate: tokenExpirationDate];
     
     if(![accessToken isTokenExpired]) {
         identity = [[MeliDevIdentity alloc]init];

@@ -81,7 +81,7 @@ static NSString * const USER_ID = @"user_id";
     };
     
     // when
-    [loginController getIdentityData:params];
+    [loginController generateIdentityWithData:params];
     
     // verify
     OCMVerify([weakSelf success:OCMOCK_ANY]);
@@ -106,7 +106,7 @@ static NSString * const USER_ID = @"user_id";
     };
     
     // when
-    [loginController getIdentityData:params];
+    [loginController generateIdentityWithData:params];
     
     //verify
     OCMVerify([weakSelf error:OCMOCK_ANY]);
@@ -127,7 +127,7 @@ static NSString * const USER_ID = @"user_id";
     [mockNavigationController pushViewController:mockedLoginVC animated:NO];
     
     NSString * params = @"access_token=APP_USR-5197208004815569-092710-c5a973091106231723d0e9491b1fa6d9__M_B__-221910727&user_id=221910727&domains=www.example.com";
-    OCMStub([mockedLoginVC getIdentityData:params]).andReturn(_data);
+    OCMStub([mockedLoginVC generateIdentityWithData:params]).andReturn(_data);
     
     __weak MeliDevLoginViewControllerTests * weakSelf = self;
     

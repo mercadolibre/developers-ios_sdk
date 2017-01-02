@@ -251,7 +251,7 @@ static MeliDevSyncHttpOperation * meliDevSyncHttpOperation;
     [self setIdentityIfRequired:identity error:&error];
     
     if(!error) {
-       
+       [meliDevAsyncHttpOperation delete:path successBlock:successBlock failureBlock:failureBlock];
     } else {
         failureBlock(nil, error);
     }

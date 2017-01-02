@@ -35,7 +35,7 @@ static NSString * EXPIRES_IN_VALUE = @"21600";
     [loginData setValue: ACCESS_TOKEN_VALUE forKey: ACCESS_TOKEN];
     [loginData setValue: EXPIRES_IN_VALUE forKey: EXPIRES_IN];
     
-    [MeliDevIdentity createIdentity:loginData clientId:MELI_APP_ID_VALUE];
+    [MeliDevIdentity createIdentity: loginData appId: MELI_APP_ID_VALUE];
 }
 
 - (void) testRestoreMeliDevIdentity_withLoginData_shouldReturnMeliDevIdentity {

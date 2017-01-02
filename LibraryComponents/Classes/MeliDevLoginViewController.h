@@ -40,6 +40,6 @@ typedef void (^OnLoginErrorDetected)(NSError *);
  *
  *  @param urlParams                    represents all the params information needed to create the identity.
  */
-- (void *) getIdentityData: (NSString *) urlParams;
+- (void *) generateIdentityWithData: (NSString *) urlParams;
 
 @end

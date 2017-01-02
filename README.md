@@ -107,7 +107,7 @@ FailureBlock failureBlock = ^(NSURLSessionTask *operation, NSError *error) {
 ### Authenticated
 
 ```objective-c
-NSString * result = [Meli getAuth:path error:&error];
+NSString * result = [Meli getAuth:path withIdentity: [Meli getIdentity] error: &error];
 ```
   or
 
@@ -122,13 +122,13 @@ FailureBlock failureBlock = ^(NSURLSessionTask *operation, NSError *error) {
     }
 };
     
-[Meli asyncGetAuth:path successBlock:successBlock failureBlock:failureBlock];
+[Meli asyncGetAuth:path withIdentity: identity successBlock:successBlock failureBlock:failureBlock];
 ```
 
 ## Making POST calls
 
 ```objective-c
-NSString * result = [Meli post:path withBody:jsonData error:&error];
+NSString * result = [Meli post:path withBody:[self createJsonDataForPost] withIdentity: [Meli getIdentity] error:&error];
 ```
     or
 
@@ -142,7 +142,7 @@ AsyncHttpOperationBlock operationBlock = ^(NSURLResponse * _Nonnull response, id
         }
     };
     
-[Meli asyncPost:path withBody:body operationBlock:operationBlock];
+[Meli asyncPost:path withBody:body withIdentity: [Meli getIdentity] operationBlock:operationBlock];
 ```
 
 ## Making PUT calls
@@ -162,13 +162,15 @@ AsyncHttpOperationBlock operationBlock = ^(NSURLResponse * _Nonnull response, id
         }
     };
     
-[Meli asyncPut:path withBody:body operationBlock:operationBlock];
+[Meli put:path withBody:[self createJsonDataForPut] withIdentity: [Meli getIdentity] error:&error];
 ```
 
 ## Making DELETE calls
 
+##### Note: In the DELETE example code you will notice that it tries to delete a question. So, if you are going to create a question, it should check that the item does not belong to the same user. In the other case, you will receive an error from MercadoLibre API.
+
 ```objective-c
-NSString * result = [Meli delete:path error:&error];
+NSString * result = [Meli delete:path withIdentity: [Meli getIdentity] error:&error];
 ```
 
     or
@@ -184,7 +186,7 @@ FailureBlock failureBlock = ^(NSURLSessionTask *operation, NSError *error) {
     }
 };
 
-[Meli asyncDelete:path successBlock:successBlock failureBlock:failureBlock];
+[Meli asyncDelete:path withIdentity: [Meli getIdentity] successBlock:successBlock failureBlock:failureBlock];
 ```
 
 ## Examples

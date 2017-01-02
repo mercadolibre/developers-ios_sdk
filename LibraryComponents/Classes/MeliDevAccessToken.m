@@ -8,12 +8,6 @@
 
 #import "MeliDevAccessToken.h"
 
-@interface MeliDevAccessToken ()
-
-@property (nonatomic, strong) NSDate * tokenDateExpiration;
-
-@end
-
 @implementation MeliDevAccessToken
 
 - (instancetype) initWithMeliDevAccessToken: (NSString *) token andExpiresIn: (NSString *) expiresIn {
@@ -22,13 +16,22 @@
     if(self) {
         _accessTokenValue = token;
         _tokenDateExpiration = [NSDate dateWithTimeIntervalSinceNow:([expiresIn doubleValue])];
-        _expiresIn = expiresIn;
+    }
+    return self;
+}
+
+- (instancetype) initWithMeliDevAccessToken: (NSString *) token andTokenExpirationDate: (NSDate *) tokenExpirationDate {
+    
+    self = [super init];
+    if(self) {
+        _accessTokenValue = token;
+        _tokenDateExpiration = tokenExpirationDate;
     }
     return self;
 }
 
 - (BOOL) isTokenExpired {
-    return [[NSDate date] timeIntervalSinceDate:self.tokenDateExpiration] > 0;
+    return [[NSDate date] timeIntervalSinceDate: self.tokenDateExpiration] > 0;
 }
 
 @end
