@@ -167,7 +167,7 @@ AsyncHttpOperationBlock operationBlock = ^(NSURLResponse * _Nonnull response, id
 
 ## Making DELETE calls
 
-##### Note: In the DELETE example code you will notice that it tries to delete a question. So, if you are going to create a question, it should check that the item does not belong to the same user. In the other case, you will receive an error from MercadoLibre API.
+##### Note: In the DELETE example code you will notice that it tries to delete a question. So, if you are going to create a question, it should check that the item does not belong to the same user. Otherwise, you will receive an error from MercadoLibre API.
 
 ```objective-c
 NSString * result = [Meli delete:path withIdentity: [Meli getIdentity] error:&error];
