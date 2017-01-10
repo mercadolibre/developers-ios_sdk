@@ -11,12 +11,12 @@
 #import "MBProgressHUD.h"
 #import "MeliDevErrors.h"
 
-const NSString * LOGIN_URL = @"http://auth.mercadolibre.com/authorization?response_type=token&client_id=";
-const NSString * CALLBACK_LOGIN = @"login";
-const NSString * CALLBACK_MESSAGE_DISPATCH = @"background_message_dispatch";
-const NSString * IDENTITY_COULD_NOT_BE_CREATED = @"There was an error trying to retrieve the identity's data";
+static NSString * const LOGIN_URL = @"http://auth.mercadolibre.com/authorization?response_type=token&client_id=";
+static NSString * const CALLBACK_LOGIN = @"login";
+static NSString * const CALLBACK_MESSAGE_DISPATCH = @"background_message_dispatch";
+static NSString * const IDENTITY_COULD_NOT_BE_CREATED = @"There was an error trying to retrieve the identity's data";
 
-@interface MeliDevLoginViewController ()
+@interface MeliDevLoginViewController () <UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
     
@@ -33,8 +33,6 @@ const NSString * IDENTITY_COULD_NOT_BE_CREATED = @"There was an error trying to 
  *  Represent the application's redirect URL provided by the client application.
  */
 @property (copy) NSString * redirectUrl;
-
-- (void *) createParamDictionary: (NSString *) urlString;
 
 @end
 

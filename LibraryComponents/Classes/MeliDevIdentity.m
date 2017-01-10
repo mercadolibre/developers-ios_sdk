@@ -18,7 +18,7 @@ static NSString * const TOKEN_EXPIRATION_DATE = @"token_expiration_date";
 @interface MeliDevIdentity()
 
 @property (copy, nonatomic) NSString * userId;
-@property (nonatomic, strong, copy) MeliDevAccessToken * accessToken;
+@property (nonatomic, strong) MeliDevAccessToken * accessToken;
 
 @end
 

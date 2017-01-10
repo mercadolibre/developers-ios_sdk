@@ -139,7 +139,7 @@ static MeliDevSyncHttpOperation * meliDevSyncHttpOperation;
     }
 }
 
-+ (void) setIdentityIfRequired: (MeliDevIdentity *) meliDevIdentity error: (NSError **) error {
++ (void) setIdentityIfRequired: (MeliDevIdentity * _Nullable) meliDevIdentity error: (NSError **) error {
     
     *error = nil;
     
@@ -160,43 +160,59 @@ static MeliDevSyncHttpOperation * meliDevSyncHttpOperation;
 
 + (NSString *) get: (NSString *)path error: (NSError **) error {
 
-    return [[MeliDevSyncHttpOperation alloc] get:path error:&error];
+    return [[MeliDevSyncHttpOperation alloc] get:path error: error];
 }
     
 + (NSString *) getAuth: (NSString *)path withIdentity: (MeliDevIdentity * _Nullable) identity error: (NSError **) error {
     
     [self setIdentityIfRequired:identity error:error];
     
+    NSString * result = nil;
+    
     if(*error == nil) {
-        return [meliDevSyncHttpOperation getWithAuth:path error:error];
+        result = [meliDevSyncHttpOperation getWithAuth:path error:error];
     }
+    
+    return result;
 }
     
 + (NSString *) post:(NSString *)path withBody:(NSData *)body withIdentity: (MeliDevIdentity * _Nullable) identity error: (NSError **) error {
     
     [self setIdentityIfRequired:identity error:error];
     
+    NSString * result = nil;
+    
     if(*error == nil) {
-        return [meliDevSyncHttpOperation post:path withBody:body error:error];
+        result =  [meliDevSyncHttpOperation post:path withBody:body error:error];
     }
+    
+    return result;
 }
 
 + (NSString *) put:(NSString *)path withBody:(NSData *)body withIdentity: (MeliDevIdentity * _Nullable) identity error: (NSError **) error {
     
     [self setIdentityIfRequired:identity error:error];
     
+    NSString * result = nil;
+    
     if(*error == nil) {
-        return [meliDevSyncHttpOperation put:path withBody:body error:error];
+        result = [meliDevSyncHttpOperation put:path withBody:body error:error];
     }
+    
+    return result;
 }
 
 + (NSString *) delete: (NSString *)path withIdentity: (MeliDevIdentity * _Nullable) identity error: (NSError **) error {
     
     [self setIdentityIfRequired:identity error:error];
     
+    NSString * result = nil;
+    
     if(*error == nil) {
-        return [meliDevSyncHttpOperation delete:path error:error];
+        result = [meliDevSyncHttpOperation delete:path error:error];
     }
+    
+    return result;
 }
 
 

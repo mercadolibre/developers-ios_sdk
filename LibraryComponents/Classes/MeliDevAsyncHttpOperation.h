@@ -15,7 +15,7 @@
  *  @param operation
  *  @param responseObject
  */
-typedef void (^AsyncHttpOperationSuccessBlock) (NSURLSessionTask *operation, id responseObject);
+typedef void (^AsyncHttpOperationSuccessBlock) (NSURLSessionTask * _Nonnull operation, id _Nullable responseObject);
 
 /**
  *  Block used as a callback when the http request has failed.
@@ -23,7 +23,7 @@ typedef void (^AsyncHttpOperationSuccessBlock) (NSURLSessionTask *operation, id 
  *  @param operation
  *  @param error
  */
-typedef void (^AsyncHttpOperationFailBlock) (NSURLSessionTask *operation, NSError *error);
+typedef void (^AsyncHttpOperationFailBlock) (NSURLSessionTask * _Nullable operation, NSError * _Nonnull error);
 
 /**
  *  Block used as a callback when the http request (POST or PUT) was success.
@@ -32,14 +32,14 @@ typedef void (^AsyncHttpOperationFailBlock) (NSURLSessionTask *operation, NSErro
  *  @param responseObject
  *  @param error
  */
-typedef void (^AsyncHttpOperationBlock) (NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error);
+typedef void (^AsyncHttpOperationBlock) (NSURLResponse * _Nullable response, id _Nullable responseObject, NSError * _Nullable error);
 
 @interface MeliDevAsyncHttpOperation : MeliDevHttpOperation
 
-- (void) get: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successHandler failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
-- (void) getWithAuth: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
-- (void) post: (NSString *)path withBody:(NSData *) body operationBlock:(AsyncHttpOperationBlock) operationBlock;
-- (void) put: (NSString *)path withBody:(NSData *) body operationBlock:(AsyncHttpOperationBlock) operationBlock;
-- (void) delete: (NSString *)path successBlock:(AsyncHttpOperationSuccessBlock) successBlock failureBlock:(AsyncHttpOperationFailBlock) failureBlock;
+- (void) get: (nonnull NSString *)path successBlock: (nonnull AsyncHttpOperationSuccessBlock) successHandler failureBlock:(nonnull AsyncHttpOperationFailBlock) failureBlock;
+- (void) getWithAuth: (nonnull NSString *)path successBlock:(nonnull AsyncHttpOperationSuccessBlock) successBlock failureBlock:(nonnull AsyncHttpOperationFailBlock) failureBlock;
+- (void) post: (nonnull NSString *)path withBody:(nonnull NSData *) body operationBlock:(nonnull AsyncHttpOperationBlock) operationBlock;
+- (void) put: (nonnull NSString *)path withBody:(nonnull NSData *) body operationBlock:(nonnull AsyncHttpOperationBlock) operationBlock;
+- (void) delete: (nonnull NSString *)path successBlock:(nonnull AsyncHttpOperationSuccessBlock) successBlock failureBlock:(nonnull AsyncHttpOperationFailBlock) failureBlock;
 
 @end
